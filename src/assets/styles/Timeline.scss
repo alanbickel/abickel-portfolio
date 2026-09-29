@@ -1,3 +1,5 @@
+@use 'timeline-base';
+
 .vertical-timeline {
     &::before {
         background: rgba(255, 255, 255, 0.64);
@@ -65,6 +67,10 @@
 
     .light-mode & {
         box-shadow: 0 0 0 4px #f8f9fa, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+    }
+
+    svg {
+        color: white;
     }
 }
 
