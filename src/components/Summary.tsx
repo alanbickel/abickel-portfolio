@@ -1,45 +1,46 @@
-import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode, faChalkboardUser, faBookOpenReader, faFrog } from '@fortawesome/free-solid-svg-icons';
-import Chip from '@mui/material/Chip';
+import CodeIcon from '~icons/fa6-solid/code';
+import ChalkboardUserIcon from '~icons/fa6-solid/chalkboard-user';
+import BookOpenReaderIcon from '~icons/fa6-solid/book-open-reader';
+import FrogIcon from '~icons/fa6-solid/frog';
+import Chip from './Chip';
 import '../assets/styles/Summary.scss';
 import kilgorePortrait from '../assets/images/profile-pic-kilgore.png';
 
 function Summary() {
 
   return (
-    <div className="container" id="about">
-      <div className="summary-container">
-        <div className="portrait-shell">
-          <div className="portrait-content">
+    <div class="container" id="about">
+      <div class="summary-container">
+        <div class="portrait-shell">
+          <div class="portrait-content">
             <h1>Who Am I?</h1>
-            <p className="summary-lede">
+            <p class="summary-lede">
               Full Stack Engineer with 5+ years in the EdTech industry, architecting and developing solutions for everything from enterprise-grade LMS platforms, and internal tooling & data systems for Content management pipelines. 
               I have a passion for creating intuitive, performant, and accessible experiences that empower educators and learners.
             </p>
-            <p className="summary-lede thin">
+            <p class="summary-lede thin">
              With a background in digital art, animation and large-scale text encoding/analysis - I bring a unique perspective to software development, blending technical expertise with creative problem-solving.
               I am also a lifelong learner, constantly seeking to expand my knowledge and skills in the ever-evolving field of technology.
             </p>
-            <p className="summary-lede thin">
+            <p class="summary-lede thin">
               Aside from my full-time work as a software engineer, I am an adjunct lecturer of an intro-level Digital Art studio course at a local university - where I teach students the fundamentals of 
               digital art creation on a variety of mediums through hands-on explorations.
             </p>
-            <div className="badge-row">
-              <Chip className="chip" icon={<FontAwesomeIcon icon={faCode} />} label="Coder" />
-              <Chip className="chip" icon={<FontAwesomeIcon icon={faChalkboardUser} />} label="Educator" />
-              <Chip className="chip" icon={<FontAwesomeIcon icon={faBookOpenReader} />} label="Lifelong Learner" />
-              <Chip className="chip" icon={<FontAwesomeIcon icon={faFrog} />} label="Frog-Lover" />
+            <div class="badge-row">
+              <Chip icon={<CodeIcon />} label="Coder" />
+              <Chip icon={<ChalkboardUserIcon />} label="Educator" />
+              <Chip icon={<BookOpenReaderIcon />} label="Lifelong Learner" />
+              <Chip icon={<FrogIcon />} label="Frog-Lover" />
             </div>
           </div>
-          <div className="portrait-art" aria-hidden="true">
-            <img className="portrait-image" src={kilgorePortrait} alt="Digital portrait of a character I created named Kilgore" />
+          <div class="portrait-art" aria-hidden="true">
+            <img class="portrait-image" src={kilgorePortrait} alt="Digital portrait of a character I created named Kilgore" />
             {/* <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="summaryArtGradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#006161" />
-                  <stop offset="55%" stopColor="#1c8f8f" />
-                  <stop offset="100%" stopColor="#5000ca" />
+                  <stop offset="0%" stop-color="#006161" />
+                  <stop offset="55%" stop-color="#1c8f8f" />
+                  <stop offset="100%" stop-color="#5000ca" />
                 </linearGradient>
               </defs>
               <rect width="400" height="400" fill="url(#summaryArtGradient)" />
