@@ -1,13 +1,92 @@
+$drawer-width: 240px;
+$sm: 600px;
+
+// Button reset shared by the icon buttons and link buttons below.
+%bare-button {
+    background: none;
+    border: 0;
+    margin: 0;
+    cursor: pointer;
+    font: inherit;
+}
+
+// Fixed top bar (layout carried over from MUI's AppBar).
+.app-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1100;
+    box-sizing: border-box;
+    color: #fff;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
 .navigation-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+    padding: 0 16px;
     justify-content: space-between;
     background-color: #353535;
 
-    button {
-        font-size: 1.1rem;
-        font-family: "Lato", sans-serif;
-        text-transform: initial;
-        padding: 6px 10px;
-        font-weight: 600;
+    @media (min-width: 0) and (orientation: landscape) {
+        min-height: 48px;
+    }
+
+    @media (min-width: $sm) {
+        min-height: 64px;
+        padding: 0 24px;
+    }
+
+    .nav-links {
+        display: none;
+
+        @media (min-width: $sm) {
+            display: block;
+        }
+
+        button {
+            @extend %bare-button;
+            min-width: 64px;
+            border-radius: 4px;
+            line-height: 1.75;
+            font-size: 1.1rem;
+            font-family: "Lato", sans-serif;
+            text-transform: initial;
+            padding: 6px 10px;
+            font-weight: 600;
+
+            &:hover {
+                background-color: rgba(25, 118, 210, 0.04);
+            }
+        }
+    }
+
+    .menu-toggle {
+        @extend %bare-button;
+        display: inline-flex;
+        padding: 8px;
+        margin-left: -12px;
+        margin-right: 16px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+
+        @media (min-width: $sm) {
+            display: none;
+        }
+    }
+
+    .mode-toggle {
+        @extend %bare-button;
+        display: inline-flex;
+        padding: 0;
+        font-size: 1.5rem;
     }
 
     svg {
@@ -20,6 +99,75 @@
 
     .light-mode & {
         background-color: #f8f9fa;
+    }
+}
+
+// Mobile slide-in menu (carried over from MUI's temporary Drawer).
+.drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 195ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 195ms;
+
+    &.open {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+.drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1200;
+    box-sizing: border-box;
+    width: $drawer-width;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+    // visibility (not display) keeps the slide animation while removing closed links from the tab order.
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 195ms cubic-bezier(0.4, 0, 0.6, 1), visibility 0s 195ms;
+
+    &.open {
+        transform: none;
+        visibility: visible;
+        transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    @media (min-width: $sm) {
+        display: none;
+    }
+
+    .drawer-divider {
+        margin: 0;
+        border: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 8px 0;
+    }
+
+    button {
+        @extend %bare-button;
+        width: 100%;
+        padding: 8px 16px;
+        line-height: 1.5;
+        text-align: center;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
     }
 }
 

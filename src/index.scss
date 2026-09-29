@@ -1,5 +1,21 @@
+// Global reset, carried over from MUI's CssBaseline.
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+strong, b {
+  font-weight: bolder;
+}
+
 body {
   margin: 0;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
