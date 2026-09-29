@@ -5,7 +5,8 @@ import Icons from 'unplugin-icons/vite';
 
 export default defineConfig({
   plugins: [
-    solid(),
+    // Hot reload injects a dev-server-only runtime that Vitest can't resolve.
+    solid({ hot: !process.env.VITEST }),
     // Import each icon from its own module (`~icons/<set>/<name>`), never destructured from a barrel. See ADR-001.
     // scale: 1 renders icons at 1em, matching MUI's SvgIcon so existing font-size-based SCSS sizing still applies.
     Icons({ compiler: 'solid', scale: 1 }),

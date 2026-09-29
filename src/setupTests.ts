@@ -2,6 +2,11 @@
 // e.g. expect(element).toHaveTextContent(/hello/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/vitest';
+import { afterEach } from 'vitest';
+import { cleanup } from '@solidjs/testing-library';
+
+// Testing Library only auto-unmounts between tests when Vitest globals are enabled.
+afterEach(cleanup);
 
 // jsdom doesn't implement IntersectionObserver, which the timeline uses to animate entries in.
 class IntersectionObserverStub {
