@@ -8,6 +8,7 @@
     ],
     "types": [
       "vite/client",
+      "unplugin-icons/types/solid",
       "@testing-library/jest-dom/vitest"
     ],
     "allowJs": true,
@@ -22,7 +23,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
   },
   "include": [
     "src",

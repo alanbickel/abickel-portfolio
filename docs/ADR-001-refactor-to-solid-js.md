@@ -27,7 +27,7 @@ Rewrite the site in **Solid JS**, built with **Vite**, and replace React-only de
 | `react-scripts` (CRA) | Vite + `vite-plugin-solid` | Migrate tooling first, while still on React |
 | `@mui/material` + `@emotion/*` | Plain HTML elements styled with SCSS | Drops the Emotion runtime; existing SCSS already does most of the styling |
 | MUI Drawer (mobile nav) | CSS slide-in panel | Handle focus and `Escape` manually. Reconsider Kobalte `Dialog` if the accessibility work gets involved |
-| `@mui/icons-material` | `unplugin-icons` + `@iconify-json/mdi` | One module per icon; see [Icon imports](#icon-imports) |
+| `@mui/icons-material` | `unplugin-icons` + `@iconify-json/ic` (Google Material Icons, the same set MUI uses) | One module per icon; see [Icon imports](#icon-imports). Brand logos (GitHub, LinkedIn, YouTube) come from `fa6-brands` |
 | `@fortawesome/react-fontawesome` | `unplugin-icons` + `@iconify-json/fa6-brands`, `@iconify-json/fa6-solid` | |
 | `react-vertical-timeline-component` | Custom Timeline component + SCSS | No Solid port exists. Mirror the existing class names so `Timeline.scss` carries over |
 | `FadeIn` (`React.Children` + timers) | CSS `@keyframes` + `animation-delay` per child | Simpler than porting the timer logic |

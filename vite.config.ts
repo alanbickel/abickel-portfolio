@@ -1,9 +1,14 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import solid from 'vite-plugin-solid';
+import Icons from 'unplugin-icons/vite';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    solid(),
+    // Import each icon from its own module (`~icons/<set>/<name>`), never destructured from a barrel. See ADR-001.
+    Icons({ compiler: 'solid' }),
+  ],
   // Relative asset URLs, so the build works at a domain root or under a subpath (e.g. GitHub Pages).
   base: './',
   build: {
