@@ -25,6 +25,11 @@
             align-items: center;
             text-align: left;
 
+            .skill-icon {
+                font-size: 3em;
+                width: auto;
+            }
+
             @media screen and (max-width: 768px) {
                 padding-bottom: 5%;
             }
@@ -84,18 +89,8 @@
         }
     }
 
-    .MuiChip-root {
+    .chip {
         margin-right: 0.5em;
-    }
-
-    .MuiChip-outlined {
-        background-color: #e0e0e0;
-        font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-            monospace;
-
-        span {
-            color: rgb(39, 40, 34);
-        }
     }
 }
 

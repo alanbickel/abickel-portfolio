@@ -1,0 +1,29 @@
+// Base chip layout, carried over from MUI's Chip defaults.
+// Colors, sizing overrides, and hover effects live in Expertise.scss and Summary.scss.
+.chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 32px;
+    border-radius: 16px;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 0.8125rem;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: rgba(0, 0, 0, 0.08);
+
+    svg {
+        width: auto;
+        margin-left: 5px;
+        margin-right: -6px;
+        color: #616161;
+    }
+
+    .chip-label {
+        padding: 0 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
