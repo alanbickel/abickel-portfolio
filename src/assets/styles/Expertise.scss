@@ -12,27 +12,30 @@
         }
     }
 
-    .skills-grid {
+    // Wheel on the left, detail panel on the right; stacked on narrow screens.
+    .expertise-explorer {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 50px;
+        grid-template-columns: minmax(260px, 400px) 1fr;
+        gap: 50px;
+        align-items: center;
 
         @media screen and (max-width: 768px) {
-            display: initial;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+
+    .expertise-panel {
+        align-self: start;
+        border-radius: 4px;
+
+        &:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 8px;
         }
 
-        .skill {
-            align-items: center;
-            text-align: left;
-
-            .skill-icon {
-                font-size: 3em;
-                width: auto;
-            }
-
-            @media screen and (max-width: 768px) {
-                padding-bottom: 5%;
-            }
+        .skill-icon {
+            font-size: 3em;
         }
     }
 
@@ -42,6 +45,72 @@
         padding-right: 5%;
     }
 }
+
+.expertise-wheel {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+
+    @media screen and (max-width: 768px) {
+        max-width: 340px;
+        justify-self: center;
+    }
+
+    .wedge {
+        cursor: pointer;
+        outline: none;
+        transition: transform 200ms ease;
+
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
+    }
+
+    .wedge-shape {
+        fill: rgba(255, 255, 255, 0.08);
+        // Stroke in the page background color draws the gaps between wedges.
+        stroke: #353535;
+        stroke-width: 2;
+        transition: fill 200ms ease;
+
+        .light-mode & {
+            fill: rgba(0, 0, 0, 0.06);
+            stroke: #f8f9fa;
+        }
+    }
+
+    .wedge:hover .wedge-shape {
+        fill: rgba(0, 97, 97, 0.45);
+    }
+
+    .wedge.selected .wedge-shape {
+        fill: #006161;
+    }
+
+    .wedge:focus-visible .wedge-shape {
+        stroke: currentColor;
+        stroke-width: 2.5;
+    }
+
+    .wedge-label {
+        fill: currentColor;
+        font-family: "Lato", sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        pointer-events: none;
+    }
+
+    .wedge-icon {
+        pointer-events: none;
+    }
+
+    // Selected wedge text and icon stay white on the teal fill in both modes.
+    .wedge.selected {
+        color: white;
+    }
+}
+
 
 .chip {
     color: rgb(39, 40, 34) !important;
@@ -76,18 +145,18 @@
     }
 }
 
+// Caption above the chip row.
+.chip-title {
+    margin: 1.5em 0 0.25em;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
 .flex-chips {
     line-height: 2;
     margin: 0.5;
-
-    .chip-title {
-        color: white;
-        padding-right: 10px;
-
-        .light-mode & {
-            color: #0d1116;
-        }
-    }
 
     .chip {
         margin-right: 0.5em;
