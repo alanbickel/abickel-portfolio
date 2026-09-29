@@ -7,6 +7,47 @@
 .contact-form {
   padding-top: 20px;
 
+  // Contained button (layout carried over from MUI's Button).
+  .send-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    padding: 6px 16px;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    &:disabled {
+      color: rgba(0, 0, 0, 0.26);
+      background-color: rgba(0, 0, 0, 0.12);
+      box-shadow: none;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .send-button-icon {
+      display: inherit;
+      margin-left: 8px;
+      margin-right: -4px;
+
+      svg {
+        font-size: 20px;
+      }
+    }
+  }
+
   button {
     float: right;
     background-color: white;
@@ -18,17 +59,67 @@
     color: white;
   }
 
-  // MUI renders the notched outline as an absolutely positioned <fieldset> *after* the
-  // input, so a background on it paints over the text being typed. The white field
-  // surface belongs on the input root instead.
-  .MuiOutlinedInput-root {
+  // The outline is an absolutely positioned <fieldset> *after* the input, so a background
+  // on it paints over the text being typed. The white field surface belongs on the root instead.
+  .text-field-root {
     background-color: white;
   }
 
   // index.scss colors every label white for dark mode, which is correct once the label
   // floats above the field, but invisible while it rests on the white surface.
-  .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
+  .text-field:not(.shrink) .text-field-label {
     color: #050f0b;
+  }
+}
+
+// Status message (carried over from MUI's standard Alert).
+.alert {
+  display: flex;
+  margin-bottom: 15px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font: 400 0.875rem/1.43 "Roboto", "Helvetica", "Arial", sans-serif;
+  letter-spacing: 0.01071em;
+
+  .alert-icon {
+    display: flex;
+    margin-right: 12px;
+    padding: 7px 0;
+    font-size: 22px;
+    opacity: 0.9;
+  }
+
+  .alert-message {
+    min-width: 0;
+    padding: 8px 0;
+    overflow: auto;
+  }
+
+  &.alert-success {
+    color: rgb(30, 70, 32);
+    background-color: rgb(237, 247, 237);
+
+    .alert-icon {
+      color: #2e7d32;
+    }
+  }
+
+  &.alert-error {
+    color: rgb(95, 33, 33);
+    background-color: rgb(253, 237, 237);
+
+    .alert-icon {
+      color: #d32f2f;
+    }
+  }
+
+  &.alert-info {
+    color: rgb(1, 67, 97);
+    background-color: rgb(229, 246, 253);
+
+    .alert-icon {
+      color: #0288d1;
+    }
   }
 }
 
@@ -42,7 +133,7 @@ label {
   gap: 15px;
   padding-bottom: 15px;
 
-  .MuiFormControl-root {
+  .text-field {
     width: 100%;
   }
 }
