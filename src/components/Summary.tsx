@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faChalkboardUser, faBookOpenReader, faFrog } from '@fortawesome/free-solid-svg-icons';
 import Chip from '@mui/material/Chip';
 import '../assets/styles/Summary.scss';
+import kilgorePortrait from '../assets/images/profile-pic-kilgore.png';
 
 function Summary() {
 
@@ -32,7 +33,7 @@ function Summary() {
             </div>
           </div>
           <div className="portrait-art" aria-hidden="true">
-            <img className="portrait-image" src={require('../assets/images/profile-pic-kilgore.png')} alt="Digital portrait of a character I created named Kilgore" />
+            <img className="portrait-image" src={kilgorePortrait} alt="Digital portrait of a character I created named Kilgore" />
             {/* <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="summaryArtGradient" x1="0" y1="0" x2="1" y2="1">
