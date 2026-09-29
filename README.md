@@ -27,7 +27,7 @@ A little digital portfolio for a digital creator, engineer, problem solver, and 
     npm start
     ```
 
-4. Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
+4. Open [http://localhost:5173](http://localhost:5173) to view the app in the browser.
 
 5. Customize the template by navigating to the `/src/components` directory. Modify texts, pictures, and other information as needed.
 
@@ -59,14 +59,48 @@ The Contact form sends messages using [EmailJS](https://www.emailjs.com/), which
     ```
 
     ```
-    REACT_APP_EMAILJS_SERVICE_ID=...
-    REACT_APP_EMAILJS_TEMPLATE_ID=...
-    REACT_APP_EMAILJS_PUBLIC_KEY=...
+    VITE_EMAILJS_SERVICE_ID=...
+    VITE_EMAILJS_TEMPLATE_ID=...
+    VITE_EMAILJS_PUBLIC_KEY=...
     ```
 
     `.env.local` is gitignored and is read automatically by `npm start` and `npm run build`. Since `npm run deploy` builds locally before pushing to GitHub Pages (there's no CI pipeline), this file just needs to exist on whichever machine runs `npm run deploy`.
 
 The form also includes baseline anti-spam protection: a hidden honeypot field, a client-side send cooldown, and input validation — see [Contact.tsx](src/components/Contact.tsx). EmailJS's free tier caps out at 200 emails/month, so these safeguards help avoid burning through that quota on spam.
+
+## Testing
+
+The project has two test suites.
+
+### Unit tests (Vitest)
+
+Component tests live next to the components in `src/` (`*.test.tsx`) and run in a simulated browser (jsdom). They're fast and cover component logic: form validation, the Expertise wheel's selection and keyboard behavior, and so on.
+
+```bash
+npm test              # watch mode
+npx vitest run        # single run
+```
+
+### End-to-end tests (Playwright)
+
+Specs in `e2e/` drive the real app in a headless Chromium browser, at both a desktop (1280px) and a mobile (Pixel 7) viewport. They cover what a simulated browser can't: responsive layout, the mobile navigation drawer, the theme toggle, scrolling, and the Timeline's scroll-triggered animations.
+
+One-time setup, which downloads Playwright's bundled Chromium:
+
+```bash
+npx playwright install chromium
+```
+
+Then run the suite:
+
+```bash
+npm run test:e2e                        # all specs, both viewports
+npx playwright test e2e/expertise.spec.ts   # one spec
+npx playwright test --project=mobile    # one viewport
+npx playwright test --ui                # interactive runner
+```
+
+Playwright reuses a dev server that's already running on port 5173, and starts one otherwise. After a run, `npx playwright show-report` opens the HTML report. Screenshots (for example, the Expertise wheel in both themes) and failure traces are saved to `test-results/`. Both output folders are gitignored.
 
 ## Deployment
 
