@@ -1,12 +1,26 @@
-import { describe, expect, test, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { fireEvent, render, screen } from '@solidjs/testing-library';
-import emailjs from '@emailjs/browser';
-import Contact from './Contact';
+import Contact, { FORMSPREE_ENDPOINT } from './Contact';
 
-vi.mock('@emailjs/browser', () => ({ default: { send: vi.fn() } }));
+const fetchMock = vi.fn();
+
+beforeEach(() => {
+  vi.stubGlobal('fetch', fetchMock);
+});
+
+afterEach(() => {
+  fetchMock.mockReset();
+  vi.unstubAllGlobals();
+});
 
 const fill = (label: RegExp, value: string) =>
   fireEvent.input(screen.getByLabelText(label), { target: { value } });
+
+const fillValidForm = () => {
+  fill(/your name/i, 'Ada');
+  fill(/email/i, 'ada@example.com');
+  fill(/message/i, 'Hello from the test suite');
+};
 
 describe('Contact', () => {
   test('flags every empty required field on submit', () => {
@@ -38,7 +52,33 @@ describe('Contact', () => {
     fireEvent.click(screen.getByRole('button', { name: /send/i }));
 
     expect(screen.getByRole('alert')).toHaveTextContent('Thanks! Your message has been sent.');
-    expect(emailjs.send).not.toHaveBeenCalled();
+    expect(fetchMock).not.toHaveBeenCalled();
     expect(screen.getByLabelText(/your name/i)).toHaveValue('');
+  });
+
+  test('sends the message to Formspree and clears the form', async () => {
+    fetchMock.mockResolvedValue(new Response(JSON.stringify({ ok: true }), { status: 200 }));
+    render(() => <Contact />);
+    fillValidForm();
+    fireEvent.click(screen.getByRole('button', { name: /send/i }));
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('Thanks! Your message has been sent.');
+    expect(fetchMock).toHaveBeenCalledOnce();
+    const [url, init] = fetchMock.mock.calls[0];
+    expect(url).toBe(FORMSPREE_ENDPOINT);
+    expect(JSON.parse(init.body)).toMatchObject({ name: 'Ada', email: 'ada@example.com', message: 'Hello from the test suite' });
+    expect(screen.getByLabelText(/your name/i)).toHaveValue('');
+  });
+
+  test('shows an error and keeps the message when Formspree rejects it', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    fetchMock.mockResolvedValue(new Response(JSON.stringify({ errors: [{ message: 'Form not found' }] }), { status: 404 }));
+    render(() => <Contact />);
+    fillValidForm();
+    fireEvent.click(screen.getByRole('button', { name: /send/i }));
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('Something went wrong sending your message.');
+    expect(screen.getByLabelText(/message/i)).toHaveValue('Hello from the test suite');
+    expect(console.error).toHaveBeenCalledWith('Failed to send message', expect.objectContaining({ message: 'Form not found' }));
   });
 });

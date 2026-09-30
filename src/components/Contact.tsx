@@ -1,7 +1,6 @@
 import { createSignal, Show } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 import '../assets/styles/Contact.scss';
-import emailjs from '@emailjs/browser';
 import SuccessIcon from '~icons/ic/outline-check-circle';
 import ErrorIcon from '~icons/ic/outline-error-outline';
 import InfoIcon from '~icons/ic/outline-info';
@@ -15,9 +14,9 @@ const SEND_COOLDOWN_MS = 30000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_PATTERN = /^[0-9+\-\s()]{7,}$/;
 
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+// Formspree relays submissions to the inbox set on its dashboard. The endpoint is public by
+// design: anyone who finds it can only send mail to that inbox, never to anyone else.
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqpajdva';
 
 type StatusMessage = {
   severity: 'success' | 'error' | 'info';
@@ -92,7 +91,7 @@ function Contact() {
     }
 
     // Bot caught in the honeypot: pretend it worked so scrapers don't learn to avoid the trap,
-    // but never actually call EmailJS (and don't burn the monthly send quota on spam).
+    // but never actually send (and don't burn the monthly submission quota on spam).
     if (company().trim() !== '') {
       lastSentAt = Date.now();
       setName('');
@@ -103,26 +102,27 @@ function Contact() {
       return;
     }
 
-    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      console.error(
-        'EmailJS is not configured. Set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, ' +
-        'and VITE_EMAILJS_PUBLIC_KEY in .env.local (see .env.example).'
-      );
-      setStatus({ severity: 'error', text: 'Sorry, the contact form is not configured yet.' });
-      return;
-    }
-
-    const templateParams = {
-      name: trimmedName,
-      email: trimmedEmail,
-      message: trimmedMessage,
-    };
-
     setIsSending(true);
     setStatus(null);
 
-    emailjs
-      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
+    fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      // Accept: JSON makes Formspree answer with a status instead of redirecting to its thank-you page.
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        name: trimmedName,
+        email: trimmedEmail,
+        message: trimmedMessage,
+        _subject: `Portfolio message from ${trimmedName}`,
+      }),
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          // Formspree explains rejections (spam checks, CAPTCHA, quota) in an `errors` list.
+          const body = await response.json().catch(() => null);
+          throw new Error(body?.errors?.map((error: { message: string }) => error.message).join('; ') || `HTTP ${response.status}`);
+        }
+      })
       .then(() => {
         lastSentAt = Date.now();
         setStatus({ severity: 'success', text: 'Thanks! Your message has been sent.' });
@@ -130,7 +130,7 @@ function Contact() {
         setEmail('');
         setMessage('');
       })
-      .catch((error: any) => {
+      .catch((error: unknown) => {
         console.error('Failed to send message', error);
         setStatus({ severity: 'error', text: 'Something went wrong sending your message. Please try again later.' });
       })

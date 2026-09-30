@@ -28,38 +28,19 @@
 
 The page will reload if you make edits, and you will see any lint errors in the console.
 
-## Contact Form Setup (EmailJS)
+## Contact Form Setup (Formspree)
 
-The Contact form sends messages using [EmailJS](https://www.emailjs.com/), which relays email directly from the browser — there's no backend server, so the destination email address is configured on EmailJS's dashboard, not in the code.
+The Contact form posts messages to [Formspree](https://formspree.io/), which emails them to the inbox set on the Formspree dashboard. There's no backend server and nothing secret to configure: the form endpoint is public by design, and anyone who finds it can only send mail to that one inbox.
 
-1. **Create a free EmailJS account** at [emailjs.com](https://www.emailjs.com/).
+1. **Create a Formspree account** and a new form. Formspree gives it an endpoint like `https://formspree.io/f/abcdwxyz`, and messages go to the email address you signed up with (change it in the form's settings).
 
-2. **Add an Email Service** (Email Services -> Add New Service, e.g. connect a Gmail account). Note the generated **Service ID**.
+2. **Point the site at your form** by setting `FORMSPREE_ENDPOINT` at the top of [Contact.tsx](src/components/Contact.tsx).
 
-3. **Create an Email Template** (Email Templates -> Create New Template).
-    - Set the template's **"To Email"** field to the address that should receive submissions (e.g. `you@example.com`). This is the actual "where do messages go" setting.
-    - Reference `{{name}}`, `{{email}}`, and `{{message}}` in the template body/subject — these match the fields sent from [Contact.tsx](src/components/Contact.tsx).
-    - Note the generated **Template ID**.
+3. **Send a test message** from the running site and confirm it arrives. If Formspree rejects it, the reason is logged to the browser console. Check the form's spam and CAPTCHA settings on the Formspree dashboard: the form submits from JavaScript, so a CAPTCHA that expects Formspree's own page can block it.
 
-4. **Get your Public Key** from Account -> General. This key is designed to be embedded in client-side code (it is not a secret), but you should still restrict where it can be used:
+The form sends `name`, `email`, and `message`, plus a `_subject` line so messages are easy to spot in your inbox.
 
-5. **Restrict allowed domains** under Account -> Security to your site's real domain (e.g. `https://yourusername.github.io`) so nobody else can embed your public key on another site and send mail through your account.
-
-6. **Configure environment variables locally.** Copy `.env.example` to `.env.local` and fill in the three values from steps 2-4:
-
-    ```bash
-    cp .env.example .env.local
-    ```
-
-    ```
-    VITE_EMAILJS_SERVICE_ID=...
-    VITE_EMAILJS_TEMPLATE_ID=...
-    VITE_EMAILJS_PUBLIC_KEY=...
-    ```
-
-    `.env.local` is gitignored and is read automatically by `npm start` and `npm run build`. Since `npm run deploy` builds locally before pushing to GitHub Pages (there's no CI pipeline), this file just needs to exist on whichever machine runs `npm run deploy`.
-
-The form also includes baseline anti-spam protection: a hidden honeypot field, a client-side send cooldown, and input validation — see [Contact.tsx](src/components/Contact.tsx). EmailJS's free tier caps out at 200 emails/month, so these safeguards help avoid burning through that quota on spam.
+It also has baseline anti-spam protection: a hidden honeypot field, a client-side send cooldown, and input validation (see [Contact.tsx](src/components/Contact.tsx)). Formspree's free plan has a monthly submission cap, so these safeguards help avoid spending it on spam.
 
 ## Testing
 
