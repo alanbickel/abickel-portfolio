@@ -142,6 +142,11 @@
   gap: 15px;
   padding-bottom: 15px;
 
+  // Stacked on phones, where side-by-side fields are too narrow for their placeholders.
+  @media (max-width: 599px) {
+    flex-direction: column;
+  }
+
   .text-field {
     width: 100%;
   }
