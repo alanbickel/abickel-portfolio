@@ -140,6 +140,10 @@ export const roles: Role[] = [
         highlight: true,
       },
       {
+        text: 'Responsible for implementation and testing of critical application infrastructure customizations and extensions.',
+        tags: ['delivery'],
+      },
+      {
         text: 'Championed wiki-style coding-standards guides, ran formal PD bootcamps in Angular and front-end unit testing, coached junior and mid-level engineers to build unit testing competence.',
         tags: ['coaching', 'dx'],
       },
