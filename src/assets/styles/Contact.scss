@@ -1,11 +1,73 @@
+@use "theme";
+
+// Google's floating badge is replaced by the notice under the form.
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 .contact_wrapper svg {
   font-size: 1em;
   vertical-align: middle;
   margin-right: 5px;
 }
 
+// Inline link in the intro line. Only the word is underlined, not the icon beside it.
+.linkedin-link {
+  white-space: nowrap;
+
+  svg {
+    margin-right: 4px;
+    vertical-align: -0.125em;
+  }
+
+  span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
 .contact-form {
-  padding-top: 20px;
+
+  // Contained button (layout carried over from MUI's Button).
+  .send-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    padding: 6px 16px;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    &:disabled {
+      color: rgba(0, 0, 0, 0.26);
+      background-color: rgba(0, 0, 0, 0.12);
+      box-shadow: none;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .send-button-icon {
+      display: inherit;
+      margin-left: 8px;
+      margin-right: -4px;
+
+      svg {
+        font-size: 20px;
+      }
+    }
+  }
 
   button {
     float: right;
@@ -14,27 +76,79 @@
   }
 
   button:hover {
-    background-color: #5000ca;
+    background-color: theme.$accent;
     color: white;
   }
 
-  // MUI renders the notched outline as an absolutely positioned <fieldset> *after* the
-  // input, so a background on it paints over the text being typed. The white field
-  // surface belongs on the input root instead.
-  .MuiOutlinedInput-root {
-    background-color: white;
+  // Required by Google in place of the hidden reCAPTCHA badge. Sits below the right-floated Send button.
+  .recaptcha-notice {
+    clear: both;
+    margin: 0;
+    padding-top: 12px;
+    font-size: 0.75rem;
+    opacity: 0.75;
+
+    a {
+      text-decoration: underline;
+    }
   }
 
-  // index.scss colors every label white for dark mode, which is correct once the label
-  // floats above the field, but invisible while it rests on the white surface.
-  .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
-    color: #050f0b;
+  // The outline is an absolutely positioned <fieldset> *after* the input, so a background
+  // on it paints over the text being typed. The white field surface belongs on the root instead.
+  .text-field-root {
+    background-color: white;
   }
 }
 
-label {
-  font-size: 1.2rem;
-  font-family: 'DomaineDispNar-Medium', sans-serif;
+// Status message (carried over from MUI's standard Alert).
+.alert {
+  display: flex;
+  margin-bottom: 15px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font: 400 0.875rem/1.43 theme.$font-sans;
+  letter-spacing: 0.01071em;
+
+  .alert-icon {
+    display: flex;
+    margin-right: 12px;
+    padding: 7px 0;
+    font-size: 22px;
+    opacity: 0.9;
+  }
+
+  .alert-message {
+    min-width: 0;
+    padding: 8px 0;
+    overflow: auto;
+  }
+
+  &.alert-success {
+    color: rgb(30, 70, 32);
+    background-color: rgb(237, 247, 237);
+
+    .alert-icon {
+      color: #2e7d32;
+    }
+  }
+
+  &.alert-error {
+    color: rgb(95, 33, 33);
+    background-color: rgb(253, 237, 237);
+
+    .alert-icon {
+      color: #d32f2f;
+    }
+  }
+
+  &.alert-info {
+    color: rgb(1, 67, 97);
+    background-color: rgb(229, 246, 253);
+
+    .alert-icon {
+      color: #0288d1;
+    }
+  }
 }
 
 .form-flex {
@@ -42,7 +156,12 @@ label {
   gap: 15px;
   padding-bottom: 15px;
 
-  .MuiFormControl-root {
+  // Stacked on phones, where side-by-side fields are too narrow for their placeholders.
+  @media (max-width: 599px) {
+    flex-direction: column;
+  }
+
+  .text-field {
     width: 100%;
   }
 }

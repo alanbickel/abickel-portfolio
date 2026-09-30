@@ -1,0 +1,106 @@
+@use "theme";
+
+$sm: 600px;
+$selected: theme.$accent;
+
+// Pinned under the fixed navbar while its section is on screen.
+.lens-bar {
+    position: sticky;
+    top: 56px;
+    z-index: 10;
+    margin-bottom: 1em;
+    padding: 12px 0;
+    background-color: #353535;
+
+    .light-mode & {
+        background-color: #f8f9fa;
+    }
+
+    @media (min-width: $sm) {
+        top: 64px;
+    }
+}
+
+// Caption and result count on one row above the options.
+.lens-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+// Visible caption naming the filter group.
+.lens-label {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.lens-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    // On phones, scroll sideways instead of wrapping so the pinned bar stays short.
+    @media (max-width: $sm - 1px) {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+}
+
+.lens-option {
+    flex: none;
+    padding: 4px 14px;
+    // Outlined until selected, so the row of options stays quiet.
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    background-color: transparent;
+    color: white;
+    font-family: theme.$font-sans;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    .light-mode & {
+        border-color: rgba(13, 17, 22, 0.55);
+        color: #0d1116;
+    }
+
+    &:hover:not([aria-pressed='true']) {
+        background-color: rgba(255, 255, 255, 0.1);
+
+        .light-mode & {
+            background-color: rgba(13, 17, 22, 0.06);
+        }
+    }
+
+    &[aria-pressed='true'] {
+        border-color: $selected;
+        background-color: $selected;
+        color: white;
+    }
+
+    &:focus-visible {
+        outline: 2px solid white;
+        outline-offset: 2px;
+
+        .light-mode & {
+            outline-color: #0d1116;
+        }
+    }
+}
+
+.lens-status {
+    margin: 0;
+    padding-left: 10px;
+    border-left: 1px solid currentColor;
+    font-size: 0.85rem;
+    font-weight: 400;
+    opacity: 0.8;
+}

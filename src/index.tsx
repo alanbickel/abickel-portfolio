@@ -1,19 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { render } from 'solid-js/web';
+import '@fontsource-variable/roboto/wght.css';
+import '@fontsource-variable/roboto/wght-italic.css';
+import '@fontsource-variable/roboto-mono/wght.css';
 import './index.scss';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+render(() => <App />, document.getElementById('root') as HTMLElement);

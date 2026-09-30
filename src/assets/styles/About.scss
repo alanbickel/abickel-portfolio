@@ -1,0 +1,95 @@
+@use "layout";
+
+.about-container {
+    // Full width so the parent's centering doesn't shift this section off the shared left edge.
+    width: 100%;
+    padding-top: layout.$section-space;
+    padding-bottom: layout.$section-space;
+    @include layout.content-column;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    @media screen and (max-width: 768px) {
+        display: block;
+    }
+}
+
+.portrait-shell {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+
+    .portrait-art {
+        flex: none;
+        width: 280px;
+        height: 280px;
+        border-radius: 30px;
+        overflow: hidden;
+
+        svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .portrait-image{
+            width: -webkit-fill-available;
+            transition: transform 0.3s ease-in-out;
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+
+    }
+
+    .portrait-content {
+        flex: 1;
+        min-width: 0;
+
+        h1 {
+            margin-block-start: 0;
+        }
+
+        // Keep bio lines to a comfortable reading length.
+        p {
+            max-width: 75ch;
+        }
+
+        .about-lede {
+            font-size: 1.15rem;
+            max-width: 65ch;
+            margin-bottom: 24px;
+            &.thin {
+                font-weight: 400;
+                font-size: 1rem;
+            }
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            .chip svg {
+                color: rgb(39, 40, 34);
+            }
+
+            .chip:hover svg {
+                color: white;
+            }
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .portrait-art {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            display: none;
+        }
+    }
+}

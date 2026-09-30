@@ -1,0 +1,182 @@
+@use "layout";
+@use "theme";
+
+.skills-container {
+    // Full width so the heading and wheel don't re-center as the panel's content length changes.
+    width: 100%;
+    padding-top: layout.$section-space;
+    padding-bottom: layout.$section-space;
+    @include layout.content-column;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    svg {
+        color: white;
+
+        .light-mode & {
+            color: #0d1116;
+        }
+    }
+
+    // Wheel centered, detail panel centered below it; the same stack on every screen size.
+    .skills-explorer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .skills-panels {
+        display: grid;
+        // minmax(0, ...) stops a long chip from widening the column past the screen.
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        max-width: 640px;
+    }
+
+    // All panels overlap in one cell; only the selected one is shown.
+    .skills-panel {
+        grid-area: 1 / 1;
+        border-radius: 4px;
+
+        &:not(.selected) {
+            visibility: hidden;
+        }
+
+        h3 {
+            margin-top: 0;
+        }
+
+        &:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 8px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        display: block;
+    }
+}
+
+.skills-wheel {
+    display: block;
+    width: 100%;
+    // Compact enough that the panel below stays in view on a typical laptop screen.
+    max-width: 340px;
+    height: auto;
+    overflow: visible;
+
+    .wedge {
+        cursor: pointer;
+        outline: none;
+        transition: transform 200ms ease;
+
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
+    }
+
+    .wedge-shape {
+        fill: rgba(255, 255, 255, 0.08);
+        // Stroke in the page background color draws the gaps between wedges.
+        stroke: #353535;
+        stroke-width: 2;
+        transition: fill 200ms ease;
+
+        .light-mode & {
+            fill: rgba(0, 0, 0, 0.06);
+            stroke: #f8f9fa;
+        }
+    }
+
+    .wedge:hover .wedge-shape {
+        fill: rgba(theme.$accent, 0.45);
+    }
+
+    .wedge.selected .wedge-shape {
+        fill: theme.$accent;
+    }
+
+    .wedge:focus-visible .wedge-shape {
+        stroke: currentColor;
+        stroke-width: 2.5;
+    }
+
+    .wedge-label {
+        fill: currentColor;
+        font-family: theme.$font-sans;
+        font-size: 9px;
+        font-weight: 700;
+        pointer-events: none;
+    }
+
+    .wedge-icon {
+        pointer-events: none;
+    }
+
+    // Selected wedge text and icon stay white on the accent fill in both modes.
+    .wedge.selected {
+        color: white;
+    }
+}
+
+
+.chip {
+    color: rgb(39, 40, 34) !important;
+    background-color: white !important;
+    font-size: 0.8rem !important;
+    height: 25px !important;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+    span {
+        font-family: theme.$font-mono;
+        color: rgb(39, 40, 34);
+        transition: color 0.2s ease;
+    }
+
+    svg {
+        height: 15px !important;
+    }
+
+    .light-mode & {
+        background-color: rgba(0, 0, 0, 0.08);
+        box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    &:hover {
+        background-color: theme.$accent !important;
+        color: white !important;
+        transform: scale(1.05);
+
+        span {
+            color: white;
+        }
+    }
+}
+
+// Caption above the chip row.
+.chip-title {
+    margin: 1.5em 0 0.25em;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.flex-chips {
+    line-height: 2;
+    margin: 0.5;
+
+    .chip {
+        margin-right: 0.5em;
+    }
+}
+
+@media screen {
+    @media (max-width: 567px) {
+        .skills {
+            font-size: 12px;
+        }
+    }
+}

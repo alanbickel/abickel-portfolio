@@ -1,0 +1,164 @@
+@use "theme";
+
+// Outlined text field with a floating label, adapted from MUI's TextField. The label rests
+// inside the white field and floats fully above it, onto the page background, when the
+// field is focused or filled. (MUI floats it onto the border, which only reads well on a
+// page the same color as the field.)
+$error: #d32f2f;
+// Lighter red for text on the dark page, where $error is too dim (5.13:1 vs 2.46:1).
+$error-on-dark: #f28b82;
+$transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+// Room above the field for the floated label.
+$label-space: 26px;
+$label-scale: 0.85;
+
+.text-field {
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 0;
+    padding-top: $label-space;
+    vertical-align: top;
+}
+
+.text-field-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    max-width: calc(100% - 28px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font: 400 1rem/1.4375em theme.$font-sans;
+    letter-spacing: 0.00938em;
+    pointer-events: none;
+    transform-origin: top left;
+    // Resting inside the field, where the input text starts.
+    transform: translate(14px, $label-space + 16.5px) scale(1);
+    transition: color $transition, transform $transition, max-width $transition;
+
+    // On the white field surface in both themes.
+    .text-field:not(.shrink) & {
+        color: #050f0b;
+    }
+
+    // Floated above the field, it takes the page's text color from the global label rule.
+    .shrink & {
+        max-width: calc(100% / #{$label-scale});
+        transform: translate(0, 0) scale($label-scale);
+        pointer-events: auto;
+        user-select: none;
+    }
+
+    .shrink.focused & {
+        color: theme.$accent-on-dark;
+
+        .light-mode & {
+            color: theme.$accent;
+        }
+    }
+
+    .shrink.error & {
+        color: $error-on-dark;
+
+        .light-mode & {
+            color: $error;
+        }
+    }
+}
+
+.text-field-root {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: text;
+    font: 400 1rem/1.4375em theme.$font-sans;
+    letter-spacing: 0.00938em;
+    color: rgba(0, 0, 0, 0.87);
+
+    &.multiline {
+        padding: 16.5px 14px;
+    }
+
+    &:hover .text-field-outline {
+        border-color: rgba(0, 0, 0, 0.87);
+    }
+}
+
+.text-field-input {
+    display: block;
+    box-sizing: content-box;
+    width: 100%;
+    min-width: 0;
+    height: 1.4375em;
+    margin: 0;
+    padding: 16.5px 14px;
+    border: 0;
+    background: none;
+    font: inherit;
+    letter-spacing: inherit;
+    color: currentColor;
+    outline: 0;
+
+    // Like MUI, the placeholder only shows once the label has floated out of the way.
+    &::placeholder {
+        color: currentColor;
+        opacity: 0;
+        transition: opacity $transition;
+    }
+
+    .shrink &::placeholder {
+        opacity: 0.42;
+    }
+
+    .multiline & {
+        height: auto;
+        padding: 0;
+        resize: none;
+    }
+}
+
+// The border, drawn over the field so it can thicken on focus without shifting the layout.
+.text-field-outline {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    border-radius: inherit;
+    pointer-events: none;
+
+    .focused & {
+        border-color: theme.$accent;
+        border-width: 2px;
+    }
+
+    .error &,
+    .error .text-field-root:hover & {
+        border-color: $error;
+    }
+}
+
+// Sits on the page background below the field.
+.text-field-helper {
+    margin: 4px 0 0;
+    text-align: left;
+    font: 400 0.8rem/1.66 theme.$font-sans;
+    letter-spacing: 0.03333em;
+    color: rgba(255, 255, 255, 0.75);
+
+    .light-mode & {
+        color: rgba(0, 0, 0, 0.65);
+    }
+
+    .error & {
+        color: $error-on-dark;
+
+        .light-mode & {
+            color: $error;
+        }
+    }
+}

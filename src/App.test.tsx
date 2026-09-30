@@ -1,9 +1,12 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { describe, expect, test } from 'vitest';
+import { render, screen } from '@solidjs/testing-library';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('App', () => {
+  test('renders the main page sections', () => {
+    render(() => <App />);
+    for (const heading of ['About', 'Skills', 'Experience', 'Contact Me']) {
+      expect(screen.getByRole('heading', { name: heading })).toBeInTheDocument();
+    }
+  });
 });

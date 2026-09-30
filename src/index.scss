@@ -1,8 +1,25 @@
+@use "./assets/styles/layout";
+@use "./assets/styles/theme";
+
+// Global reset, carried over from MUI's CssBaseline.
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+strong, b {
+  font-weight: bolder;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  font-family: theme.$font-sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.1rem;
@@ -23,34 +40,30 @@ a {
   text-decoration: none;
 
   &:hover {
-    color: #006161;
+    color: theme.$accent-on-dark;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 
     .light-mode & {
-      color: #5000ca;
+      color: theme.$accent;
     }
   }
 }
 
 p, a, h1, h2, h3, h4, h5, label, button {
   color: white;
-  font-family: "Lato", sans-serif;
+  font-family: theme.$font-sans;
 
   .light-mode & {
     color: #0d1116;
   }
 }
 
+// Body copy at regular weight; headings and titles carry the emphasis.
 p {
-  font-weight: 600;
-}
-
-.svg-inline--fa {
-  color: white;
+  font-weight: 400;
 }
 
 .container {
-  margin-top: 64px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -69,16 +82,25 @@ p {
   }
 }
 
+// Nav links scroll sections into view; leave room so headings clear the fixed navbar.
+#about, #skills, #experience, #contact {
+  scroll-margin-top: layout.$navbar-height;
+}
+
 .items-container {
-  padding: 5% 10%;
+  padding-top: layout.$section-space;
+  padding-bottom: layout.$section-space;
+  @include layout.content-column;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
 
-  @media screen and (max-width: 768px) {
-    padding: 5% 5%;
-  }
+// One-line lead-in under a section heading, on the same left edge.
+.section-intro {
+  margin: 0 0 1.5em;
+  max-width: 75ch;
 }
 
 .light-mode {

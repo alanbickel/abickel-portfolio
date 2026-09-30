@@ -1,32 +1,27 @@
-import React from "react";
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import YouTubeIcon from '@mui/icons-material/YouTube';
 import '../assets/styles/Main.scss';
-import avatarImage from '../assets/images/me-circle.png';
+import Compass from '~icons/fa6-solid/compass';
+import ArrowsToCircle from '~icons/fa6-solid/arrows-to-circle';
+import HandHoldingHeart from '~icons/fa6-solid/hand-holding-heart';
+
 
 function Main() {
 
   return (
-    <div className="container">
-      <div className="about-section">
-        <div className="image-wrapper">
-          <img src={avatarImage} alt="Avatar" />
+    <div class="container">
+      <div class="hero-section">
+        <div class="image-wrapper">
+          {/* <img src={avatarImage} alt="Avatar" /> */}
         </div>
-        <div className="content">
-          <div className="social_icons">
-            <a href="https://github.com/am0eba-byte" target="_blank" rel="noreferrer"><GitHubIcon/></a>
-            <a href="https://www.linkedin.com/in/mia-borgia" target="_blank" rel="noreferrer"><LinkedInIcon/></a>
-            <a href="https://www.youtube.com/@mia-bo-bia" target="_blank" rel="noreferrer"><YouTubeIcon/></a>
-          </div>
-          <h1>Mia Borgia</h1>
-          <p>Full Stack Engineer</p>
+        <div class="content">
 
-          <div className="mobile_social_icons">
-            <a href="https://github.com/am0eba-byte" target="_blank" rel="noreferrer"><GitHubIcon/></a>
-            <a href="https://www.linkedin.com/in/mia-borgia" target="_blank" rel="noreferrer"><LinkedInIcon/></a>
-            <a href="https://www.youtube.com/@mia-bo-bia" target="_blank" rel="noreferrer"><YouTubeIcon/></a>
-          </div>
+          <h1>Alan Bickel</h1>
+
+          <p> Senior | Lead Software Engineer</p>
+          <ul class="hero-traits">
+            <li><Compass aria-hidden="true" />Pathfinder</li>
+            <li><ArrowsToCircle aria-hidden="true" />Chaos Coordinator</li>
+            <li><HandHoldingHeart aria-hidden="true" />Team Advocate</li>
+          </ul>
         </div>
       </div>
     </div>

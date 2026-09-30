@@ -1,11 +1,12 @@
-import React, { useRef, useState } from 'react';
+import { createSignal, Show } from 'solid-js';
+import { Dynamic } from 'solid-js/web';
 import '../assets/styles/Contact.scss';
-import emailjs from '@emailjs/browser';
-import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import TextField from '@mui/material/TextField';
+import SuccessIcon from '~icons/ic/outline-check-circle';
+import ErrorIcon from '~icons/ic/outline-error-outline';
+import InfoIcon from '~icons/ic/outline-info';
+import SendIcon from '~icons/ic/baseline-send';
+import LinkedInIcon from '~icons/fa6-brands/linkedin';
+import TextField from './TextField';
 
 const MESSAGE_MIN_LENGTH = 10;
 const MESSAGE_MAX_LENGTH = 2000;
@@ -14,53 +15,106 @@ const SEND_COOLDOWN_MS = 30000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_PATTERN = /^[0-9+\-\s()]{7,}$/;
 
-const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+// Formspree relays submissions to the inbox set on its dashboard. The endpoint is public by
+// design: anyone who finds it can only send mail to that inbox, never to anyone else.
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqpajdva';
+
+// reCAPTCHA v3 scores each submission invisibly; Formspree checks the token with the secret key
+// stored on its dashboard. The site key is public and meant to be in page code.
+const RECAPTCHA_SITE_KEY = '6LfJ0dctAAAAAAQ1YpvL7CEKcqCTPCxV0RnaX-5_';
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (callback: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
+
+class CaptchaError extends Error {}
+
+let recaptchaScript: Promise<void> | undefined;
+
+// Loaded on first use of the form, so Google's script stays off the page for visitors who never contact me.
+const loadRecaptcha = () => {
+  if (window.grecaptcha) return Promise.resolve();
+  recaptchaScript ??= new Promise<void>((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => {
+      // Allow a retry on the next attempt (for example, after pausing an ad blocker).
+      script.remove();
+      recaptchaScript = undefined;
+      reject(new CaptchaError('reCAPTCHA script failed to load'));
+    };
+    document.head.append(script);
+  });
+  return recaptchaScript;
+};
+
+const getRecaptchaToken = async () => {
+  await loadRecaptcha();
+  const grecaptcha = window.grecaptcha!;
+  await new Promise<void>((resolve) => grecaptcha.ready(resolve));
+  try {
+    return await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
+  } catch (error) {
+    throw new CaptchaError(`reCAPTCHA failed: ${String(error)}`);
+  }
+};
 
 type StatusMessage = {
   severity: 'success' | 'error' | 'info';
   text: string;
 };
 
+const statusIcons = {
+  success: SuccessIcon,
+  error: ErrorIcon,
+  info: InfoIcon,
+};
+
 function Contact() {
 
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [name, setName] = createSignal('');
+  const [email, setEmail] = createSignal('');
+  const [message, setMessage] = createSignal('');
   // Honeypot: real visitors never see or fill this in. Bots that blindly fill every
   // input on the page will populate it, which is how we tell them apart.
-  const [company, setCompany] = useState<string>('');
+  const [company, setCompany] = createSignal('');
 
-  const [nameError, setNameError] = useState<boolean>(false);
-  const [emailError, setEmailError] = useState<boolean>(false);
-  const [emailErrorText, setEmailErrorText] = useState<string>('');
-  const [messageError, setMessageError] = useState<boolean>(false);
-  const [messageErrorText, setMessageErrorText] = useState<string>('');
+  const [nameError, setNameError] = createSignal(false);
+  const [emailError, setEmailError] = createSignal(false);
+  const [emailErrorText, setEmailErrorText] = createSignal('');
+  const [messageError, setMessageError] = createSignal(false);
+  const [messageErrorText, setMessageErrorText] = createSignal('');
 
-  const [isSending, setIsSending] = useState<boolean>(false);
-  const [status, setStatus] = useState<StatusMessage | null>(null);
+  const [isSending, setIsSending] = createSignal(false);
+  const [status, setStatus] = createSignal<StatusMessage | null>(null);
 
-  const form = useRef();
-  const lastSentAt = useRef<number>(0);
+  // Component functions run once, so a plain variable persists like a React ref.
+  let lastSentAt = 0;
 
-  const sendEmail = (e: any) => {
+  const sendEmail = (e: SubmitEvent) => {
     e.preventDefault();
 
-    if (isSending) {
+    if (isSending()) {
       return;
     }
 
-    const msSinceLastSend = Date.now() - lastSentAt.current;
-    if (lastSentAt.current !== 0 && msSinceLastSend < SEND_COOLDOWN_MS) {
+    const msSinceLastSend = Date.now() - lastSentAt;
+    if (lastSentAt !== 0 && msSinceLastSend < SEND_COOLDOWN_MS) {
       const secondsLeft = Math.ceil((SEND_COOLDOWN_MS - msSinceLastSend) / 1000);
       setStatus({ severity: 'info', text: `Please wait ${secondsLeft}s before sending another message.` });
       return;
     }
 
-    const trimmedName = name.trim();
-    const trimmedEmail = email.trim();
-    const trimmedMessage = message.trim();
+    const trimmedName = name().trim();
+    const trimmedEmail = email().trim();
+    const trimmedMessage = message().trim();
 
     const isNameValid = trimmedName !== '';
     const isEmailValid = EMAIL_PATTERN.test(trimmedEmail) || PHONE_PATTERN.test(trimmedEmail);
@@ -85,9 +139,9 @@ function Contact() {
     }
 
     // Bot caught in the honeypot: pretend it worked so scrapers don't learn to avoid the trap,
-    // but never actually call EmailJS (and don't burn the monthly send quota on spam).
-    if (company.trim() !== '') {
-      lastSentAt.current = Date.now();
+    // but never actually send (and don't burn the monthly submission quota on spam).
+    if (company().trim() !== '') {
+      lastSentAt = Date.now();
       setName('');
       setEmail('');
       setMessage('');
@@ -96,36 +150,47 @@ function Contact() {
       return;
     }
 
-    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      console.error(
-        'EmailJS is not configured. Set REACT_APP_EMAILJS_SERVICE_ID, REACT_APP_EMAILJS_TEMPLATE_ID, ' +
-        'and REACT_APP_EMAILJS_PUBLIC_KEY in .env.local (see .env.example).'
-      );
-      setStatus({ severity: 'error', text: 'Sorry, the contact form is not configured yet.' });
-      return;
-    }
-
-    const templateParams = {
-      name: trimmedName,
-      email: trimmedEmail,
-      message: trimmedMessage,
-    };
-
     setIsSending(true);
     setStatus(null);
 
-    emailjs
-      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
+    getRecaptchaToken()
+      .then((token) =>
+        fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          // Accept: JSON makes Formspree answer with a status instead of redirecting to its thank-you page.
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            name: trimmedName,
+            email: trimmedEmail,
+            message: trimmedMessage,
+            _subject: `Portfolio message from ${trimmedName}`,
+            'g-recaptcha-response': token,
+          }),
+        })
+      )
+      .then(async (response) => {
+        if (!response.ok) {
+          // Formspree explains rejections (spam checks, CAPTCHA, quota) in an `errors` list.
+          const body = await response.json().catch(() => null);
+          throw new Error(body?.errors?.map((error: { message: string }) => error.message).join('; ') || `HTTP ${response.status}`);
+        }
+      })
       .then(() => {
-        lastSentAt.current = Date.now();
+        lastSentAt = Date.now();
         setStatus({ severity: 'success', text: 'Thanks! Your message has been sent.' });
         setName('');
         setEmail('');
         setMessage('');
       })
-      .catch((error: any) => {
+      .catch((error: unknown) => {
         console.error('Failed to send message', error);
-        setStatus({ severity: 'error', text: 'Something went wrong sending your message. Please try again later.' });
+        setStatus({
+          severity: 'error',
+          // Ad and privacy blockers commonly block Google's reCAPTCHA script.
+          text: error instanceof CaptchaError
+            ? "Couldn't load spam protection, so your message wasn't sent. If you use an ad blocker, try pausing it for this site."
+            : 'Something went wrong sending your message. Please try again later.',
+        });
       })
       .finally(() => {
         setIsSending(false);
@@ -134,40 +199,43 @@ function Contact() {
 
   return (
     <div id="contact">
-      <div className="items-container">
-        <div className="contact_wrapper">
+      <div class="items-container">
+        <div class="contact_wrapper">
           <h1>Contact Me</h1>
-          <Box
-            ref={form}
-            component="form"
-            noValidate
-            autoComplete="off"
-            className='contact-form'
+          <p class="section-intro">
+            Send me a message, or connect with me on{' '}
+            <a class="linkedin-link" href="https://www.linkedin.com/in/alan-bickel" target="_blank" rel="noreferrer">
+              <LinkedInIcon aria-hidden="true" /><span>LinkedIn</span>
+            </a>.
+          </p>
+          <form
+            novalidate
+            autocomplete="off"
+            class='contact-form'
+            onSubmit={sendEmail}
+            // Start loading reCAPTCHA as soon as someone begins filling in the form.
+            onFocusIn={() => loadRecaptcha().catch(() => {})}
           >
-            <div className='form-flex'>
+            <div class='form-flex'>
               <TextField
                 required
                 id="outlined-required-name"
                 label="Your Name"
                 placeholder="What's your name?"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                error={nameError}
-                helperText={nameError ? "Please enter your name" : ""}
+                value={name()}
+                onInput={setName}
+                error={nameError()}
+                helperText={nameError() ? "Please enter your name" : ""}
               />
               <TextField
                 required
                 id="outlined-required-email"
                 label="Email"
                 placeholder="How can I reach you?"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                error={emailError}
-                helperText={emailError ? emailErrorText : ""}
+                value={email()}
+                onInput={setEmail}
+                error={emailError()}
+                helperText={emailError() ? emailErrorText() : ""}
               />
             </div>
             <TextField
@@ -177,40 +245,45 @@ function Contact() {
               placeholder="Send me any inquiries or questions"
               multiline
               rows={10}
-              className="body-form"
-              value={message}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
-              error={messageError}
-              helperText={messageError ? messageErrorText : ""}
-              inputProps={{ maxLength: MESSAGE_MAX_LENGTH }}
+              class="body-form"
+              value={message()}
+              onInput={setMessage}
+              error={messageError()}
+              helperText={messageError() ? messageErrorText() : ""}
+              maxLength={MESSAGE_MAX_LENGTH}
             />
             {/* Honeypot field: invisible to real visitors, catches bots that auto-fill every input */}
             <input
               type="text"
               name="company"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
-              className="visually-hidden"
+              value={company()}
+              onInput={(e) => setCompany(e.currentTarget.value)}
+              class="visually-hidden"
               tabIndex={-1}
-              autoComplete="off"
+              autocomplete="off"
               aria-hidden="true"
             />
-            {status && (
-              <Alert severity={status.severity} sx={{ marginBottom: '15px' }}>
-                {status.text}
-              </Alert>
-            )}
-            <Button
-              variant="contained"
-              endIcon={<SendIcon />}
-              onClick={sendEmail}
-              disabled={isSending}
-            >
-              {isSending ? 'Sending...' : 'Send'}
-            </Button>
-          </Box>
+            <Show when={status()}>
+              {(current) => (
+                <div role="alert" class={`alert alert-${current().severity}`}>
+                  <div class="alert-icon">
+                    <Dynamic component={statusIcons[current().severity]} />
+                  </div>
+                  <div class="alert-message">{current().text}</div>
+                </div>
+              )}
+            </Show>
+            <button type="submit" class="send-button" disabled={isSending()}>
+              {isSending() ? 'Sending...' : 'Send'}
+              <span class="send-button-icon"><SendIcon /></span>
+            </button>
+            {/* Google allows hiding the reCAPTCHA badge only if this notice is shown instead. */}
+            <p class="recaptcha-notice">
+              This form is protected by reCAPTCHA. The Google{' '}
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a> and{' '}
+              <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
+            </p>
+          </form>
         </div>
       </div>
     </div>

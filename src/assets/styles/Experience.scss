@@ -1,0 +1,195 @@
+@use 'timeline-base';
+@use 'theme';
+
+.vertical-timeline {
+    &::before {
+        background: rgba(255, 255, 255, 0.64);
+
+        .light-mode & {
+            background-color: rgb(0 0 0 / 47%);
+        }
+    }
+
+    span {
+        color: rgb(39, 40, 34);
+        font-family: theme.$font-mono;
+    }
+
+    &--two-columns .vertical-timeline-element-content .vertical-timeline-element-date {
+        .light-mode & {
+            color: rgb(0 0 0 / 83%);
+            font-weight: 600;
+        }
+    }
+
+    &--animate .vertical-timeline-element-content.bounce-in {
+        .light-mode & {
+            box-shadow: 0px 3px 7px 2px #939393;
+        }
+    }
+}
+
+.vertical-timeline-element-content {
+    background: #fff;
+    box-shadow: 0 3px 0 #ddd;
+
+    p,
+    h3,
+    h4 {
+        color: rgb(39, 40, 34);
+        .subtitle-smalltext {
+            font-size: 0.8rem;
+            display: block;
+        }
+    }
+
+    // Scale with the screen so role titles fit on one line on phones; capped at the desktop size.
+    h3 {
+        font-size: clamp(1rem, 0.8rem + 0.9vw, 1.3rem);
+        font-weight: 800;
+    }
+    h4 {
+        font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1.1rem);
+        font-weight: 700;
+    }
+    p {
+        font-weight: 600;
+    }
+
+    // Role bullets, sized like the base timeline paragraph text. Each is marked with
+    // its lens icon instead of a dot.
+    .timeline-points {
+        margin: 1em 0 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            color: rgb(39, 40, 34);
+            font-family: theme.$font-sans;
+            font-size: 0.8125rem;
+            font-weight: 400;
+            line-height: 1.6;
+
+            @media only screen and (min-width: 768px) {
+                font-size: 1rem;
+            }
+        }
+
+        > li {
+            display: grid;
+            grid-template-columns: 1.1em minmax(0, 1fr);
+            gap: 0.7em;
+            margin-bottom: 0.75em;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        // Muted so the icons support the text; the blue markers stay the card's only accent.
+        .timeline-point-icon {
+            width: 1.1em;
+            height: 1.1em;
+            // Centers the icon on the first line of text.
+            margin-top: 0.25em;
+            color: rgb(39 40 34 / 55%);
+        }
+
+        // Sub-points hang off a thin rule so they read as detail under the main point.
+        // A short tick from the rule marks where each one starts.
+        ul {
+            margin: 0.5em 0 0;
+            padding: 0;
+            border-left: 2px solid rgb(39 40 34 / 15%);
+            list-style: none;
+
+            li {
+                position: relative;
+                margin-bottom: 0.6em;
+                padding-left: 1.1em;
+                font-size: 0.9em;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    // Middle of the first line (line-height 1.6).
+                    top: 0.8em;
+                    width: 0.6em;
+                    height: 2px;
+                    margin-top: -1px;
+                    background-color: rgb(39 40 34 / 30%);
+                }
+            }
+        }
+    }
+
+    // Shown when the selected lens has nothing for this role.
+    .timeline-empty {
+        font-style: italic;
+        font-weight: 400;
+        opacity: 0.7;
+    }
+}
+
+.vertical-timeline-element-content-arrow {
+    border-right: 10px solid #fff;
+
+    .light-mode & {
+        border-right: 10px solid rgba(0, 0, 0, 0.48) !important;
+    }
+}
+
+.vertical-timeline-element-icon {
+    background: theme.$accent;
+    box-shadow: 0 0 0 4px #b6b6b6, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+
+    .light-mode & {
+        box-shadow: 0 0 0 4px #f8f9fa, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+    }
+
+    svg {
+        color: white;
+    }
+}
+
+.vertical-timeline-element .vertical-timeline-element-date {
+    color: white;
+
+    @media screen and (max-width: 1170px) {
+        color: rgb(39, 40, 34);
+    }
+}
+
+// Company label at the top of the timeline line; the line appears to start from it.
+.vertical-timeline {
+    padding-top: 0;
+}
+
+.timeline-employer {
+    position: relative;
+    z-index: 1;
+    width: fit-content;
+    margin: 0 0 2em;
+    padding: 6px 14px;
+    border: 2px solid rgba(255, 255, 255, 0.64);
+    border-radius: 16px;
+    background-color: #353535;
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    .light-mode & {
+        border-color: rgb(0 0 0 / 47%);
+        background-color: #f8f9fa;
+    }
+
+    // Centered on the line once the timeline switches to two columns.
+    @media only screen and (min-width: 1170px) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
