@@ -1,3 +1,5 @@
+@use "theme";
+
 .contact_wrapper svg {
   font-size: 1em;
   vertical-align: middle;
@@ -55,7 +57,7 @@
   }
 
   button:hover {
-    background-color: #5000ca;
+    background-color: theme.$accent;
     color: white;
   }
 

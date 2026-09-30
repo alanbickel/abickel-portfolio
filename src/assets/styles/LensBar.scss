@@ -1,6 +1,7 @@
+@use "theme";
+
 $sm: 600px;
-// White text on this blue is 5.17:1; against the light page it is 4.90:1.
-$selected: #2563eb;
+$selected: theme.$accent;
 
 // Pinned under the fixed navbar while its section is on screen.
 .lens-bar {

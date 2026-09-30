@@ -1,0 +1,5 @@
+// The site's one accent color.
+// Fill behind white text (5.17:1), and text on the light page (4.90:1).
+$accent: #2563eb;
+// Lighter shade for accent text on the dark page (4.82:1), where $accent is too dim.
+$accent-on-dark: #60a5fa;

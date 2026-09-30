@@ -1,4 +1,5 @@
 @use "./assets/styles/layout";
+@use "./assets/styles/theme";
 
 // Global reset, carried over from MUI's CssBaseline.
 html {
@@ -41,11 +42,11 @@ a {
   text-decoration: none;
 
   &:hover {
-    color: #006161;
+    color: theme.$accent-on-dark;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 
     .light-mode & {
-      color: #5000ca;
+      color: theme.$accent;
     }
   }
 }

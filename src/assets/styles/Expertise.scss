@@ -1,4 +1,5 @@
 @use "layout";
+@use "theme";
 
 .skills-container {
     // Full width so the heading and wheel don't re-center as the panel's content length changes.
@@ -90,11 +91,11 @@
     }
 
     .wedge:hover .wedge-shape {
-        fill: rgba(0, 97, 97, 0.45);
+        fill: rgba(theme.$accent, 0.45);
     }
 
     .wedge.selected .wedge-shape {
-        fill: #006161;
+        fill: theme.$accent;
     }
 
     .wedge:focus-visible .wedge-shape {
@@ -114,7 +115,7 @@
         pointer-events: none;
     }
 
-    // Selected wedge text and icon stay white on the teal fill in both modes.
+    // Selected wedge text and icon stay white on the accent fill in both modes.
     .wedge.selected {
         color: white;
     }
@@ -144,7 +145,7 @@
     }
 
     &:hover {
-        background-color: #006161 !important;
+        background-color: theme.$accent !important;
         color: white !important;
         transform: scale(1.05);
 
