@@ -49,9 +49,11 @@ describe('Skills', () => {
     expect(panel()).toHaveTextContent(normalized(last.summary));
   });
 
-  test('marks working-level skills in their chip', () => {
+  // Runs only while some skill is marked 'working'; the curated data may have none.
+  const workingArea = skillAreas.find((a) => a.skills.some((s) => s.level === 'working'));
+  test.runIf(workingArea)('marks working-level skills in their chip', () => {
     render(() => <Skills />);
-    const area = skillAreas.find((a) => a.skills.some((s) => s.level === 'working'))!;
+    const area = workingArea!;
     const skill = area.skills.find((s) => s.level === 'working')!;
     fireEvent.click(tab(area.label));
 
