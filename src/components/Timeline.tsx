@@ -1,5 +1,9 @@
-import { createSignal, onCleanup, onMount, type JSX } from "solid-js";
-import BriefcaseIcon from '~icons/fa6-solid/briefcase';
+import { createMemo, createSignal, For, onCleanup, onMount, Show, type Component, type JSX } from "solid-js";
+import { Dynamic } from "solid-js/web";
+import HighlightsIcon from '~icons/solar/star-outline';
+import AllIcon from '~icons/solar/case-outline';
+import { employer, lenses, roles, type ExperiencePoint, type Lens } from '../data/experience';
+import LensBar, { type LensOption } from './LensBar';
 import '../assets/styles/Timeline.scss'
 
 type TimelineElementProps = {
@@ -41,12 +45,87 @@ function TimelineElement(props: TimelineElementProps) {
   );
 }
 
+type LensId = Lens | 'highlights' | 'all';
+
+const lensOptions: (LensOption<LensId> & { icon: Component<JSX.SvgSVGAttributes<SVGSVGElement>> })[] = [
+  { id: 'highlights', label: 'Highlights', icon: HighlightsIcon },
+  { id: 'all', label: 'All', icon: AllIcon },
+  ...lenses,
+];
+
+const totalPoints = roles.reduce((sum, role) => sum + role.points.length, 0);
+
+const matchesLens = (point: ExperiencePoint, lens: LensId) => {
+  if (lens === 'all') return true;
+  if (lens === 'highlights') return !!point.highlight;
+  return point.tags.includes(lens);
+};
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// '2023-06' -> 'Jun 2023'
+const monthYear = (date: string) => `${MONTHS[Number(date.slice(5, 7)) - 1]} ${date.slice(0, 4)}`;
+const dateRange = (start: string, end: string) => `${monthYear(start)} - ${monthYear(end)}`;
+
 function Timeline() {
+  const [lens, setLens] = createSignal<LensId>('highlights');
+  // Timeline markers show the selected lens's icon.
+  const lensIcon = () => lensOptions.find((option) => option.id === lens())!.icon;
+
+  const visibleCount = createMemo(() =>
+    roles.reduce((sum, role) => sum + role.points.filter((point) => matchesLens(point, lens())).length, 0)
+  );
+
   return (
     <div id="history">
       <div class="items-container">
         <h1>Career History</h1>
+        <p class="timeline-employer">
+          <strong>{employer.name}</strong> · {employer.location}
+          <br />
+          {employer.description}
+        </p>
+        <LensBar
+          options={lensOptions}
+          selected={lens()}
+          onSelect={setLens}
+          label="Filters"
+          status={`Showing ${visibleCount()} of ${totalPoints}`}
+        />
         <div class="vertical-timeline vertical-timeline--animate vertical-timeline--two-columns">
+          <For each={roles}>
+            {(role) => {
+              // Roles always stay on the timeline; the lens only filters their bullets.
+              const points = createMemo(() => role.points.filter((point) => matchesLens(point, lens())));
+
+              return (
+                <TimelineElement date={dateRange(role.start, role.end)} icon={<Dynamic component={lensIcon()} />}>
+                  <h3 class="vertical-timeline-element-title">{role.title}</h3>
+                  <Show when={role.product}>
+                    <h4 class="vertical-timeline-element-subtitle">{role.product}</h4>
+                  </Show>
+                  <Show
+                    when={points().length > 0}
+                    fallback={<p class="timeline-empty">No relevant experience for this role. Try choosing another filter.</p>}
+                  >
+                    <ul class="timeline-points">
+                      <For each={points()}>
+                        {(point) => (
+                          <li>
+                            {point.text}
+                            <Show when={point.details}>
+                              <ul>
+                                <For each={point.details}>{(detail) => <li>{detail}</li>}</For>
+                              </ul>
+                            </Show>
+                          </li>
+                        )}
+                      </For>
+                    </ul>
+                  </Show>
+                </TimelineElement>
+              );
+            }}
+          </For>
         </div>
       </div>
     </div>

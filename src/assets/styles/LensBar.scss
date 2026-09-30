@@ -1,0 +1,89 @@
+$sm: 600px;
+// White text on this blue is 5.17:1; against the light page it is 4.90:1.
+$selected: #2563eb;
+
+// Pinned under the fixed navbar while its section is on screen.
+.lens-bar {
+    position: sticky;
+    top: 56px;
+    z-index: 10;
+    margin-bottom: 1em;
+    padding: 12px 0;
+    background-color: #353535;
+
+    .light-mode & {
+        background-color: #f8f9fa;
+    }
+
+    @media (min-width: $sm) {
+        top: 64px;
+    }
+}
+
+// Visible caption naming the filter group.
+.lens-label {
+    margin: 0 0 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.lens-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    // On phones, scroll sideways instead of wrapping so the pinned bar stays short.
+    @media (max-width: $sm - 1px) {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+}
+
+.lens-option {
+    flex: none;
+    padding: 4px 14px;
+    border: 0;
+    border-radius: 16px;
+    background-color: white;
+    color: rgb(39, 40, 34);
+    font-family: "Lato", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    .light-mode & {
+        box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    &:hover {
+        // Solid tint (15% of the selected blue over white), so the dark page never shows through.
+        background-color: #dee8fc;
+    }
+
+    &[aria-pressed='true'] {
+        background-color: $selected;
+        color: white;
+    }
+
+    &:focus-visible {
+        outline: 2px solid white;
+        outline-offset: 2px;
+
+        .light-mode & {
+            outline-color: #0d1116;
+        }
+    }
+}
+
+.lens-status {
+    margin: 8px 0 0;
+    font-size: 0.85rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
