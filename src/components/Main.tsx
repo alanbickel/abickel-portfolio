@@ -1,4 +1,3 @@
-import LinkedInIcon from '~icons/fa6-brands/linkedin';
 import '../assets/styles/Main.scss';
 import Compass from '~icons/fa6-solid/compass';
 import ArrowsToCircle from '~icons/fa6-solid/arrows-to-circle';
@@ -23,10 +22,6 @@ function Main() {
             <li><ArrowsToCircle aria-hidden="true" />Chaos Coordinator</li>
             <li><HandHoldingHeart aria-hidden="true" />Team Advocate</li>
           </ul>
-
-          <div class="social_icons">
-            <a href="https://www.linkedin.com/in/alan-bickel" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
-          </div>
         </div>
       </div>
     </div>

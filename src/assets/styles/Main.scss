@@ -63,28 +63,6 @@
                 opacity: 0.85;
             }
         }
-
-        .social_icons {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-
-            a {
-                transition: color .15s ease-in-out;
-
-                &:hover {
-                    color: theme.$accent-on-dark;
-
-                    .light-mode & {
-                        color: theme.$accent;
-                    }
-                }
-            }
-
-            svg {
-                font-size: 3em;
-            }
-        }
     }
 
     .image-wrapper {
@@ -117,10 +95,6 @@
 
         .content {
             padding: 20px 0 5%;
-
-            .social_icons svg {
-                font-size: 2.5rem;
-            }
         }
 
         .image-wrapper {
