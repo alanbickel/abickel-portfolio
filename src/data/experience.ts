@@ -1,9 +1,9 @@
 import type { Component, JSX } from 'solid-js';
-import ArchitectureIcon from '~icons/solar/ruler-cross-pen-outline';
-import DeliveryIcon from '~icons/solar/code-square-outline';
-import LeadershipIcon from '~icons/solar/flag-outline';
-import CoachingIcon from '~icons/solar/users-group-rounded-outline';
-import DxIcon from '~icons/solar/settings-minimalistic-outline';
+import ArchitectureIcon from '~icons/solar/ruler-cross-pen-bold';
+import DeliveryIcon from '~icons/solar/code-square-bold';
+import LeadershipIcon from '~icons/solar/flag-bold';
+import CoachingIcon from '~icons/solar/users-group-rounded-bold';
+import DxIcon from '~icons/solar/settings-minimalistic-bold';
 
 export type Lens = 'architecture' | 'delivery' | 'leadership' | 'coaching' | 'dx';
 

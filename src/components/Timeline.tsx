@@ -1,7 +1,7 @@
 import { createMemo, createSignal, For, onCleanup, onMount, Show, type Component, type JSX } from "solid-js";
 import { Dynamic } from "solid-js/web";
-import HighlightsIcon from '~icons/solar/star-outline';
-import AllIcon from '~icons/solar/case-outline';
+import HighlightsIcon from '~icons/solar/star-bold';
+import AllIcon from '~icons/solar/case-bold';
 import { employer, lenses, roles, type ExperiencePoint, type Lens } from '../data/experience';
 import LensBar, { type LensOption } from './LensBar';
 import '../assets/styles/Timeline.scss'
