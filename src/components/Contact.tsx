@@ -18,6 +18,53 @@ const PHONE_PATTERN = /^[0-9+\-\s()]{7,}$/;
 // design: anyone who finds it can only send mail to that inbox, never to anyone else.
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqpajdva';
 
+// reCAPTCHA v3 scores each submission invisibly; Formspree checks the token with the secret key
+// stored on its dashboard. The site key is public and meant to be in page code.
+const RECAPTCHA_SITE_KEY = '6LfJ0dctAAAAAAQ1YpvL7CEKcqCTPCxV0RnaX-5_';
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (callback: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
+
+class CaptchaError extends Error {}
+
+let recaptchaScript: Promise<void> | undefined;
+
+// Loaded on first use of the form, so Google's script stays off the page for visitors who never contact me.
+const loadRecaptcha = () => {
+  if (window.grecaptcha) return Promise.resolve();
+  recaptchaScript ??= new Promise<void>((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => {
+      // Allow a retry on the next attempt (for example, after pausing an ad blocker).
+      script.remove();
+      recaptchaScript = undefined;
+      reject(new CaptchaError('reCAPTCHA script failed to load'));
+    };
+    document.head.append(script);
+  });
+  return recaptchaScript;
+};
+
+const getRecaptchaToken = async () => {
+  await loadRecaptcha();
+  const grecaptcha = window.grecaptcha!;
+  await new Promise<void>((resolve) => grecaptcha.ready(resolve));
+  try {
+    return await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
+  } catch (error) {
+    throw new CaptchaError(`reCAPTCHA failed: ${String(error)}`);
+  }
+};
+
 type StatusMessage = {
   severity: 'success' | 'error' | 'info';
   text: string;
@@ -105,17 +152,21 @@ function Contact() {
     setIsSending(true);
     setStatus(null);
 
-    fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      // Accept: JSON makes Formspree answer with a status instead of redirecting to its thank-you page.
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        name: trimmedName,
-        email: trimmedEmail,
-        message: trimmedMessage,
-        _subject: `Portfolio message from ${trimmedName}`,
-      }),
-    })
+    getRecaptchaToken()
+      .then((token) =>
+        fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          // Accept: JSON makes Formspree answer with a status instead of redirecting to its thank-you page.
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            name: trimmedName,
+            email: trimmedEmail,
+            message: trimmedMessage,
+            _subject: `Portfolio message from ${trimmedName}`,
+            'g-recaptcha-response': token,
+          }),
+        })
+      )
       .then(async (response) => {
         if (!response.ok) {
           // Formspree explains rejections (spam checks, CAPTCHA, quota) in an `errors` list.
@@ -132,7 +183,13 @@ function Contact() {
       })
       .catch((error: unknown) => {
         console.error('Failed to send message', error);
-        setStatus({ severity: 'error', text: 'Something went wrong sending your message. Please try again later.' });
+        setStatus({
+          severity: 'error',
+          // Ad and privacy blockers commonly block Google's reCAPTCHA script.
+          text: error instanceof CaptchaError
+            ? "Couldn't load spam protection, so your message wasn't sent. If you use an ad blocker, try pausing it for this site."
+            : 'Something went wrong sending your message. Please try again later.',
+        });
       })
       .finally(() => {
         setIsSending(false);
@@ -149,6 +206,8 @@ function Contact() {
             autocomplete="off"
             class='contact-form'
             onSubmit={sendEmail}
+            // Start loading reCAPTCHA as soon as someone begins filling in the form.
+            onFocusIn={() => loadRecaptcha().catch(() => {})}
           >
             <div class='form-flex'>
               <TextField
@@ -211,6 +270,12 @@ function Contact() {
               {isSending() ? 'Sending...' : 'Send'}
               <span class="send-button-icon"><SendIcon /></span>
             </button>
+            {/* Google allows hiding the reCAPTCHA badge only if this notice is shown instead. */}
+            <p class="recaptcha-notice">
+              This form is protected by reCAPTCHA. The Google{' '}
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a> and{' '}
+              <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
+            </p>
           </form>
         </div>
       </div>

@@ -36,9 +36,14 @@ The Contact form posts messages to [Formspree](https://formspree.io/), which ema
 
 2. **Point the site at your form** by setting `FORMSPREE_ENDPOINT` at the top of [Contact.tsx](src/components/Contact.tsx).
 
-3. **Send a test message** from the running site and confirm it arrives. If Formspree rejects it, the reason is logged to the browser console. Check the form's spam and CAPTCHA settings on the Formspree dashboard: the form submits from JavaScript, so a CAPTCHA that expects Formspree's own page can block it.
+3. **Set up reCAPTCHA v3.** The form submits from JavaScript, so it uses your own reCAPTCHA keys instead of Formspree's CAPTCHA page.
+    - Register a **reCAPTCHA v3** site in the [Google reCAPTCHA admin console](https://www.google.com/recaptcha/admin). Add every domain the form runs on, including `localhost` for local testing and your GitHub Pages domain.
+    - Put the **site key** in `RECAPTCHA_SITE_KEY` at the top of [Contact.tsx](src/components/Contact.tsx). It's public by design.
+    - Paste the **secret key** into the form's reCAPTCHA settings on the Formspree dashboard. Never commit it.
 
-The form sends `name`, `email`, and `message`, plus a `_subject` line so messages are easy to spot in your inbox.
+4. **Send a test message** from the running site and confirm it arrives. If it's rejected, the reason is logged to the browser console.
+
+The form sends `name`, `email`, `message`, and the reCAPTCHA token (`g-recaptcha-response`), plus a `_subject` line so messages are easy to spot in your inbox. Google's reCAPTCHA script loads only once someone starts filling in the form. Its floating badge is hidden and replaced by the notice under the Send button, as Google's terms require.
 
 It also has baseline anti-spam protection: a hidden honeypot field, a client-side send cooldown, and input validation (see [Contact.tsx](src/components/Contact.tsx)). Formspree's free plan has a monthly submission cap, so these safeguards help avoid spending it on spam.
 

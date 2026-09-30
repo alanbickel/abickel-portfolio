@@ -3,14 +3,21 @@ import { fireEvent, render, screen } from '@solidjs/testing-library';
 import Contact, { FORMSPREE_ENDPOINT } from './Contact';
 
 const fetchMock = vi.fn();
+const executeCaptcha = vi.fn();
 
 beforeEach(() => {
   vi.stubGlobal('fetch', fetchMock);
+  // Stands in for Google's reCAPTCHA script, so tests never load it.
+  executeCaptcha.mockResolvedValue('test-captcha-token');
+  window.grecaptcha = { ready: (callback) => callback(), execute: executeCaptcha };
 });
 
 afterEach(() => {
   fetchMock.mockReset();
+  executeCaptcha.mockReset();
+  delete window.grecaptcha;
   vi.unstubAllGlobals();
+  vi.restoreAllMocks();
 });
 
 const fill = (label: RegExp, value: string) =>
@@ -66,7 +73,12 @@ describe('Contact', () => {
     expect(fetchMock).toHaveBeenCalledOnce();
     const [url, init] = fetchMock.mock.calls[0];
     expect(url).toBe(FORMSPREE_ENDPOINT);
-    expect(JSON.parse(init.body)).toMatchObject({ name: 'Ada', email: 'ada@example.com', message: 'Hello from the test suite' });
+    expect(JSON.parse(init.body)).toMatchObject({
+      name: 'Ada',
+      email: 'ada@example.com',
+      message: 'Hello from the test suite',
+      'g-recaptcha-response': 'test-captcha-token',
+    });
     expect(screen.getByLabelText(/your name/i)).toHaveValue('');
   });
 
@@ -80,5 +92,17 @@ describe('Contact', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent('Something went wrong sending your message.');
     expect(screen.getByLabelText(/message/i)).toHaveValue('Hello from the test suite');
     expect(console.error).toHaveBeenCalledWith('Failed to send message', expect.objectContaining({ message: 'Form not found' }));
+  });
+
+  test("doesn't send, and suggests pausing ad blockers, when reCAPTCHA fails", async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    executeCaptcha.mockRejectedValue(new Error('blocked'));
+    render(() => <Contact />);
+    fillValidForm();
+    fireEvent.click(screen.getByRole('button', { name: /send/i }));
+
+    expect(await screen.findByRole('alert')).toHaveTextContent("Couldn't load spam protection");
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(screen.getByLabelText(/message/i)).toHaveValue('Hello from the test suite');
   });
 });

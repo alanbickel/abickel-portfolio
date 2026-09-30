@@ -1,5 +1,10 @@
 @use "theme";
 
+// Google's floating badge is replaced by the notice under the form.
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 .contact_wrapper svg {
   font-size: 1em;
   vertical-align: middle;
@@ -59,6 +64,19 @@
   button:hover {
     background-color: theme.$accent;
     color: white;
+  }
+
+  // Required by Google in place of the hidden reCAPTCHA badge. Sits below the right-floated Send button.
+  .recaptcha-notice {
+    clear: both;
+    margin: 0;
+    padding-top: 12px;
+    font-size: 0.75rem;
+    opacity: 0.75;
+
+    a {
+      text-decoration: underline;
+    }
   }
 
   // The outline is an absolutely positioned <fieldset> *after* the input, so a background
