@@ -88,10 +88,7 @@ function Timeline() {
         />
         <div class="vertical-timeline vertical-timeline--animate vertical-timeline--two-columns">
           {/* Every role is at this company, so it's labeled once at the top of the line. */}
-          <p class="timeline-employer">
-            {employer.name}
-            <span class="timeline-employer-parent"> ({employer.parent})</span> · {employer.location}
-          </p>
+          <p class="timeline-employer">{employer.name} · {employer.location}</p>
           <For each={roles}>
             {(role) => {
               // Roles always stay on the timeline; the lens only filters their bullets.

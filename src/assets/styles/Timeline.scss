@@ -139,13 +139,6 @@
         background-color: #f8f9fa;
     }
 
-    // Drop the parent company on phones so the label stays on one line.
-    .timeline-employer-parent {
-        @media (max-width: 599px) {
-            display: none;
-        }
-    }
-
     // Centered on the line once the timeline switches to two columns.
     @media only screen and (min-width: 1170px) {
         margin-left: auto;
