@@ -3,8 +3,8 @@
 .skills-container {
     // Full width so the heading and wheel don't re-center as the panel's content length changes.
     width: 100%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: layout.$section-space;
+    padding-bottom: layout.$section-space;
     @include layout.content-column;
     display: flex;
     flex-direction: column;

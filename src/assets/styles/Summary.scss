@@ -3,8 +3,8 @@
 .summary-container {
     // Full width so the parent's centering doesn't shift this section off the shared left edge.
     width: 100%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: layout.$section-space;
+    padding-bottom: layout.$section-space;
     @include layout.content-column;
     display: flex;
     flex-direction: column;

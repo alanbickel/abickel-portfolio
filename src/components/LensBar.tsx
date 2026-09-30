@@ -22,7 +22,10 @@ function LensBar<T extends string>(props: LensBarProps<T>) {
 
   return (
     <div class="lens-bar">
-      <p id={labelId} class="lens-label">{props.label}</p>
+      <div class="lens-header">
+        <p id={labelId} class="lens-label">{props.label}</p>
+        <p class="lens-status" aria-live="polite">{props.status}</p>
+      </div>
       <div class="lens-options" role="group" aria-labelledby={labelId}>
         <For each={props.options}>
           {(option) => (
@@ -37,7 +40,6 @@ function LensBar<T extends string>(props: LensBarProps<T>) {
           )}
         </For>
       </div>
-      <p class="lens-status" aria-live="polite">{props.status}</p>
     </div>
   );
 }

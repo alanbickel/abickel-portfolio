@@ -57,22 +57,22 @@ $wide: 1170px;
         clear: both;
     }
 
-    &:first-child {
+    &:first-of-type {
         margin-top: 0;
     }
 
-    &:last-child {
+    &:last-of-type {
         margin-bottom: 0;
     }
 
     @media only screen and (min-width: $wide) {
         margin: 4em 0;
 
-        &:first-child {
+        &:first-of-type {
             margin-top: 0;
         }
 
-        &:last-child {
+        &:last-of-type {
             margin-bottom: 0;
         }
     }
@@ -188,7 +188,7 @@ $wide: 1170px;
 
 // On wide screens, even entries sit on the right of the center line.
 @media only screen and (min-width: $wide) {
-    .vertical-timeline-element:nth-child(even) {
+    .vertical-timeline-element:nth-of-type(even) {
         .vertical-timeline-element-content {
             float: right;
 
@@ -227,7 +227,7 @@ $wide: 1170px;
     @media only screen and (min-width: $wide) {
         animation-name: cd-bounce-2;
 
-        .vertical-timeline-element:nth-child(even) & {
+        .vertical-timeline-element:nth-of-type(even) & {
             animation-name: cd-bounce-2-inverse;
         }
     }

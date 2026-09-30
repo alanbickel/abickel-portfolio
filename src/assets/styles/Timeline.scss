@@ -117,8 +117,38 @@
     }
 }
 
+// Company label at the top of the timeline line; the line appears to start from it.
+.vertical-timeline {
+    padding-top: 0;
+}
+
 .timeline-employer {
-    margin-top: 0;
-    font-weight: 400;
-    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    width: fit-content;
+    margin: 0 0 2em;
+    padding: 6px 14px;
+    border: 2px solid rgba(255, 255, 255, 0.64);
+    border-radius: 16px;
+    background-color: #353535;
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    .light-mode & {
+        border-color: rgb(0 0 0 / 47%);
+        background-color: #f8f9fa;
+    }
+
+    // Drop the parent company on phones so the label stays on one line.
+    .timeline-employer-parent {
+        @media (max-width: 599px) {
+            display: none;
+        }
+    }
+
+    // Centered on the line once the timeline switches to two columns.
+    @media only screen and (min-width: 1170px) {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

@@ -41,7 +41,9 @@ export type Role = {
 };
 
 export const employer = {
-  name: 'Big Ideas Learning, LLC (a Larson Texts company)',
+  name: 'Big Ideas Learning, LLC',
+  // Shown after the name on wider screens.
+  parent: 'a Larson Texts company',
   location: 'Erie, PA',
   description: 'Big Ideas Learning is a publisher of K-12 and higher education mathematics curriculum.',
 };
