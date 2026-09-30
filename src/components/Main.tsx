@@ -1,8 +1,8 @@
 import LinkedInIcon from '~icons/fa6-brands/linkedin';
 import '../assets/styles/Main.scss';
-import TornadoSmall from '~icons/solar/tornado-small-bold';
-import HandsPraying from '~icons/fa6-solid/hands-praying';
-import HatWizard from '~icons/fa6-solid/hat-wizard';
+import Compass from '~icons/fa6-solid/compass';
+import ArrowsToCircle from '~icons/fa6-solid/arrows-to-circle';
+import HandHoldingHeart from '~icons/fa6-solid/hand-holding-heart';
 
 
 function Main() {
@@ -19,9 +19,9 @@ function Main() {
 
           <p> Senior | Lead Software Engineer</p>
           <ul class="hero-traits">
-            <li><HatWizard aria-hidden="true" />Pathfinder</li>
-            <li><TornadoSmall aria-hidden="true" />Chaos Coordinator</li>
-            <li><HandsPraying aria-hidden="true" />Developer Evangelist</li>
+            <li><Compass aria-hidden="true" />Pathfinder</li>
+            <li><ArrowsToCircle aria-hidden="true" />Chaos Coordinator</li>
+            <li><HandHoldingHeart aria-hidden="true" />Developer Evangelist</li>
           </ul>
 
           <div class="social_icons">
