@@ -43,10 +43,13 @@
         }
     }
 
+    // Scale with the screen so role titles fit on one line on phones; capped at the desktop size.
     h3 {
+        font-size: clamp(1rem, 0.8rem + 0.9vw, 1.3rem);
         font-weight: 800;
     }
     h4 {
+        font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1.1rem);
         font-weight: 700;
     }
     p {
