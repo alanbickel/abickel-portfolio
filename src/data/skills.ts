@@ -27,6 +27,24 @@ export type SkillArea = {
 
 // Merged from the skills sections of the staff (2026), ClassDojo, and MGH resume variants.
 export const skillAreas: SkillArea[] = [
+    {
+    id: 'backend',
+    label: 'Backend/API',
+    icon: BackendIcon,
+    summary:
+      'Containerized and cloud-native API and service design, including Identity and Authorization integrations with first and third-party solutions ',
+    skills: [
+      { name: 'Node.js' },
+      { name: 'TypeScript' },
+      { name: 'Foxx' },
+      { name: 'C#' },
+      { name: 'Python (FastAPI)' },
+      { name: 'PHP' },
+      { name: 'Java' },
+      { name: 'GraphQL' },
+      { name: 'REST/microservices' },
+    ],
+  }, 
   {
     id: 'frontend',
     label: 'Frontend',
@@ -43,35 +61,18 @@ export const skillAreas: SkillArea[] = [
     ],
   },
   {
-    id: 'backend',
-    label: 'Backend/API',
-    icon: BackendIcon,
-    summary:
-      'Containerized and cloud-native API and service design, including Identity and Authorization integrations with first and third-party integrations ',
-    skills: [
-      { name: 'Node.js' },
-      { name: 'TypeScript' },
-      { name: 'Foxx' },
-      { name: 'C#' },
-      { name: 'Python (FastAPI)' },
-      { name: 'PHP' },
-      { name: 'Java', level: 'working' },
-      { name: 'GraphQL', level: 'working' },
-      { name: 'REST/microservices' },
-    ],
-  },
-  {
     id: 'data',
     label: 'Data',
     icon: DataIcon,
     summary:
-      'Relational and graph persistence, including modeling directed, multi-axis knowledge graphs and automating idempotent Amazon Neptune migrations with a local Neo4j counterpart.',
+      'Relational data modeling and normalization, directed graph data modeling and design, idempotent CI-friendly databse migrations',
     skills: [
-      { name: 'MySQL' },
-      { name: 'PostgreSQL', level: 'working' },
-      { name: 'ArangoDB' },
-      { name: 'Neo4j & Amazon Neptune', level: 'working', note: 'OpenCypher' },
+      { name: 'MySQL & MariaDB' },
+      { name: 'PostgreSQL' },
+      { name: 'ArangoDB', note: "Fluent query factories, custom migration runners " },
+      { name: 'Neo4j & Amazon Neptune', note: 'OpenCypher' },
       { name: 'MongoDB' },
+      { name: 'DynamoDB' },
     ],
   },
   {
@@ -79,18 +80,19 @@ export const skillAreas: SkillArea[] = [
     label: 'Cloud',
     icon: CloudIcon,
     summary:
-      'Owned architecture and delivery for a new line of business, including its adoption of cloud-native solutions on AWS.',
+      'AWS deployment, maintenance, and infrastructure design',
     skills: [
       { name: 'S3' },
       { name: 'CloudFront' },
+      { name: 'API Gateway' },
       { name: 'SQS' },
-      { name: 'RDS' },
+      { name: 'RDS',  },
       { name: 'Lambda' },
       { name: 'Cognito' },
       { name: 'Verified Permissions (AVP)' },
       { name: 'Secrets Manager' },
-      { name: 'Kubernetes' },
-      { name: 'Docker' },
+      { name: 'Kubernetes', note: "Helm, K9s, Argo CD" },
+      { name: 'Docker', note: "EC2" },
     ],
   },
   {
@@ -99,7 +101,7 @@ export const skillAreas: SkillArea[] = [
     shortLabel: 'CI/CD',
     icon: PipelineIcon,
     summary:
-      'Designed, implemented, and maintained front-end and back-end CI/CD pipelines in GitHub Actions, including automated test execution and database migrations.',
+      'Pipeline design and implementation in GitHub Actions and BitBucket, automated test execution,  database migrations.',
     skills: [
       { name: 'Bitbucket' },
       { name: 'GitHub' },
@@ -108,8 +110,8 @@ export const skillAreas: SkillArea[] = [
       { name: 'Vitest' },
       { name: 'Testcontainers' },
       { name: 'Database migration automation' },
-      { name: 'Helm', level: 'working' },
-      { name: 'AWS SAM', level: 'working' },
+      { name: 'Helm' },
+      { name: 'AWS SAM' },
     ],
   },
   {
@@ -118,15 +120,15 @@ export const skillAreas: SkillArea[] = [
     shortLabel: 'AI-Assisted',
     icon: AiIcon,
     summary:
-      'Human-owned, AI-assisted design and development workflows that keep design decisions and accountability in engineers\' hands. Led sanctioned AI pilot evaluations.',
+      'Human-owned, AI-assisted design and development workflows that keep design decisions and accountability in engineers\' hands.',
     skills: [
-      { name: 'Claude Code', note: 'custom skills, project memory, ADR-grounded context' },
+      { name: 'Claude Code', note: 'custom skills' },
       { name: 'AI-assisted PR review' },
       { name: 'Test design and implementation' },
       { name: 'Diagnostics' },
       { name: 'Diagramming' },
       { name: 'Mechanical implementations' },
-      { name: 'ADR drafting' },
+      { name: 'ADR  & documentation drafting' },
     ],
   },
 ];

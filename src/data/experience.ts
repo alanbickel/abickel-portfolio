@@ -64,7 +64,7 @@ export const roles: Role[] = [
         highlight: true,
       },
       {
-        text: 'Delivered a stable internal alpha and led technical planning efforts to keep delivery aligned with target market release dates.',
+        text: 'Delivered stable alpha release to internal customers and led technical planning efforts to keep delivery aligned with target market release dates.',
         tags: ['leadership'],
       },
       {
@@ -74,10 +74,12 @@ export const roles: Role[] = [
       {
         text: 'Led multiple fit analysis exercises across frontend, API, persistence, and authorization layers.',
         tags: ['architecture'],
+        highlight: true,
       },
       {
         text: 'Delivered TCO estimations and recommendations with tactical risk assessment to support transition from prototyping to product development.',
         tags: ['architecture', 'leadership'],
+        highlight: true,
       },
       {
         text: 'Designed, implemented, and maintained front-end and back-end CI/CD pipelines in GitHub Actions, including automated test execution and idempotent Amazon Neptune migrations with a local Neo4j counterpart.',
@@ -94,6 +96,7 @@ export const roles: Role[] = [
       {
         text: 'Led standardization efforts for in-codebase ADR tracking, risk register governance, and technical debt capture.',
         tags: ['dx'],
+        highlight: true,
       },
       {
         text: 'Navigated multiple full-stack rewrites within a 12-month window, including an organization-mandated cutover that introduced novel technologies to the team.',
@@ -102,6 +105,7 @@ export const roles: Role[] = [
       {
         text: 'Served as the technical reconciliation layer between product owner, company owner, and software engineering director; ensured that reliable, coherent delivery goals were set for the team.',
         tags: ['leadership'],
+        highlight: true,
       },
       {
         text: 'Championed collaboration-first coaching and course-correction strategies across multiple organizational layers to mitigate miscommunication-driven friction.',
@@ -110,12 +114,13 @@ export const roles: Role[] = [
       {
         text: 'Delivered software design talks and architectural testing workshops at two internal PD conferences.',
         tags: ['coaching'],
+
       },
     ],
   },
   {
     id: 'acting-tech-lead',
-    title: 'Acting Tech Lead',
+    title: 'Senior Software Engineer | Acting Tech Lead',
     product: 'My Ada Math (LMS/CMS/Assessment System)',
     start: '2021-08',
     end: '2023-06',
@@ -123,6 +128,7 @@ export const roles: Role[] = [
       {
         text: 'Provided architecture and design support to onshore and offshore teams.',
         tags: ['architecture'],
+        highlight: true,
       },
       {
         text: 'Delivered application and data architecture proposals for multiple feature improvements and platform extensions.',
@@ -131,6 +137,7 @@ export const roles: Role[] = [
       {
         text: 'Established a mutual cross-team design approval workflow with offshore leads to ensure technical alignment and identify gaps before implementation.',
         tags: ['dx', 'leadership'],
+        highlight: true,
       },
       {
         text: 'Championed wiki-style coding-standards guides, ran formal PD bootcamps in Angular and front-end unit testing, coached junior and mid-level engineers to build unit testing competence.',
@@ -139,15 +146,16 @@ export const roles: Role[] = [
       {
         text: 'Mentored junior and mid-level engineers in application design, modeling, and unit testing best practices. Actively coached multiple junior engineers through junior-to-mid transitions.',
         tags: ['coaching'],
-        highlight: true,
       },
       {
         text: 'Estimated capacity for in-house commitments and recommended cross-team workload distribution during quarterly planning.',
         tags: ['leadership'],
+        highlight: true,
       },
       {
         text: 'Coordinated delivery of cross-team implementation dependencies with offshore counterparts.',
         tags: ['leadership'],
+        highlight: true,
       },
       {
         text: 'Championed the creation of Software Engineer and Senior Software Engineer title levels at Big Ideas Learning.',
@@ -173,10 +181,12 @@ export const roles: Role[] = [
       {
         text: 'Collaborated directly with curriculum domain experts to test and analyze the pedagogical impacts of evaluations and recommendations derived from knowledge graphs.',
         tags: ['architecture'],
+        highlight: true,
       },
       {
         text: 'Designed, implemented, and tested core platform module architectures to scale in-house development impact and reduce the need for offshore expansion.',
         tags: ['architecture', 'delivery'],
+        highlight: true,
       },
       {
         text: 'Explored workflow solutions for curriculum SME ownership of knowledge graph data governance.',
@@ -186,7 +196,7 @@ export const roles: Role[] = [
   },
   {
     id: 'core-maintainer',
-    title: 'Core Maintainer',
+    title: 'Software Engineer | Maintainer',
     product: 'Big Ideas Math (LMS/CMS/Assessment System)',
     start: '2018-06',
     end: '2020-09',
@@ -240,6 +250,7 @@ export const roles: Role[] = [
       {
         text: 'Created proof-of-concept language-translation pipeline under the guidance of Engineering Manager, capable of generating Spanish-language variants of multimedia content.',
         tags: ['delivery', 'architecture'],
+        highlight: true
       },
     ],
   },
