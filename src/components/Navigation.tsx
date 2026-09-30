@@ -5,7 +5,7 @@ import ListIcon from '~icons/ic/baseline-list';
 import MenuIcon from '~icons/ic/baseline-menu';
 import '../assets/styles/Navigation.scss';
 
-const navItems = [['Bio', 'about'], ['Wheelhouse', 'expertise'], ['Experience', 'history'], ['Contact', 'contact']];
+const navItems = [['Overview', 'overview'], ['Wheelhouse', 'expertise'], ['Experience', 'history'], ['Contact', 'contact']];
 
 type NavigationProps = {
   mode: 'dark' | 'light';

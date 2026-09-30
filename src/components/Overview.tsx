@@ -1,14 +1,14 @@
 
-import '../assets/styles/Summary.scss';
+import '../assets/styles/Overview.scss';
 
-function Summary() {
+function Overview() {
 
   return (
-    <div class="container" id="about">
-      <div class="summary-container">
+    <div class="container" id="overview">
+      <div class="overview-container">
         <div class="portrait-shell">
           <div class="portrait-content">
-            <h1>Who Am I?</h1>
+            <h1>Overview</h1>
 
             <p>
 
@@ -38,4 +38,4 @@ function Summary() {
   );
 }
 
-export default Summary;
+export default Overview;

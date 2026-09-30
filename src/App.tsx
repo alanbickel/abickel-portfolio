@@ -1,7 +1,7 @@
 import { createSignal, onMount } from "solid-js";
 import {
     Main,
-    Summary,
+    Overview,
     Timeline,
     Expertise,
     Contact,
@@ -27,7 +27,7 @@ function App() {
         <Navigation mode={mode()} onModeChange={handleModeChange}/>
         <FadeIn transitionDuration={700}>
             <Main/>
-            <Summary/>
+            <Overview/>
             <Expertise/>
             <Timeline/>
             <Contact/>

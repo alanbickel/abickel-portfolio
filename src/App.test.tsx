@@ -5,7 +5,7 @@ import App from './App';
 describe('App', () => {
   test('renders the main page sections', () => {
     render(() => <App />);
-    for (const heading of ['Who Am I?', 'Wheelhouse', 'Experience', 'Contact Me']) {
+    for (const heading of ['Overview', 'Wheelhouse', 'Experience', 'Contact Me']) {
       expect(screen.getByRole('heading', { name: heading })).toBeInTheDocument();
     }
   });
