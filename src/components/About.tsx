@@ -1,14 +1,14 @@
 
-import '../assets/styles/Overview.scss';
+import '../assets/styles/About.scss';
 
-function Overview() {
+function About() {
 
   return (
-    <div class="container" id="overview">
-      <div class="overview-container">
+    <div class="container" id="about">
+      <div class="about-container">
         <div class="portrait-shell">
           <div class="portrait-content">
-            <h1>Overview</h1>
+            <h1>About</h1>
 
             <p>
 
@@ -38,4 +38,4 @@ function Overview() {
   );
 }
 
-export default Overview;
+export default About;

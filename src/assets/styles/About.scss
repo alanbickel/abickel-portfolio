@@ -1,6 +1,6 @@
 @use "layout";
 
-.overview-container {
+.about-container {
     // Full width so the parent's centering doesn't shift this section off the shared left edge.
     width: 100%;
     padding-top: layout.$section-space;
@@ -56,7 +56,7 @@
             max-width: 75ch;
         }
 
-        .overview-lede {
+        .about-lede {
             font-size: 1.15rem;
             max-width: 65ch;
             margin-bottom: 24px;
