@@ -1,7 +1,11 @@
+@use "layout";
+
 .skills-container {
     // Full width so the heading and wheel don't re-center as the panel's content length changes.
     width: 100%;
-    padding: 5% 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    @include layout.content-column;
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -43,8 +47,6 @@
 
     @media screen and (max-width: 768px) {
         display: block;
-        padding-left: 5%;
-        padding-right: 5%;
     }
 }
 

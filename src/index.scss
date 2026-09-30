@@ -1,3 +1,5 @@
+@use "./assets/styles/layout";
+
 // Global reset, carried over from MUI's CssBaseline.
 html {
   box-sizing: border-box;
@@ -57,8 +59,9 @@ p, a, h1, h2, h3, h4, h5, label, button {
   }
 }
 
+// Body copy at regular weight; headings and titles carry the emphasis.
 p {
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .container {
@@ -82,15 +85,13 @@ p {
 }
 
 .items-container {
-  padding: 5% 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  @include layout.content-column;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  @media screen and (max-width: 768px) {
-    padding: 5% 5%;
-  }
 }
 
 .light-mode {

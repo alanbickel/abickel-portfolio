@@ -1,0 +1,11 @@
+// Shared page layout. Every section's inner container uses content-column, so all
+// sections line up on the same left edge and stop widening on large screens.
+$content-max: 1140px;
+$gutter: clamp(20px, 5vw, 64px);
+
+// Horizontal padding that centers content in a column no wider than $content-max,
+// with at least $gutter on each side. Backgrounds still span the full width.
+@mixin content-column {
+    padding-left: max(#{$gutter}, calc((100% - #{$content-max}) / 2));
+    padding-right: max(#{$gutter}, calc((100% - #{$content-max}) / 2));
+}

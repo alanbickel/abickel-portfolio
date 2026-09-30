@@ -1,13 +1,17 @@
+@use "layout";
+
 .summary-container {
-    padding: 5% 10%;
+    // Full width so the parent's centering doesn't shift this section off the shared left edge.
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    @include layout.content-column;
     display: flex;
     flex-direction: column;
     text-align: left;
 
     @media screen and (max-width: 768px) {
         display: block;
-        padding-left: 5%;
-        padding-right: 5%;
     }
 }
 
@@ -45,6 +49,11 @@
 
         h1 {
             margin-block-start: 0;
+        }
+
+        // Keep bio lines to a comfortable reading length.
+        p {
+            max-width: 75ch;
         }
 
         .summary-lede {

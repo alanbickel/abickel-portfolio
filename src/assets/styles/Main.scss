@@ -1,10 +1,12 @@
+@use "layout";
+
 .about-section {
     display: flex;
     gap: 30px;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    padding: 0px 15%;
+    @include layout.content-column;
     min-height: 700px;
 
     .dark-mode & {
@@ -15,7 +17,7 @@
     .content {
         text-align: left;
         z-index: 2;
-        padding: 20px;
+        padding: 20px 0;
 
         h1 {
             font-size: 5em;
@@ -85,6 +87,11 @@
     .image-wrapper {
         z-index: 2;
 
+        // No avatar yet; keep the empty slot from pushing the text right.
+        &:empty {
+            display: none;
+        }
+
         img {
             width: 250px;
             border-radius: 50%;
@@ -99,15 +106,14 @@
 
     .about-section {
         display: block;
-        padding: 150px 0 0;
+        padding-top: 150px;
 
         h1 {
             font-size: 4em !important;
         }
 
         .content {
-            width: 90%;
-            padding: 20px 5% 5%;
+            padding: 20px 0 5%;
 
             .social_icons svg {
                 font-size: 2.5rem;
@@ -115,7 +121,6 @@
         }
 
         .image-wrapper {
-            padding-left: 5%;
             width: 100%;
         }
     }
