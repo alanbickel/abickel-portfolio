@@ -53,6 +53,8 @@ const lensOptions: (LensOption<LensId> & { icon: Component<JSX.SvgSVGAttributes<
   ...lenses,
 ];
 
+const lensIcons = Object.fromEntries(lenses.map((lens) => [lens.id, lens.icon])) as Record<Lens, Component<JSX.SvgSVGAttributes<SVGSVGElement>>>;
+
 const totalPoints = roles.reduce((sum, role) => sum + role.points.length, 0);
 
 const matchesLens = (point: ExperiencePoint, lens: LensId) => {
@@ -70,6 +72,12 @@ function Experience() {
   const [lens, setLens] = createSignal<LensId>('highlights');
   // Timeline markers show the selected lens's icon.
   const lensIcon = () => lensOptions.find((option) => option.id === lens())!.icon;
+  // Each bullet is marked with its main (first) tag's icon. With a single lens selected,
+  // every bullet shows that lens's icon so the list matches the filter and the markers.
+  const pointIcon = (point: ExperiencePoint) => {
+    const selected = lens();
+    return selected === 'highlights' || selected === 'all' ? lensIcons[point.tags[0]] : lensIcons[selected];
+  };
 
   const visibleCount = createMemo(() =>
     roles.reduce((sum, role) => sum + role.points.filter((point) => matchesLens(point, lens())).length, 0)
@@ -109,12 +117,15 @@ function Experience() {
                       <For each={points()}>
                         {(point) => (
                           <li>
-                            {point.text}
-                            <Show when={point.details}>
-                              <ul>
-                                <For each={point.details}>{(detail) => <li>{detail}</li>}</For>
-                              </ul>
-                            </Show>
+                            <Dynamic component={pointIcon(point)} class="timeline-point-icon" aria-hidden="true" />
+                            <div>
+                              {point.text}
+                              <Show when={point.details}>
+                                <ul>
+                                  <For each={point.details}>{(detail) => <li>{detail}</li>}</For>
+                                </ul>
+                              </Show>
+                            </div>
                           </li>
                         )}
                       </For>
