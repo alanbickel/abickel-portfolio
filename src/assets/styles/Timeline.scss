@@ -12,7 +12,7 @@
 
     span {
         color: rgb(39, 40, 34);
-        font-family: 'Courier Prime', monospace;
+        font-family: theme.$font-mono;
     }
 
     &--two-columns .vertical-timeline-element-content .vertical-timeline-element-date {

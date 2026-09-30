@@ -130,7 +130,7 @@
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 
     span {
-        font-family: 'Courier Prime', monospace;
+        font-family: theme.$font-mono;
         color: rgb(39, 40, 34);
         transition: color 0.2s ease;
     }

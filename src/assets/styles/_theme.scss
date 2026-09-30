@@ -1,5 +1,7 @@
-// Roboto is self-hosted from @fontsource-variable/roboto, imported in index.tsx.
+// Fonts are self-hosted from @fontsource-variable packages, imported in index.tsx.
 $font-sans: "Roboto Variable", Roboto, "Segoe UI", sans-serif;
+// Chips and timeline dates.
+$font-mono: "Roboto Mono Variable", "Roboto Mono", Consolas, monospace;
 
 // The site's one accent color.
 // Fill behind white text (5.17:1), and text on the light page (4.90:1).
