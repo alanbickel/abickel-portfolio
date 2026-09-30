@@ -32,9 +32,12 @@ test('keeps the lens bar pinned below the navbar while scrolling the timeline', 
   await page.locator('.vertical-timeline-element').nth(2).scrollIntoViewIfNeeded();
 
   await expect(lensBar).toBeInViewport();
-  const navBottom = (await page.locator('#navigation').boundingBox())!;
-  const bar = (await lensBar.boundingBox())!;
-  expect(Math.round(bar.y)).toBe(Math.round(navBottom.y + navBottom.height));
+  // Retry until the page-load fade-in (sections slide up 20px) has settled.
+  await expect(async () => {
+    const navBottom = (await page.locator('#navigation').boundingBox())!;
+    const bar = (await lensBar.boundingBox())!;
+    expect(Math.round(bar.y)).toBe(Math.round(navBottom.y + navBottom.height));
+  }).toPass();
 });
 
 // Not assertions: saves screenshots to test-results/ for a visual check.
