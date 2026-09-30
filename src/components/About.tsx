@@ -1,4 +1,3 @@
-
 import '../assets/styles/About.scss';
 
 function About() {
@@ -11,23 +10,32 @@ function About() {
             <h1>About</h1>
 
             <p>
-
-              I'm a Staff Software Engineer with nine+ years in K-12 education technology, focused on delivering software solutions used by students and teachers nationwide. Whether its prototyping a product, piloting new market features, or overhauling core modules of a flagship platform, I deliver solutions that fit real problems, based on real-world experience designing, implementing, and maintaining enterprise software that impacts millions of students and thousands of teachers nationwide.
+              I've been working as a developer | engineer | problem-solver in K-12 edtech for almost a decade.
+              I've spent the entire time with a single employer, and my time with Big Ideas Learning has been one of the most rewarding experiences of my life.
             </p>
 
             <p>
-              What keeps me in this space is seeing the impact that strong, creative engineering discipline has on the tools and experiences that are available to students and teachers. Like a lot of folks in ed-tech, I experience this impact as both an industry professional and as a parent.  Watching my daughter complete her K-5 journey in post-pandemic classrooms taught me that that I don't ship product features for a living; I help peoples sons, daughters, nieces, and nephews build the foundational knowledge they need to thrive.
-
+              My focus is leading and accelerating development teams through the entire SDLC, leveraging years of experience in building learning software used by students and teachers nationwide.
+              From greenfield prototypes, feature pilots, and product betas to flagship delivery and mission-critical refactoring,
+              I'm a hands-on driver of mindful software design, iterative improvement, and implementation strategies that don't fight reality.
             </p>
 
             <p>
-              I've carried this philosophy while incubating strategic vision through early ideation and prototyping, while designing systems that embrace the reality of product uncertainty, and while stewarding development teams through full-stack overhauls under immutable delivery deadlines. I'm comfortable reconciling conflicts between engineering and product visions, building cohesion between technical and non-technical stakeholders, and over the years I've refined a collaboration-first coaching strategy that helps teams build shared product and technical understanding across functional domains and organizational layers.
-
+              I've led development teams through full-stack rewrites under existential delivery deadlines without dropping commitments or quality.
+              I'm well-versed in balancing technical debt and codebase health against evolving product needs and priorities.
             </p>
 
             <p>
-              Right now, I'm eagerly seeking a group of inspired, education-oriented professionals who need a proactive, high-capacity engineer dedicated to solving messy real-world problems. If you know of a group like that, please let me know! If you're part of a group like that, <a href="mailto:alan.bickel@gmail.com">please reach out</a> ! I'd love to hear about where you're headed.
+              I'm comfortable reconciling conflicts between engineering and product visions as well as building cohesion between technical and non-technical stakeholders.
+              My collaboration-first coaching style is hardened for prod and designed to help teams build shared product and technical understanding across functional domains and organizational layers.
+            </p>
 
+            <p>
+              Following a recent market-driven reduction in force that dissolved the Big Ideas Learning software engineering team,
+              I'm eagerly seeking an opportunity to join a team of collaborative, education-oriented professionals.
+              If your organization is looking for a proactive, high-capacity engineer dedicated to delivering clean solutions to messy, real-world problems,
+              I encourage you to explore my skills and experience below.
+              Please feel free to contact me if you'd like to learn more about how I can help your team design and build delightful, equitable learning software.
             </p>
 
           </div>
