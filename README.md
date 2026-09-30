@@ -76,7 +76,7 @@ npx vitest run        # single run
 
 ### End-to-end tests (Playwright)
 
-Specs in `e2e/` drive the real app in a headless Chromium browser, at both a desktop (1280px) and a mobile (Pixel 7) viewport. They cover what a simulated browser can't: responsive layout, the mobile navigation drawer, the theme toggle, scrolling, and the Timeline's scroll-triggered animations.
+Specs in `e2e/` drive the real app in a headless Chromium browser, at both a desktop (1280px) and a mobile (Pixel 7) viewport. They cover what a simulated browser can't: responsive layout, the mobile navigation drawer, the theme toggle, scrolling, and the Experience timeline's scroll-triggered animations.
 
 One-time setup, which downloads Playwright's bundled Chromium:
 

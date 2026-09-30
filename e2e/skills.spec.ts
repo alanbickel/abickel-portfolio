@@ -42,7 +42,7 @@ test('centers the wheel above the detail panel', async ({ page }) => {
 });
 
 test('keeps the page below still while switching wedges', async ({ page }) => {
-  const nextSection = page.locator('#history');
+  const nextSection = page.locator('#experience');
   const tops = new Set<number>();
 
   for (const tab of await page.getByRole('tab').all()) {

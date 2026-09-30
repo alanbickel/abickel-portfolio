@@ -2,7 +2,7 @@ import { createSignal, onMount } from "solid-js";
 import {
     Main,
     Overview,
-    Timeline,
+    Experience,
     Skills,
     Contact,
     Navigation,
@@ -29,7 +29,7 @@ function App() {
             <Main/>
             <Overview/>
             <Skills/>
-            <Timeline/>
+            <Experience/>
             <Contact/>
         </FadeIn>
         <Footer />

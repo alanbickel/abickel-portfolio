@@ -42,13 +42,13 @@ test('keeps the lens bar pinned below the navbar while scrolling the timeline', 
 
 // Not assertions: saves screenshots to test-results/ for a visual check.
 test('captures the timeline', async ({ page }, testInfo) => {
-  const history = page.locator('#history');
+  const experience = page.locator('#experience');
   for (const entry of await page.locator('.vertical-timeline-element').all()) {
     await entry.scrollIntoViewIfNeeded();
   }
   await page.getByRole('button', { name: 'All' }).click();
-  await history.screenshot({ path: testInfo.outputPath('timeline-all.png'), animations: 'disabled' });
+  await experience.screenshot({ path: testInfo.outputPath('experience-all.png'), animations: 'disabled' });
 
   await page.getByRole('button', { name: 'Coaching & Team Building' }).click();
-  await history.screenshot({ path: testInfo.outputPath('timeline-coaching.png'), animations: 'disabled' });
+  await experience.screenshot({ path: testInfo.outputPath('experience-coaching.png'), animations: 'disabled' });
 });

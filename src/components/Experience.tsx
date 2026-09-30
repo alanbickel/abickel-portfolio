@@ -4,7 +4,7 @@ import HighlightsIcon from '~icons/solar/star-bold';
 import AllIcon from '~icons/solar/case-bold';
 import { employer, lenses, roles, type ExperiencePoint, type Lens } from '../data/experience';
 import LensBar, { type LensOption } from './LensBar';
-import '../assets/styles/Timeline.scss'
+import '../assets/styles/Experience.scss'
 
 type TimelineElementProps = {
   date: string;
@@ -66,7 +66,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const monthYear = (date: string) => `${MONTHS[Number(date.slice(5, 7)) - 1]} ${date.slice(0, 4)}`;
 const dateRange = (start: string, end: string) => `${monthYear(start)} - ${monthYear(end)}`;
 
-function Timeline() {
+function Experience() {
   const [lens, setLens] = createSignal<LensId>('highlights');
   // Timeline markers show the selected lens's icon.
   const lensIcon = () => lensOptions.find((option) => option.id === lens())!.icon;
@@ -76,7 +76,7 @@ function Timeline() {
   );
 
   return (
-    <div id="history">
+    <div id="experience">
       <div class="items-container">
         <h1>Experience</h1>
         <p class="section-intro">Use the filters to view related professional experience</p>
@@ -130,4 +130,4 @@ function Timeline() {
   );
 }
 
-export default Timeline;
+export default Experience;
