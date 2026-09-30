@@ -14,7 +14,7 @@ export type Skill = {
   note?: string;
 };
 
-export type ExpertiseArea = {
+export type SkillArea = {
   id: string;
   label: string;
   // Wedge label when `label` is too long to fit inside the wheel.
@@ -26,7 +26,7 @@ export type ExpertiseArea = {
 };
 
 // Merged from the skills sections of the staff (2026), ClassDojo, and MGH resume variants.
-export const expertiseAreas: ExpertiseArea[] = [
+export const skillAreas: SkillArea[] = [
   {
     id: 'frontend',
     label: 'Frontend',

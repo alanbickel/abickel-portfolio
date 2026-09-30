@@ -1,8 +1,8 @@
 import { For } from 'solid-js';
-import type { ExpertiseArea } from '../data/expertise';
+import type { SkillArea } from '../data/skills';
 
-type ExpertiseWheelProps = {
-  areas: ExpertiseArea[];
+type SkillsWheelProps = {
+  areas: SkillArea[];
   selectedId: string;
   onSelect: (id: string) => void;
   tabId: (id: string) => string;
@@ -39,9 +39,9 @@ const wedgePath = (startAngle: number, endAngle: number) => {
   ].join(' ');
 };
 
-// Ring of selectable wedges, one per expertise area. Behaves as an ARIA tablist:
+// Ring of selectable wedges, one per skill area. Behaves as an ARIA tablist:
 // arrow keys move between wedges, and only the selected wedge is in the tab order.
-function ExpertiseWheel(props: ExpertiseWheelProps) {
+function SkillsWheel(props: SkillsWheelProps) {
   const sweep = () => 360 / props.areas.length;
   // Center the first wedge at 12 o'clock.
   const startAngle = (index: number) => -90 - sweep() / 2 + index * sweep();
@@ -72,7 +72,7 @@ function ExpertiseWheel(props: ExpertiseWheelProps) {
   };
 
   return (
-    <svg class="expertise-wheel" viewBox="-100 -100 200 200" role="tablist" aria-label="Areas of expertise">
+    <svg class="skills-wheel" viewBox="-100 -100 200 200" role="tablist" aria-label="Skill areas">
       <For each={props.areas}>
         {(area, index) => {
           const start = () => startAngle(index());
@@ -115,4 +115,4 @@ function ExpertiseWheel(props: ExpertiseWheelProps) {
   );
 }
 
-export default ExpertiseWheel;
+export default SkillsWheel;

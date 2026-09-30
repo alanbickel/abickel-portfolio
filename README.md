@@ -67,7 +67,7 @@ The project has two test suites.
 
 ### Unit tests (Vitest)
 
-Component tests live next to the components in `src/` (`*.test.tsx`) and run in a simulated browser (jsdom). They're fast and cover component logic: form validation, the Expertise wheel's selection and keyboard behavior, and so on.
+Component tests live next to the components in `src/` (`*.test.tsx`) and run in a simulated browser (jsdom). They're fast and cover component logic: form validation, the Skills wheel's selection and keyboard behavior, and so on.
 
 ```bash
 npm test              # watch mode
@@ -88,12 +88,12 @@ Then run the suite:
 
 ```bash
 npm run test:e2e                        # all specs, both viewports
-npx playwright test e2e/expertise.spec.ts   # one spec
+npx playwright test e2e/skills.spec.ts  # one spec
 npx playwright test --project=mobile    # one viewport
 npx playwright test --ui                # interactive runner
 ```
 
-Playwright reuses a dev server that's already running on port 5173, and starts one otherwise. After a run, `npx playwright show-report` opens the HTML report. Screenshots (for example, the Expertise wheel in both themes) and failure traces are saved to `test-results/`. Both output folders are gitignored.
+Playwright reuses a dev server that's already running on port 5173, and starts one otherwise. After a run, `npx playwright show-report` opens the HTML report. Screenshots (for example, the Skills wheel in both themes) and failure traces are saved to `test-results/`. Both output folders are gitignored.
 
 ## Deployment
 

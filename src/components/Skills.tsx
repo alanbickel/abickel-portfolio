@@ -1,26 +1,26 @@
 import { createSignal, For } from "solid-js";
-import { expertiseAreas, type Skill } from '../data/expertise';
+import { skillAreas, type Skill } from '../data/skills';
 import Chip from './Chip';
-import ExpertiseWheel from './ExpertiseWheel';
-import '../assets/styles/Expertise.scss';
+import SkillsWheel from './SkillsWheel';
+import '../assets/styles/Skills.scss';
 
-const tabId = (areaId: string) => `expertise-tab-${areaId}`;
-const panelId = (areaId: string) => `expertise-panel-${areaId}`;
+const tabId = (areaId: string) => `skills-tab-${areaId}`;
+const panelId = (areaId: string) => `skills-panel-${areaId}`;
 
 const skillDetail = (skill: Skill) =>
     [skill.note, skill.level].filter(Boolean).join(' · ') || undefined;
 
-function Expertise() {
-    const [selectedId, setSelectedId] = createSignal(expertiseAreas[0].id);
+function Skills() {
+    const [selectedId, setSelectedId] = createSignal(skillAreas[0].id);
 
     return (
-    <div class="container" id="expertise">
+    <div class="container" id="skills">
         <div class="skills-container">
-            <h1>Wheelhouse</h1>
+            <h1>Skills</h1>
             <p class="section-intro">Select a skillset to view details</p>
-            <div class="expertise-explorer">
-                <ExpertiseWheel
-                    areas={expertiseAreas}
+            <div class="skills-explorer">
+                <SkillsWheel
+                    areas={skillAreas}
                     selectedId={selectedId()}
                     onSelect={setSelectedId}
                     tabId={tabId}
@@ -28,14 +28,14 @@ function Expertise() {
                 />
                 {/* Every panel sits in the same grid cell, so the area is always as tall as the
                     tallest panel and the page below doesn't jump when the selection changes. */}
-                <div class="expertise-panels">
-                    <For each={expertiseAreas}>
+                <div class="skills-panels">
+                    <For each={skillAreas}>
                         {(area) => {
                             const selected = () => area.id === selectedId();
                             return (
                                 <div
                                     id={panelId(area.id)}
-                                    class="expertise-panel"
+                                    class="skills-panel"
                                     classList={{ selected: selected() }}
                                     role="tabpanel"
                                     aria-labelledby={tabId(area.id)}
@@ -61,4 +61,4 @@ function Expertise() {
     );
 }
 
-export default Expertise;
+export default Skills;

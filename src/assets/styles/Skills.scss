@@ -20,14 +20,14 @@
     }
 
     // Wheel centered, detail panel centered below it; the same stack on every screen size.
-    .expertise-explorer {
+    .skills-explorer {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 32px;
     }
 
-    .expertise-panels {
+    .skills-panels {
         display: grid;
         // minmax(0, ...) stops a long chip from widening the column past the screen.
         grid-template-columns: minmax(0, 1fr);
@@ -36,7 +36,7 @@
     }
 
     // All panels overlap in one cell; only the selected one is shown.
-    .expertise-panel {
+    .skills-panel {
         grid-area: 1 / 1;
         border-radius: 4px;
 
@@ -59,7 +59,7 @@
     }
 }
 
-.expertise-wheel {
+.skills-wheel {
     display: block;
     width: 100%;
     // Compact enough that the panel below stays in view on a typical laptop screen.

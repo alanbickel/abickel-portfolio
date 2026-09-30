@@ -6,7 +6,7 @@ const wedgeNames = (page: Page) =>
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
-  await page.locator('#expertise').scrollIntoViewIfNeeded();
+  await page.locator('#skills').scrollIntoViewIfNeeded();
 });
 
 test('selects a wedge and shows its details', async ({ page }) => {
@@ -31,8 +31,8 @@ test('moves between wedges with the keyboard', async ({ page }) => {
 });
 
 test('centers the wheel above the detail panel', async ({ page }) => {
-  const explorer = (await page.locator('.expertise-explorer').boundingBox())!;
-  const wheel = (await page.locator('.expertise-wheel').boundingBox())!;
+  const explorer = (await page.locator('.skills-explorer').boundingBox())!;
+  const wheel = (await page.locator('.skills-wheel').boundingBox())!;
   const panel = (await page.getByRole('tabpanel').boundingBox())!;
   const center = (box: { x: number; width: number }) => box.x + box.width / 2;
 
@@ -53,7 +53,7 @@ test('keeps the page below still while switching wedges', async ({ page }) => {
 });
 
 test('keeps every wedge label inside the wheel', async ({ page }) => {
-  const wheel = (await page.locator('.expertise-wheel').boundingBox())!;
+  const wheel = (await page.locator('.skills-wheel').boundingBox())!;
 
   for (const label of await page.locator('.wedge-label').all()) {
     const box = (await label.boundingBox())!;
@@ -65,10 +65,10 @@ test('keeps every wedge label inside the wheel', async ({ page }) => {
 // Not assertions: saves screenshots to test-results/ for a visual check of the wheel.
 test('captures the wheel in both themes', async ({ page }, testInfo) => {
   const [, second] = await wedgeNames(page);
-  const section = page.locator('#expertise');
+  const section = page.locator('#skills');
   await page.getByRole('tab', { name: second }).click();
-  await section.screenshot({ path: testInfo.outputPath('expertise-dark.png'), animations: 'disabled' });
+  await section.screenshot({ path: testInfo.outputPath('skills-dark.png'), animations: 'disabled' });
 
   await page.getByRole('button', { name: 'Switch to light mode' }).click();
-  await section.screenshot({ path: testInfo.outputPath('expertise-light.png'), animations: 'disabled' });
+  await section.screenshot({ path: testInfo.outputPath('skills-light.png'), animations: 'disabled' });
 });
