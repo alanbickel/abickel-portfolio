@@ -78,7 +78,8 @@ function Timeline() {
   return (
     <div id="history">
       <div class="items-container">
-        <h1>Career History</h1>
+        <h1>Experience</h1>
+        <p class="section-intro">Use the filters to view related professional experience</p>
         <LensBar
           options={lensOptions}
           selected={lens()}

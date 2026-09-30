@@ -98,6 +98,12 @@ p {
   justify-content: center;
 }
 
+// One-line lead-in under a section heading, on the same left edge.
+.section-intro {
+  margin: 0 0 1.5em;
+  max-width: 75ch;
+}
+
 .light-mode {
   background-color: #f8f9fa;
 }

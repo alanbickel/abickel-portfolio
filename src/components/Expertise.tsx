@@ -17,6 +17,7 @@ function Expertise() {
     <div class="container" id="expertise">
         <div class="skills-container">
             <h1>Wheelhouse</h1>
+            <p class="section-intro">Select a skillset to view details</p>
             <div class="expertise-explorer">
                 <ExpertiseWheel
                     areas={expertiseAreas}
