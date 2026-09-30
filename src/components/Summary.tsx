@@ -1,10 +1,5 @@
-import CodeIcon from '~icons/fa6-solid/code';
-import ChalkboardUserIcon from '~icons/fa6-solid/chalkboard-user';
-import BookOpenReaderIcon from '~icons/fa6-solid/book-open-reader';
-import FrogIcon from '~icons/fa6-solid/frog';
-import Chip from './Chip';
+
 import '../assets/styles/Summary.scss';
-import kilgorePortrait from '../assets/images/profile-pic-kilgore.png';
 
 function Summary() {
 
@@ -14,41 +9,29 @@ function Summary() {
         <div class="portrait-shell">
           <div class="portrait-content">
             <h1>Who Am I?</h1>
-            <p class="summary-lede">
-              Full Stack Engineer with 5+ years in the EdTech industry, architecting and developing solutions for everything from enterprise-grade LMS platforms, and internal tooling & data systems for Content management pipelines. 
-              I have a passion for creating intuitive, performant, and accessible experiences that empower educators and learners.
+
+            <p>
+
+              I'm a Staff Software Engineer with nine+ years in K-12 education technology, focused on delivering software solutions used by students and teachers nationwide. Whether its prototyping a product, piloting new market features, or overhauling core modules of a flagship platform, I deliver solutions that fit real problems, based on real-world experience designing, implementing, and maintaining enterprise software that impacts millions of students and thousands of teachers nationwide.
             </p>
-            <p class="summary-lede thin">
-             With a background in digital art, animation and large-scale text encoding/analysis - I bring a unique perspective to software development, blending technical expertise with creative problem-solving.
-              I am also a lifelong learner, constantly seeking to expand my knowledge and skills in the ever-evolving field of technology.
+
+            <p>
+              What keeps me in this space is seeing the impact that strong, creative engineering discipline has on the tools and experiences that are available to students and teachers. Like a lot of folks in ed-tech, I experience this impact as both an industry professional and as a parent.  Watching my daughter complete her K-5 journey in post-pandemic classrooms taught me that that I don't ship product features for a living; I help peoples sons, daughters, nieces, and nephews build the foundational knowledge they need to thrive.
+
             </p>
-            <p class="summary-lede thin">
-              Aside from my full-time work as a software engineer, I am an adjunct lecturer of an intro-level Digital Art studio course at a local university - where I teach students the fundamentals of 
-              digital art creation on a variety of mediums through hands-on explorations.
+
+            <p>
+              I've carried this philosophy while incubating strategic vision through early ideation and prototyping, while designing systems that embrace the reality of product uncertainty, and while stewarding development teams through full-stack overhauls under immutable delivery deadlines. I'm comfortable reconciling conflicts between engineering and product visions, building cohesion between technical and non-technical stakeholders, and over the years I've refined a collaboration-first coaching strategy that helps teams build shared product and technical understanding across functional domains and organizational layers.
+
             </p>
-            <div class="badge-row">
-              <Chip icon={<CodeIcon />} label="Coder" />
-              <Chip icon={<ChalkboardUserIcon />} label="Educator" />
-              <Chip icon={<BookOpenReaderIcon />} label="Lifelong Learner" />
-              <Chip icon={<FrogIcon />} label="Frog-Lover" />
-            </div>
+
+            <p>
+              Right now, I'm eagerly seeking a group of inspired, education-oriented professionals who need a proactive, high-capacity engineer dedicated to solving messy real-world problems. If you know of a group like that, please let me know! If you're part of a group like that, <a href="mailto:alan.bickel@gmail.com">please reach out</a> ! I'd love to hear about where you're headed.
+
+            </p>
+
           </div>
-          <div class="portrait-art" aria-hidden="true">
-            <img class="portrait-image" src={kilgorePortrait} alt="Digital portrait of a character I created named Kilgore" />
-            {/* <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="summaryArtGradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#006161" />
-                  <stop offset="55%" stop-color="#1c8f8f" />
-                  <stop offset="100%" stop-color="#5000ca" />
-                </linearGradient>
-              </defs>
-              <rect width="400" height="400" fill="url(#summaryArtGradient)" />
-              <circle cx="120" cy="140" r="95" fill="rgba(255,255,255,0.16)" />
-              <circle cx="290" cy="260" r="120" fill="rgba(0,0,0,0.18)" />
-              <path d="M0 330 Q100 250 200 305 T400 280 V400 H0Z" fill="rgba(255,255,255,0.10)" />
-            </svg> */}
-          </div>
+
         </div>
       </div>
     </div>

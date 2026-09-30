@@ -6,7 +6,6 @@
     width: 100%;
     padding: 0px 15%;
     min-height: 700px;
-    background-image: url("../images/flowerclouds.JPG");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -16,9 +15,6 @@
         background-color: rgba(0, 0, 0, 0.2);
     }
 
-    .light-mode & {
-        background-image: url("../images/bg-light.png");
-    }
 
     .content {
         text-align: left;
