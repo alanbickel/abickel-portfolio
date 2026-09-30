@@ -32,10 +32,10 @@ function About() {
 
             <p>
               Following a recent market-driven reduction in force that dissolved the Big Ideas Learning software engineering team,
-              I'm eagerly seeking an opportunity to join a team of collaborative, education-oriented professionals.
+              I'm eagerly seeking an opportunity to join a team of collaborative, efficacy-oriented professionals.
               If your organization is looking for a proactive, high-capacity engineer dedicated to delivering clean solutions to messy, real-world problems,
               I encourage you to explore my skills and experience below.
-              Please feel free to contact me if you'd like to learn more about how I can help your team design and build delightful, equitable learning software.
+              Please feel free to contact me if you'd like to learn more about how I can help your team design and build delightful, maintainable software.
             </p>
 
           </div>
