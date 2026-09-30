@@ -5,6 +5,7 @@ import SuccessIcon from '~icons/ic/outline-check-circle';
 import ErrorIcon from '~icons/ic/outline-error-outline';
 import InfoIcon from '~icons/ic/outline-info';
 import SendIcon from '~icons/ic/baseline-send';
+import LinkedInIcon from '~icons/fa6-brands/linkedin';
 import TextField from './TextField';
 
 const MESSAGE_MIN_LENGTH = 10;
@@ -201,6 +202,12 @@ function Contact() {
       <div class="items-container">
         <div class="contact_wrapper">
           <h1>Contact Me</h1>
+          <p class="section-intro">
+            Send me a message, or connect with me on{' '}
+            <a class="linkedin-link" href="https://www.linkedin.com/in/alan-bickel" target="_blank" rel="noreferrer">
+              <LinkedInIcon aria-hidden="true" /><span>LinkedIn</span>
+            </a>.
+          </p>
           <form
             novalidate
             autocomplete="off"

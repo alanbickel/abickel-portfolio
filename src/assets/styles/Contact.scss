@@ -11,8 +11,22 @@
   margin-right: 5px;
 }
 
+// Inline link in the intro line. Only the word is underlined, not the icon beside it.
+.linkedin-link {
+  white-space: nowrap;
+
+  svg {
+    margin-right: 4px;
+    vertical-align: -0.125em;
+  }
+
+  span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
 .contact-form {
-  padding-top: 20px;
 
   // Contained button (layout carried over from MUI's Button).
   .send-button {
