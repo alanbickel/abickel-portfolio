@@ -96,15 +96,34 @@
         }
 
         // Sub-points hang off a thin rule so they read as detail under the main point.
+        // A short tick from the rule marks where each one starts.
         ul {
-            margin: 0.4em 0 0;
-            padding: 0 0 0 0.9em;
+            margin: 0.5em 0 0;
+            padding: 0;
             border-left: 2px solid rgb(39 40 34 / 15%);
             list-style: none;
 
             li {
-                margin-bottom: 0.25em;
+                position: relative;
+                margin-bottom: 0.6em;
+                padding-left: 1.1em;
                 font-size: 0.9em;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    // Middle of the first line (line-height 1.6).
+                    top: 0.8em;
+                    width: 0.6em;
+                    height: 2px;
+                    margin-top: -1px;
+                    background-color: rgb(39 40 34 / 30%);
+                }
             }
         }
     }
