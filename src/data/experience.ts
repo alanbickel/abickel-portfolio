@@ -66,6 +66,7 @@ export const roles: Role[] = [
       {
         text: 'Delivered stable alpha release to internal customers and led technical planning efforts to keep delivery aligned with target market release dates.',
         tags: ['leadership'],
+        highlight: true,
       },
       {
         text: 'Responsible for implementation and testing of platform-critical modules and sub-systems.',
@@ -88,6 +89,7 @@ export const roles: Role[] = [
       {
         text: 'Diagnosed front-end test-suite performance using AI-assisted instrumentation and benchmarking. Delivered root-cause analysis and mitigation steps, realized a ~40% reduction in test-suite runtime.',
         tags: ['dx'],
+        highlight: true,
       },
       {
         text: 'Lobbied for the use of AI support in engineering workflows, led sanctioned pilot evaluations. Delivered technical guidance for adopting centralized behavioral guardrails.',
@@ -128,11 +130,11 @@ export const roles: Role[] = [
       {
         text: 'Provided architecture and design support to onshore and offshore teams.',
         tags: ['architecture'],
-        highlight: true,
       },
       {
         text: 'Delivered application and data architecture proposals for multiple feature improvements and platform extensions.',
         tags: ['architecture'],
+        highlight: true,
       },
       {
         text: 'Established a mutual cross-team design approval workflow with offshore leads to ensure technical alignment and identify gaps before implementation.',
@@ -154,7 +156,6 @@ export const roles: Role[] = [
       {
         text: 'Estimated capacity for in-house commitments and recommended cross-team workload distribution during quarterly planning.',
         tags: ['leadership'],
-        highlight: true,
       },
       {
         text: 'Coordinated delivery of cross-team implementation dependencies with offshore counterparts.',
@@ -190,7 +191,6 @@ export const roles: Role[] = [
       {
         text: 'Designed, implemented, and tested core platform module architectures to scale in-house development impact and reduce the need for offshore expansion.',
         tags: ['architecture', 'delivery'],
-        highlight: true,
       },
       {
         text: 'Explored workflow solutions for curriculum SME ownership of knowledge graph data governance.',
@@ -221,11 +221,11 @@ export const roles: Role[] = [
           'Custom messaging protocol providing secure data transfer and lifecycle event broadcasting between the application shell and embedded page content.',
         ],
         tags: ['architecture', 'delivery'],
-        highlight: true,
       },
       {
         text: 'Developed and tested ETL tooling to ensure accurate student data transfer as part of an assessment system redesign.',
         tags: ['delivery'],
+        highlight: true,
       },
     ],
   },
@@ -250,11 +250,11 @@ export const roles: Role[] = [
       {
         text: 'Built custom ETL tools to parse hand-maintained CSV and XLSX files, validate data integrity, and generate SQL scripts for database propagation.',
         tags: ['delivery'],
+        highlight: true,
       },
       {
         text: 'Created proof-of-concept language-translation pipeline under the guidance of Engineering Manager, capable of generating Spanish-language variants of multimedia content.',
         tags: ['delivery', 'architecture'],
-        highlight: true
       },
     ],
   },
