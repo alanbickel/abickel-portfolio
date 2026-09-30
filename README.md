@@ -83,39 +83,22 @@ Playwright reuses a dev server that's already running on port 5173, and starts o
 
 ## Deployment
 
-You can choose your preferred service (e.g., [Netlify](https://www.netlify.com/), [Render](https://render.com/), [Heroku](https://www.heroku.com/)) for deployment. One of the easiest ways to host this portfolio is using GitHub Pages. Follow the instructions below for a production deploy.
+The site is hosted on GitHub Pages at [alanbickel.github.io/abickel-portfolio](https://alanbickel.github.io/abickel-portfolio/).
 
-1. **Set Up GitHub Repository**
+It deploys from your machine with the [`gh-pages`](https://www.npmjs.com/package/gh-pages) npm package, which is already a dev dependency, so `npm install` covers it. It isn't part of the GitHub CLI, and it uses your existing git credentials.
 
-    Create a new repository on GitHub for your portfolio app.
+```bash
+npm run deploy
+```
 
-2. **Configure `package.json`**
+This type-checks and builds the site into `build/` (gitignored), then pushes that folder to the `gh-pages` branch of the GitHub repo. GitHub Pages serves the site from that branch.
 
-    Edit the following properties in your `package.json` file:
+Vite builds with relative asset paths (`base: './'` in [vite.config.ts](vite.config.ts)), so the site works under the `/abickel-portfolio/` path without any extra settings.
 
-    ```json
-    {
-        "homepage": "https://yourusername.github.io/your-repo-name",
-        "scripts": {
-            "predeploy": "npm run build",
-            "deploy": "gh-pages -d build",
-            ...
-        }
-    }
-    ```
+### First-time setup
 
-    Replace `yourusername` with your GitHub username and `your-repo-name` with the name of your GitHub repository.
+1. Run `npm run deploy` once. It creates the `gh-pages` branch.
+2. On GitHub, open the repo's **Settings -> Pages**. Under **Build and deployment**, set **Source** to **Deploy from a branch**, then choose the `gh-pages` branch and the `/ (root)` folder.
+3. Add `alanbickel.github.io` to the site's allowed domains in the [Google reCAPTCHA admin console](https://www.google.com/recaptcha/admin), or the Contact form will reject messages sent from the live site (see [Contact Form Setup](#contact-form-setup-formspree)).
 
-3. **Deploy to GitHub Pages**
-
-    Run the following command to deploy your app:
-
-    ```bash
-    npm run deploy
-    ```
-
-4. **Access Your Deployed App**
-
-    After successfully deploying, you can access your app at `https://yourusername.github.io/your-repo-name`.
-
-
+GitHub Pages can take a minute or two to publish after each deploy. On a free GitHub plan, Pages requires the repo to be public.
