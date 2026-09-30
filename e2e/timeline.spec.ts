@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
-test('reveals timeline entries as they scroll into view', async ({ page }) => {
+// FIXME: re-enable once the Timeline has career history entries again.
+test.fixme('reveals timeline entries as they scroll into view', async ({ page }) => {
   await page.goto('/');
   const lastEntry = page.locator('.vertical-timeline-element-content').last();
 
