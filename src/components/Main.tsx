@@ -21,7 +21,7 @@ function Main() {
           <ul class="hero-traits">
             <li><Compass aria-hidden="true" />Pathfinder</li>
             <li><ArrowsToCircle aria-hidden="true" />Chaos Coordinator</li>
-            <li><HandHoldingHeart aria-hidden="true" />Developer Evangelist</li>
+            <li><HandHoldingHeart aria-hidden="true" />Team Advocate</li>
           </ul>
 
           <div class="social_icons">
