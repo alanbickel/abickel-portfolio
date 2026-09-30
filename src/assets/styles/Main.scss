@@ -1,7 +1,7 @@
 @use "layout";
 @use "theme";
 
-.about-section {
+.hero-section {
     display: flex;
     gap: 30px;
     justify-content: flex-start;
@@ -107,7 +107,7 @@
         display: initial;
     }
 
-    .about-section {
+    .hero-section {
         display: block;
         padding-top: 150px;
 

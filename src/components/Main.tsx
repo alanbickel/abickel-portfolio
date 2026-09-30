@@ -9,7 +9,7 @@ function Main() {
 
   return (
     <div class="container">
-      <div class="about-section">
+      <div class="hero-section">
         <div class="image-wrapper">
           {/* <img src={avatarImage} alt="Avatar" /> */}
         </div>
