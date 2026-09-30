@@ -60,7 +60,7 @@ $selected: theme.$accent;
     border-radius: 16px;
     background-color: transparent;
     color: white;
-    font-family: "Lato", sans-serif;
+    font-family: theme.$font-sans;
     font-size: 0.9rem;
     font-weight: 600;
     white-space: nowrap;

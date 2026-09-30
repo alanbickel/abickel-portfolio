@@ -1,3 +1,5 @@
+@use "theme";
+
 $drawer-width: 240px;
 $sm: 600px;
 
@@ -53,7 +55,7 @@ $sm: 600px;
             border-radius: 4px;
             line-height: 1.75;
             font-size: 1.1rem;
-            font-family: "Lato", sans-serif;
+            font-family: theme.$font-sans;
             text-transform: initial;
             padding: 6px 10px;
             font-weight: 600;
@@ -174,7 +176,7 @@ $sm: 600px;
 .navigation-bar-responsive {
     span, p {
         color: #0d1116;
-        font-family: "Lato", sans-serif;
+        font-family: theme.$font-sans;
     }
 }
 

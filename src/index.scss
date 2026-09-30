@@ -19,9 +19,7 @@ body {
   margin: 0;
   line-height: 1.5;
   letter-spacing: 0.00938em;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: theme.$font-sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.1rem;
@@ -53,7 +51,7 @@ a {
 
 p, a, h1, h2, h3, h4, h5, label, button {
   color: white;
-  font-family: "Lato", sans-serif;
+  font-family: theme.$font-sans;
 
   .light-mode & {
     color: #0d1116;

@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@fontsource-variable/roboto": "^5.3.0",
     "solid-js": "^1.9.15"
   },
   "scripts": {
