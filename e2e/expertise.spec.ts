@@ -30,15 +30,26 @@ test('moves between wedges with the keyboard', async ({ page }) => {
   await expect(page.getByRole('tabpanel').getByRole('heading')).toHaveText(second);
 });
 
-test('lays out the wheel beside the panel on desktop and above it on mobile', async ({ page, isMobile }) => {
+test('centers the wheel above the detail panel', async ({ page }) => {
+  const explorer = (await page.locator('.expertise-explorer').boundingBox())!;
   const wheel = (await page.locator('.expertise-wheel').boundingBox())!;
   const panel = (await page.getByRole('tabpanel').boundingBox())!;
+  const center = (box: { x: number; width: number }) => box.x + box.width / 2;
 
-  if (isMobile) {
-    expect(wheel.y + wheel.height).toBeLessThanOrEqual(panel.y);
-  } else {
-    expect(wheel.x + wheel.width).toBeLessThanOrEqual(panel.x);
+  expect(wheel.y + wheel.height).toBeLessThanOrEqual(panel.y);
+  expect(Math.abs(center(wheel) - center(explorer))).toBeLessThanOrEqual(1);
+  expect(Math.abs(center(panel) - center(explorer))).toBeLessThanOrEqual(1);
+});
+
+test('keeps the page below still while switching wedges', async ({ page }) => {
+  const nextSection = page.locator('#history');
+  const tops = new Set<number>();
+
+  for (const tab of await page.getByRole('tab').all()) {
+    await tab.click();
+    tops.add(Math.round((await nextSection.boundingBox())!.y));
   }
+  expect(tops.size).toBe(1);
 });
 
 test('keeps every wedge label inside the wheel', async ({ page }) => {

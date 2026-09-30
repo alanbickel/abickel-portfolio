@@ -18,30 +18,38 @@
         }
     }
 
-    // Wheel on the left, detail panel on the right; stacked on narrow screens.
+    // Wheel centered, detail panel centered below it; the same stack on every screen size.
     .expertise-explorer {
-        display: grid;
-        grid-template-columns: minmax(260px, 400px) 1fr;
-        gap: 50px;
+        display: flex;
+        flex-direction: column;
         align-items: center;
-
-        @media screen and (max-width: 768px) {
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
+        gap: 32px;
     }
 
+    .expertise-panels {
+        display: grid;
+        // minmax(0, ...) stops a long chip from widening the column past the screen.
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        max-width: 640px;
+    }
+
+    // All panels overlap in one cell; only the selected one is shown.
     .expertise-panel {
-        align-self: start;
+        grid-area: 1 / 1;
         border-radius: 4px;
+
+        &:not(.selected) {
+            visibility: hidden;
+        }
+
+        h3 {
+            margin-top: 0;
+        }
 
         &:focus-visible {
             outline: 2px solid currentColor;
             outline-offset: 8px;
-        }
-
-        .skill-icon {
-            font-size: 3em;
         }
     }
 
@@ -53,13 +61,10 @@
 .expertise-wheel {
     display: block;
     width: 100%;
+    // Compact enough that the panel below stays in view on a typical laptop screen.
+    max-width: 340px;
     height: auto;
     overflow: visible;
-
-    @media screen and (max-width: 768px) {
-        max-width: 340px;
-        justify-self: center;
-    }
 
     .wedge {
         cursor: pointer;

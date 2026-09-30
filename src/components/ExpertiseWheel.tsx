@@ -6,7 +6,7 @@ type ExpertiseWheelProps = {
   selectedId: string;
   onSelect: (id: string) => void;
   tabId: (id: string) => string;
-  panelId: string;
+  panelId: (id: string) => string;
 };
 
 // Geometry, in viewBox units (the wheel spans -100..100 on both axes).
@@ -89,7 +89,7 @@ function ExpertiseWheel(props: ExpertiseWheelProps) {
               role="tab"
               aria-label={area.label}
               aria-selected={selected()}
-              aria-controls={props.panelId}
+              aria-controls={props.panelId(area.id)}
               // Lowercase so Solid writes the attribute; the tabIndex property isn't reliable on SVG elements.
               tabindex={selected() ? 0 : -1}
               style={{ transform: `translate(${offset().x}px, ${offset().y}px)` }}

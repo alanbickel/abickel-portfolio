@@ -1,19 +1,17 @@
-import { createMemo, createSignal, For } from "solid-js";
-import { Dynamic } from "solid-js/web";
+import { createSignal, For } from "solid-js";
 import { expertiseAreas, type Skill } from '../data/expertise';
 import Chip from './Chip';
 import ExpertiseWheel from './ExpertiseWheel';
 import '../assets/styles/Expertise.scss';
 
-const PANEL_ID = 'expertise-panel';
 const tabId = (areaId: string) => `expertise-tab-${areaId}`;
+const panelId = (areaId: string) => `expertise-panel-${areaId}`;
 
 const skillDetail = (skill: Skill) =>
     [skill.note, skill.level].filter(Boolean).join(' · ') || undefined;
 
 function Expertise() {
     const [selectedId, setSelectedId] = createSignal(expertiseAreas[0].id);
-    const selected = createMemo(() => expertiseAreas.find((area) => area.id === selectedId())!);
 
     return (
     <div class="container" id="expertise">
@@ -25,24 +23,36 @@ function Expertise() {
                     selectedId={selectedId()}
                     onSelect={setSelectedId}
                     tabId={tabId}
-                    panelId={PANEL_ID}
+                    panelId={panelId}
                 />
-                <div
-                    id={PANEL_ID}
-                    class="expertise-panel"
-                    role="tabpanel"
-                    aria-labelledby={tabId(selectedId())}
-                    tabIndex={0}
-                >
-                    <Dynamic component={selected().icon} class="skill-icon" />
-                    <h3>{selected().label}</h3>
-                    <p>{selected().summary}</p>
-                    <p class="chip-title">Tech stack</p>
-                    <div class="flex-chips">
-                        <For each={selected().skills}>
-                            {(skill) => <Chip label={skill.name} detail={skillDetail(skill)} />}
-                        </For>
-                    </div>
+                {/* Every panel sits in the same grid cell, so the area is always as tall as the
+                    tallest panel and the page below doesn't jump when the selection changes. */}
+                <div class="expertise-panels">
+                    <For each={expertiseAreas}>
+                        {(area) => {
+                            const selected = () => area.id === selectedId();
+                            return (
+                                <div
+                                    id={panelId(area.id)}
+                                    class="expertise-panel"
+                                    classList={{ selected: selected() }}
+                                    role="tabpanel"
+                                    aria-labelledby={tabId(area.id)}
+                                    aria-hidden={!selected()}
+                                    tabIndex={selected() ? 0 : -1}
+                                >
+                                    <h3>{area.label}</h3>
+                                    <p>{area.summary}</p>
+                                    <p class="chip-title">Tech stack</p>
+                                    <div class="flex-chips">
+                                        <For each={area.skills}>
+                                            {(skill) => <Chip label={skill.name} detail={skillDetail(skill)} />}
+                                        </For>
+                                    </div>
+                                </div>
+                            );
+                        }}
+                    </For>
                 </div>
             </div>
         </div>
