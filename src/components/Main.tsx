@@ -1,9 +1,8 @@
 import LinkedInIcon from '~icons/fa6-brands/linkedin';
 import '../assets/styles/Main.scss';
-import TornadoSmallOutline from '~icons/solar/tornado-small-outline'
+import TornadoSmall from '~icons/solar/tornado-small-bold';
 import HandsPraying from '~icons/fa6-solid/hands-praying';
 import HatWizard from '~icons/fa6-solid/hat-wizard';
-import Chip from './Chip';
 
 
 function Main() {
@@ -19,16 +18,13 @@ function Main() {
           <h1>Alan Bickel</h1>
 
           <p> Senior | Lead Software Engineer</p>
-          <div>
-            <Chip icon={<HatWizard />} label="Pathfinder" />
-            <Chip icon={<TornadoSmallOutline />} label="Chaos Coordinator" />
-            <Chip icon={<HandsPraying />} label="Developer Evangelist" />
-          </div>
+          <ul class="hero-traits">
+            <li><HatWizard aria-hidden="true" />Pathfinder</li>
+            <li><TornadoSmall aria-hidden="true" />Chaos Coordinator</li>
+            <li><HandsPraying aria-hidden="true" />Developer Evangelist</li>
+          </ul>
 
           <div class="social_icons">
-            <a href="https://www.linkedin.com/in/alan-bickel" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
-          </div>
-          <div class="mobile_social_icons">
             <a href="https://www.linkedin.com/in/alan-bickel" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
           </div>
         </div>
