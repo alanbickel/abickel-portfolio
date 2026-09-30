@@ -1,3 +1,5 @@
+@use "theme";
+
 // Base chip layout, carried over from MUI's Chip defaults.
 // Colors, sizing overrides, and hover effects live in Skills.scss and About.scss.
 .chip {
@@ -11,7 +13,7 @@
     border-radius: 16px;
     white-space: nowrap;
     vertical-align: middle;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family: theme.$font-sans;
     font-size: 0.8125rem;
     color: rgba(0, 0, 0, 0.87);
     background-color: rgba(0, 0, 0, 0.08);

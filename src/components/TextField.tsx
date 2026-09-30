@@ -17,11 +17,11 @@ type TextFieldProps = {
   class?: string;
 };
 
-// Outlined text field with a floating label, modeled on MUI's TextField.
+// Outlined text field with a floating label, adapted from MUI's TextField.
 function TextField(props: TextFieldProps) {
   const [focused, setFocused] = createSignal(false);
   const helperId = () => `${props.id}-helper-text`;
-  // The label floats above the border once the field is focused or has a value.
+  // The label floats above the field once the field is focused or has a value.
   const shrink = () => focused() || props.value !== '';
 
   const labelText = () => (
@@ -56,9 +56,7 @@ function TextField(props: TextFieldProps) {
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
         />
-        <fieldset aria-hidden="true" class="text-field-outline">
-          <legend><span>{labelText()}</span></legend>
-        </fieldset>
+        <div aria-hidden="true" class="text-field-outline" />
       </div>
       <Show when={props.helperText}>
         <p id={helperId()} class="text-field-helper">{props.helperText}</p>

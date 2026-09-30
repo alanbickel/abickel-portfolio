@@ -84,12 +84,6 @@
   .text-field-root {
     background-color: white;
   }
-
-  // index.scss colors every label white for dark mode, which is correct once the label
-  // floats above the field, but invisible while it rests on the white surface.
-  .text-field:not(.shrink) .text-field-label {
-    color: #050f0b;
-  }
 }
 
 // Status message (carried over from MUI's standard Alert).
@@ -98,7 +92,7 @@
   margin-bottom: 15px;
   padding: 6px 16px;
   border-radius: 4px;
-  font: 400 0.875rem/1.43 "Roboto", "Helvetica", "Arial", sans-serif;
+  font: 400 0.875rem/1.43 theme.$font-sans;
   letter-spacing: 0.01071em;
 
   .alert-icon {
@@ -141,11 +135,6 @@
       color: #0288d1;
     }
   }
-}
-
-label {
-  font-size: 1.2rem;
-  font-family: theme.$font-sans;
 }
 
 .form-flex {
