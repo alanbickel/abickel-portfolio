@@ -44,7 +44,7 @@ function Skills() {
                                 >
                                     <h3>{area.label}</h3>
                                     <p>{area.summary}</p>
-                                    <p class="chip-title">Tech stack</p>
+                                    <p class="chip-title">{area.chipTitle ?? 'Tech stack'}</p>
                                     <div class="flex-chips">
                                         <For each={area.skills}>
                                             {(skill) => <Chip label={skill.name} detail={skillDetail(skill)} />}

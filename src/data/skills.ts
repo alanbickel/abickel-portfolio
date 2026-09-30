@@ -5,6 +5,7 @@ import DataIcon from '~icons/solar/database-outline';
 import CloudIcon from '~icons/solar/cloud-outline';
 import PipelineIcon from '~icons/solar/branching-paths-up-outline';
 import AiIcon from '~icons/solar/magic-stick-3-outline';
+import AnalysisIcon from '~icons/solar/clipboard-list-outline';
 
 export type Skill = {
   name: string;
@@ -22,12 +23,34 @@ export type SkillArea = {
   icon: Component<JSX.SvgSVGAttributes<SVGSVGElement>>;
   // Detail-pane blurb.
   summary: string;
+  // Caption above the chips; defaults to "Tech stack".
+  chipTitle?: string;
   skills: Skill[];
 };
 
 // Merged from the skills sections of the staff (2026), ClassDojo, and MGH resume variants.
 export const skillAreas: SkillArea[] = [
-    {
+  {
+    id: 'analysis',
+    label: 'Analysis & Design',
+    shortLabel: 'Analysis',
+    icon: AnalysisIcon,
+    summary:
+      'Capture challenges, solutions, pathways and pitfalls. Provide artifacts as the lingua franca between engineering and business domains.',
+    chipTitle: 'Practices',
+    // TODO: add a requirements-gathering skill (and a matching Experience bullet) in the user's own words.
+    skills: [
+      { name: 'Stakeholder alignment' },
+      { name: 'Technical risk assessment' },
+      { name: 'TCO estimation' },
+      { name: 'Root-cause analysis' },
+      { name: 'Architecture decision records' },
+      { name: 'Tech debt curation' },
+      { name: 'Design reviews' },
+      { name: 'Data modeling' },
+    ],
+  },
+  {
     id: 'backend',
     label: 'Backend/API',
     icon: BackendIcon,
