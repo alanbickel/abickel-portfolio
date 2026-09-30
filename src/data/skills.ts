@@ -36,11 +36,12 @@ export const skillAreas: SkillArea[] = [
     shortLabel: 'Analysis',
     icon: AnalysisIcon,
     summary:
-      'Capture challenges, solutions, pathways and pitfalls. Provide artifacts as the lingua franca between engineering and business domains.',
+      'Capture challenges, solutions, pathways, and pitfalls. Provide artifacts as the lingua franca between engineering and business domains.',
     chipTitle: 'Practices',
     // TODO: add a requirements-gathering skill (and a matching Experience bullet) in the user's own words.
     skills: [
       { name: 'Stakeholder alignment' },
+      { name: 'Fit analysis' },
       { name: 'Technical risk assessment' },
       { name: 'TCO estimation' },
       { name: 'Root-cause analysis' },
@@ -55,7 +56,7 @@ export const skillAreas: SkillArea[] = [
     label: 'Backend/API',
     icon: BackendIcon,
     summary:
-      'Containerized and cloud-native API and service design, including Identity and Authorization integrations with first and third-party solutions ',
+      'Containerized and cloud-native API and service design, including Identity and Authorization integrations with first and third-party solutions',
     skills: [
       { name: 'Node.js' },
       { name: 'TypeScript' },
@@ -67,13 +68,13 @@ export const skillAreas: SkillArea[] = [
       { name: 'GraphQL' },
       { name: 'REST/microservices' },
     ],
-  }, 
+  },
   {
     id: 'frontend',
     label: 'Frontend',
     icon: FrontendIcon,
     summary:
-      'Service-oriented UI applications in SolidJS, Angular, and Blazor. Event-driven architecture and micro front-end integration. Peer-to-peer and peer-through-server event dispatching.   ',
+      'Service-oriented UI applications in SolidJS, Angular, and Blazor. Event-driven architecture and micro front-end integration. Peer-to-peer and peer-through-server event dispatching.',
     skills: [
       { name: 'SolidJS' },
       { name: 'Angular' },
@@ -88,11 +89,11 @@ export const skillAreas: SkillArea[] = [
     label: 'Data',
     icon: DataIcon,
     summary:
-      'Relational data modeling and normalization, directed graph data modeling and design, idempotent CI-friendly databse migrations',
+      'Relational data modeling and normalization, directed graph data modeling and design, idempotent CI-friendly database migrations',
     skills: [
       { name: 'MySQL & MariaDB' },
       { name: 'PostgreSQL' },
-      { name: 'ArangoDB', note: "Fluent query factories, custom migration runners " },
+      { name: 'ArangoDB', note: "Fluent query factories, custom migration runners" },
       { name: 'Neo4j & Amazon Neptune', note: 'OpenCypher' },
       { name: 'MongoDB' },
       { name: 'DynamoDB' },
@@ -109,7 +110,7 @@ export const skillAreas: SkillArea[] = [
       { name: 'CloudFront' },
       { name: 'API Gateway' },
       { name: 'SQS' },
-      { name: 'RDS',  },
+      { name: 'RDS' },
       { name: 'Lambda' },
       { name: 'Cognito' },
       { name: 'Verified Permissions (AVP)' },
@@ -124,7 +125,7 @@ export const skillAreas: SkillArea[] = [
     shortLabel: 'CI/CD',
     icon: PipelineIcon,
     summary:
-      'Pipeline design and implementation in GitHub Actions and BitBucket, automated test execution,  database migrations.',
+      'Pipeline design and implementation in GitHub Actions and Bitbucket, automated test execution, database migrations.',
     skills: [
       { name: 'Bitbucket' },
       { name: 'GitHub' },
@@ -151,7 +152,7 @@ export const skillAreas: SkillArea[] = [
       { name: 'Diagnostics' },
       { name: 'Diagramming' },
       { name: 'Mechanical implementations' },
-      { name: 'ADR  & documentation drafting' },
+      { name: 'ADR & documentation drafting' },
     ],
   },
 ];
