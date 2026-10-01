@@ -1,6 +1,6 @@
 # ADR-001: Refactor from React to Solid JS
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-09-29
 
 ## Context
