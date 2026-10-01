@@ -38,9 +38,9 @@ export const skillAreas: SkillArea[] = [
     summary:
       'Capture challenges, solutions, pathways, and pitfalls. Provide artifacts as the lingua franca between engineering and business domains.',
     chipTitle: 'Practices',
-    // TODO: add a requirements-gathering skill (and a matching Experience bullet) in the user's own words.
     skills: [
       { name: 'Stakeholder alignment' },
+      { name: 'Requirements gathering' },
       { name: 'Fit analysis' },
       { name: 'Technical risk assessment' },
       { name: 'TCO estimation' },
