@@ -66,11 +66,19 @@ export const roles: Role[] = [
       {
         text: 'Delivered stable alpha release to internal customers and led technical planning efforts to keep delivery aligned with target market release dates.',
         tags: ['leadership'],
-        highlight: true,
       },
       {
         text: 'Responsible for implementation and testing of platform-critical modules and sub-systems.',
         tags: ['delivery'],
+      },
+      {
+        text: 'Partnered with the engineering manager to establish product refinement as an upstream gateway to developer handoff, reducing QA bounce-backs, mid-flight spec changes, and post-delivery defects.',
+        tags: ['leadership', 'dx'],
+        highlight: true,
+      },
+      {
+        text: 'Performed feasibility and paradigm alignment analysis on inbound product concepts before each delivery cycle to prevent volatile specifications from reaching the development team.',
+        tags: ['architecture'],
       },
       {
         text: 'Led multiple fit analysis exercises across frontend, API, persistence, and authorization layers.',
