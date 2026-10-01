@@ -66,7 +66,6 @@ export const roles: Role[] = [
       {
         text: 'Delivered stable alpha release to internal customers and led technical planning efforts to keep delivery aligned with target market release dates.',
         tags: ['leadership'],
-        highlight: true,
       },
       {
         text: 'Responsible for implementation and testing of platform-critical modules and sub-systems.',
