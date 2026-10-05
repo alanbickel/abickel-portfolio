@@ -23,7 +23,7 @@ function About() {
             <p>
               Following a recent market-driven reduction in force that dissolved the Big Ideas Learning software engineering team,
               I'm eagerly seeking an opportunity to join a team of collaborative, efficacy-oriented professionals.
-              Please feel free to concat me directly through the form below if you're looking for an experienced technical leader to accelerate your team's efforts. 
+              Please feel free to contact me directly through the form below if you're looking for an experienced technical leader to accelerate your team's efforts. 
               </p>
 
           </div>
