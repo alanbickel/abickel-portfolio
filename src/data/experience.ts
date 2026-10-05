@@ -59,72 +59,91 @@ export const roles: Role[] = [
     end: '2026-09',
     points: [
       {
-        text: 'Owned architecture and delivery for new line-of-business expansion, including adoption of cloud-native solutions as prototype efforts matured.',
+        text: 'Owned architecture and delivery for new line-of-business expansion.',
+        details: [
+          'Architected and implemented K8s-hosted Blazor/.NET/ArangoDB stack.',
+          'Collaborated directly with company owner and senior leadership to realize product vision in early prototypes.',
+          'Orchestrated onboarding and upskilling efforts to support expansion of engineering team from 4 → 16 engineers, including quality engineering.',
+        ],
         tags: ['architecture', 'leadership'],
         highlight: true,
       },
       {
-        text: 'Delivered stable alpha release to internal customers and led technical planning efforts to keep delivery aligned with target market release dates.',
+        text: 'Shipped stable alpha release to internal customers and led technical planning efforts to keep delivery aligned with target market release dates.',
         tags: ['leadership'],
       },
       {
-        text: 'Responsible for implementation and testing of platform-critical modules and sub-systems.',
+        text: 'Implemented and tested platform-critical modules and subsystems.',
         tags: ['delivery'],
       },
       {
-        text: 'Partnered with the engineering manager to establish product refinement as an upstream gateway to developer handoff, reducing QA bounce-backs, mid-flight spec changes, and post-delivery defects.',
+        text: 'Partnered with engineering manager to establish product refinement as upstream gateway to developer handoff, reducing QA bounce-backs, mid-flight spec changes, and post-delivery defects.',
         tags: ['leadership', 'dx'],
         highlight: true,
       },
       {
-        text: 'Performed feasibility and paradigm alignment analysis on inbound product concepts before each delivery cycle to prevent volatile specifications from reaching the development team.',
+        text: 'Performed feasibility and paradigm alignment analysis on inbound product concepts before each delivery cycle to prevent volatile specifications from reaching development team.',
         tags: ['architecture'],
       },
       {
-        text: 'Led multiple fit analysis exercises across frontend, API, persistence, and authorization layers.',
+        text: 'Conducted multiple fit analysis exercises across front-end, API, persistence, and authorization layers.',
         tags: ['architecture'],
         highlight: true,
       },
       {
-        text: 'Delivered TCO estimations and recommendations with tactical risk assessment to support transition from prototyping to product development.',
+        text: 'Presented TCO estimations and recommendations with tactical risk assessment to support transition from prototyping to product development.',
         tags: ['architecture', 'leadership'],
         highlight: true,
       },
       {
-        text: 'Designed, implemented, and maintained front-end and back-end CI/CD pipelines in GitHub Actions, including automated test execution and idempotent Amazon Neptune migrations with a local Neo4j counterpart.',
+        text: 'Designed, implemented, and maintained front-end and back-end CI/CD pipelines in GitHub Actions, including automated test execution and idempotent Amazon Neptune migrations with local Neo4j counterpart.',
         tags: ['dx', 'delivery'],
       },
       {
-        text: 'Diagnosed front-end test-suite performance using AI-assisted instrumentation and benchmarking. Delivered root-cause analysis and mitigation steps, realized a ~40% reduction in test-suite runtime.',
+        text: 'Diagnosed front-end test-suite performance using AI-assisted instrumentation and benchmarking. Delivered root-cause analysis and mitigation steps, and realized ~44% reduction in test-suite runtime (~90s → ~50s).',
         tags: ['dx'],
         highlight: true,
       },
       {
-        text: 'Lobbied for the use of AI support in engineering workflows, led sanctioned pilot evaluations. Delivered technical guidance for adopting centralized behavioral guardrails.',
+        text: 'Lobbied for use of AI support in engineering workflows and led sanctioned pilot evaluations. Delivered technical guidance for adopting centralized behavioral guardrails.',
         tags: ['dx'],
       },
       {
-        text: 'Led standardization efforts for in-codebase ADR tracking, risk register governance, and technical debt capture.',
+        text: 'Standardized in-codebase ADR tracking, risk register governance, and technical debt capture.',
         tags: ['dx'],
         highlight: true,
       },
       {
-        text: 'Navigated multiple full-stack rewrites within a 12-month window, including an organization-mandated cutover that introduced novel technologies to the team.',
+        text: 'Led engineering team of 16 through multiple full-stack rewrites within 12-month window.',
+        details: [
+          'Delivered cloud-native refactor of multi-year prototype in 4 months.',
+          'Planned and led implementation and onboarding strategy for 2 full-stack cutovers: Blazor/.NET/ArangoDB → SolidJS/Python/PostgreSQL → SolidJS/GraphQL/Neptune.',
+          'Drove stabilization efforts for infrastructure cutover from containerized K8s to Lambda/RDS, including local development solutions.',
+        ],
+        tags: ['leadership', 'architecture', 'delivery'],
+      },
+      {
+        text: 'Stabilized novel monorepo port of multi-project codebase under 3-week existential deadline.',
+        details: [
+          'Audited, identified, and resolved behavioral and integration defects across all stack layers, including replacement of missing authorization plane.',
+          'Authored setup guidance and ADRs for key inflection points to facilitate rapid team onboarding to new codebase.',
+          'Committed ~50K LoC of changes and positioned team to deliver all required features with zero critical defects, no drift on delivery date.',
+        ],
+        tags: ['delivery', 'leadership'],
+        highlight: true,
+      },
+      {
+        text: 'Served as technical reconciliation layer between product owner, company owner, and software engineering director; ensured that reliable, coherent delivery goals were set for the team.',
         tags: ['leadership'],
-      },
-      {
-        text: 'Served as the technical reconciliation layer between product owner, company owner, and software engineering director; ensured that reliable, coherent delivery goals were set for the team.',
-        tags: ['leadership'],
         highlight: true,
       },
       {
-        text: 'Championed collaboration-first coaching and course-correction strategies across multiple organizational layers to mitigate miscommunication-driven friction.',
+        text: 'Fostered collaboration-first coaching and course-correction strategies across multiple organizational layers to mitigate miscommunication-driven friction.',
         tags: ['coaching'],
       },
       {
-        text: 'Delivered software design talks and architectural testing workshops at two internal PD conferences.',
+        text: 'Gave software design talks and architectural testing workshops at 2 internal professional development conferences.',
         tags: ['coaching'],
-
       },
     ],
   },
@@ -145,20 +164,26 @@ export const roles: Role[] = [
         highlight: true,
       },
       {
-        text: 'Established a mutual cross-team design approval workflow with offshore leads to ensure technical alignment and identify gaps before implementation.',
+        text: 'Established mutual cross-team design approval workflow with offshore leads to ensure technical alignment and identify gaps before implementation.',
         tags: ['dx', 'leadership'],
         highlight: true,
       },
       {
-        text: 'Responsible for implementation and testing of critical application infrastructure customizations and extensions.',
+        text: 'Implemented and tested critical application infrastructure customizations and extensions.',
         tags: ['delivery'],
       },
       {
-        text: 'Championed wiki-style coding-standards guides, ran formal PD bootcamps in Angular and front-end unit testing, coached junior and mid-level engineers to build unit testing competence.',
+        text: 'Protected codebase health and maintainability during a heavily compressed delivery window (24 → 18 months).',
+        details: [
+          'Authored wiki-style coding-standards guides for hybrid delivery team of 16 onshore and 30 offshore engineers.',
+          'Normalized constructive PR feedback pattern of linking to wiki standards in PR comments.',
+          'Created and facilitated formal Angular and unit-testing bootcamps for onshore team.',
+        ],
         tags: ['coaching', 'dx'],
+        highlight: true,
       },
       {
-        text: 'Mentored junior and mid-level engineers in application design, modeling, and unit testing best practices. Actively coached multiple junior engineers through junior-to-mid transitions.',
+        text: 'Mentored junior and mid-level engineers in application design, modeling, and unit-testing best practices. Actively coached multiple junior engineers through junior-to-mid transitions.',
         tags: ['coaching'],
       },
       {
@@ -171,7 +196,7 @@ export const roles: Role[] = [
         highlight: true,
       },
       {
-        text: 'Championed the creation of Software Engineer and Senior Software Engineer title levels at Big Ideas Learning.',
+        text: 'Championed creation of Software Engineer and Senior Software Engineer title levels at Big Ideas Learning.',
         tags: ['coaching'],
       },
     ],
@@ -192,12 +217,12 @@ export const roles: Role[] = [
         highlight: true,
       },
       {
-        text: 'Collaborated directly with curriculum domain experts to test and analyze the pedagogical impacts of evaluations and recommendations derived from knowledge graphs.',
+        text: 'Collaborated directly with curriculum domain experts to test and analyze pedagogical impacts of evaluations and recommendations derived from knowledge graphs.',
         tags: ['architecture'],
         highlight: true,
       },
       {
-        text: 'Designed, implemented, and tested core platform module architectures to scale in-house development impact and reduce the need for offshore expansion.',
+        text: 'Designed, implemented, and tested core platform module architectures to scale in-house development impact and reduce need for offshore expansion.',
         tags: ['architecture', 'delivery'],
       },
       {
@@ -223,15 +248,15 @@ export const roles: Role[] = [
         tags: ['architecture', 'delivery'],
       },
       {
-        text: 'Designed and implemented a digital classroom content-loading system to ingest new compiled page content.',
+        text: 'Designed and implemented digital classroom content-loading system to ingest new compiled page content.',
         details: [
           'Infinite-scroll experience for students with cached content pre-fetch and pre-load buffers.',
-          'Custom messaging protocol providing secure data transfer and lifecycle event broadcasting between the application shell and embedded page content.',
+          'Custom messaging protocol providing secure data transfer and lifecycle event broadcasting between application shell and embedded page content.',
         ],
         tags: ['architecture', 'delivery'],
       },
       {
-        text: 'Developed and tested ETL tooling to ensure accurate student data transfer as part of an assessment system redesign.',
+        text: 'Developed and tested ETL tooling to ensure accurate student data transfer as part of assessment system redesign.',
         tags: ['delivery'],
         highlight: true,
       },
@@ -261,7 +286,7 @@ export const roles: Role[] = [
         highlight: true,
       },
       {
-        text: 'Created proof-of-concept language-translation pipeline under the guidance of Engineering Manager, capable of generating Spanish-language variants of multimedia content.',
+        text: 'Created proof-of-concept language-translation pipeline under the guidance of the engineering manager, capable of generating Spanish-language variants of multimedia content.',
         tags: ['delivery', 'architecture'],
       },
     ],
