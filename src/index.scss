@@ -83,7 +83,7 @@ p {
 }
 
 // Nav links scroll sections into view; leave room so headings clear the fixed navbar.
-#about, #skills, #experience, #contact {
+#about, #skills, #experience, #projects, #contact {
   scroll-margin-top: layout.$navbar-height;
 }
 

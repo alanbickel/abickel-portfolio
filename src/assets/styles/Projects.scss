@@ -1,0 +1,120 @@
+@use "theme";
+
+$card-text: rgb(39, 40, 34);
+
+// One card per project; two across on wide screens, stacked on narrow ones.
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: 32px;
+}
+
+// White cards to match the Experience timeline entries.
+.project-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 3px 0 #ddd;
+
+    .light-mode & {
+        box-shadow: 0px 3px 7px 2px #939393;
+    }
+
+    p, h3, a, strong {
+        color: $card-text;
+    }
+}
+
+// Fixed 16:10 frame so cards line up whatever the image's shape.
+.project-media {
+    aspect-ratio: 16 / 10;
+    background: #e9ecef;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &.contain img {
+        object-fit: contain;
+    }
+}
+
+.project-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px 24px 24px;
+
+    h3 {
+        margin: 12px 0 0;
+    }
+
+    p {
+        margin: 0.75em 0 0;
+    }
+
+    .project-overview {
+        font-size: 1rem;
+    }
+
+    .project-note {
+        font-size: 0.9rem;
+        font-style: italic;
+        opacity: 0.8;
+    }
+}
+
+.project-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: theme.$accent;
+    color: white;
+    font-family: theme.$font-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+
+    // The global chip is white, which disappears on a white card.
+    .chip {
+        background-color: rgba(0, 0, 0, 0.08) !important;
+    }
+}
+
+// Pinned to the bottom so links line up across cards of different lengths.
+// Scoped under the card to outrank the global light/dark link colors.
+.project-card .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: auto;
+    padding-top: 20px;
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+        color: theme.$accent;
+
+        &:hover {
+            color: theme.$accent;
+            text-decoration: underline;
+        }
+    }
+}
