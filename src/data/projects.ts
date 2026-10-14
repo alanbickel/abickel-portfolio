@@ -1,6 +1,7 @@
 import type { Component, JSX } from 'solid-js';
 import PackageIcon from '~icons/solar/box-bold';
 import GameIcon from '~icons/solar/gamepad-bold';
+import WindIcon from '~icons/solar/wind-bold';
 import GithubIcon from '~icons/fa6-brands/github';
 import NpmIcon from '~icons/fa6-brands/npm';
 import ExternalIcon from '~icons/solar/arrow-right-up-linear';
@@ -52,6 +53,23 @@ export const projects: Project[] = [
       { label: 'Docs', href: 'https://alanbickel.github.io/plinko-config/', icon: ExternalIcon },
       { label: 'npm', href: 'https://www.npmjs.com/package/plinko-config', icon: NpmIcon },
       { label: 'GitHub', href: 'https://github.com/alanbickel/plinko-config', icon: GithubIcon },
+    ],
+  },
+  {
+    id: 'wind-tunnel',
+    title: 'Wind Tunnel',
+    badge: { label: 'In development', icon: WindIcon },
+    image: {
+      src: 'projects/wind-tunnel.svg',
+      alt: 'Architecture diagram: Users, API Gateway, Lambda, and RDS in a row. RDS is highlighted red with all 90 of 90 connections in use and 74 queries waiting, sending "too many connections" errors back to Lambda. Below, a chart shows a traffic spike to 2,000 requests per second where about 900 per second succeed and about 1,100 per second fail.',
+      fit: 'contain',
+    },
+    description: 'A workload simulator for exploring how application workflows behave under real-world stress.',
+    note: 'Runs entirely in the browser · No backend · Seeded, reproducible simulations',
+    overview: "This project started as a way to help build my understanding of how cloud architectures behave at scale. It's a playground to explore how a given project's architecture behaves as traffic scales, and to visualize how the app handles real-world usage scenarios like traffic spikes, rapid DAU growth, DDoS attacks and more.",
+    tags: ['TypeScript', 'React', 'Zod', 'Vitest'],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/alanbickel/wind-tunnel', icon: GithubIcon },
     ],
   },
   {
