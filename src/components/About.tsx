@@ -16,15 +16,16 @@ function About() {
             </p>
 
             <p>
-              My passion is leading and accelerating development teams through the entire SDLC, drawing on years of experience building learning software used by students and teachers nationwide.
-              I've led teams through full-stack rewrites under existential deadlines without dropping commitments or quality,
-              and I'm most comfortable as a hands-on driver of mindful software design and implementation strategies that plan for the unknown.
+              I've spent years leading and accelerating development teams across the full SDLC, building learning software used by students and teachers nationwide.
+              If I've learned one thing, it's that teams don't succeed because of heroes.
+              Whether the challenge is a full-stack rewrite under existential deadlines or a complex feature set with a hard delivery date,
+              they succeed because people share what they know, ask questions early, and grow together.
             </p>
 
             <p>
-              Following a recent market-driven reduction in force that dissolved the Big Ideas Learning software engineering team,
-              I'm eagerly seeking an opportunity to join a team of collaborative, efficacy-oriented professionals.
-              Please feel free to contact me through the form below if you're looking for an experienced engineer and technical lead to strengthen your team.
+              Following a recent market-driven reduction in force that dissolved the Big Ideas Learning software engineering division,
+              I'm looking for my next team: one that champions knowledge-sharing and collaborative growth.
+              If you need an experienced engineer and technical lead, please reach out through the form below.
             </p>
 
           </div>
