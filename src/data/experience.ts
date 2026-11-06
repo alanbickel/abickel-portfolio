@@ -231,6 +231,10 @@ export const roles: Role[] = [
         text: 'Explored workflow solutions for curriculum SME ownership of knowledge graph data governance.',
         tags: ['architecture'],
       },
+      {
+        text: 'Assisted engineering manager with ad-hoc PHP upgrades (v7 → v8).',
+        tags: ['maintenance'],
+      },
     ],
   },
   {
@@ -275,7 +279,11 @@ export const roles: Role[] = [
         tags: ['implementation'],
       },
       {
-        text: 'Maintained internal and public-facing print product repository portals.',
+        text: 'Maintained and extended in-house PHP textbook-authoring CMS and repository behind marketing site.',
+        tags: ['maintenance', 'implementation'],
+      },
+      {
+        text: 'Built PHP scraping tools to extract text from tens of thousands of assessment items, later seeding audio-narration transcripts.',
         tags: ['implementation'],
       },
       {
