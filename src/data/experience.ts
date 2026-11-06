@@ -1,11 +1,12 @@
 import type { Component, JSX } from 'solid-js';
 import ArchitectureIcon from '~icons/solar/ruler-cross-pen-bold';
-import DeliveryIcon from '~icons/solar/code-square-bold';
+import ImplementationIcon from '~icons/solar/code-square-bold';
+import MaintenanceIcon from '~icons/solar/server-square-update-bold';
 import LeadershipIcon from '~icons/solar/flag-bold';
 import CoachingIcon from '~icons/solar/users-group-rounded-bold';
 import DxIcon from '~icons/solar/settings-minimalistic-bold';
 
-export type Lens = 'architecture' | 'delivery' | 'leadership' | 'coaching' | 'dx';
+export type Lens = 'architecture' | 'implementation' | 'maintenance' | 'leadership' | 'coaching' | 'dx';
 
 export const lenses: {
   id: Lens;
@@ -14,7 +15,8 @@ export const lenses: {
   icon: Component<JSX.SvgSVGAttributes<SVGSVGElement>>;
 }[] = [
   { id: 'architecture', label: 'Architecture & Design', icon: ArchitectureIcon },
-  { id: 'delivery', label: 'Hands-on Delivery', icon: DeliveryIcon },
+  { id: 'implementation', label: 'Hands-on Implementation', icon: ImplementationIcon },
+  { id: 'maintenance', label: 'Production & Maintenance', icon: MaintenanceIcon },
   { id: 'leadership', label: 'Technical Leadership', icon: LeadershipIcon },
   { id: 'coaching', label: 'Coaching & Team Building', icon: CoachingIcon },
   { id: 'dx', label: 'Developer Experience', icon: DxIcon },
@@ -74,7 +76,7 @@ export const roles: Role[] = [
       },
       {
         text: 'Implemented and tested platform-critical modules and subsystems.',
-        tags: ['delivery'],
+        tags: ['implementation'],
       },
       {
         text: 'Partnered with engineering manager to establish product refinement as upstream gateway to developer handoff, reducing QA bounce-backs, mid-flight spec changes, and post-delivery defects.',
@@ -97,7 +99,7 @@ export const roles: Role[] = [
       },
       {
         text: 'Designed, implemented, and maintained front-end and back-end CI/CD pipelines in GitHub Actions, including automated test execution and idempotent Amazon Neptune migrations with local Neo4j counterpart.',
-        tags: ['dx', 'delivery'],
+        tags: ['dx', 'implementation'],
       },
       {
         text: 'Diagnosed front-end test-suite performance using AI-assisted instrumentation and benchmarking. Delivered root-cause analysis and mitigation steps, and realized ~44% reduction in test-suite runtime (~90s → ~50s).',
@@ -120,7 +122,7 @@ export const roles: Role[] = [
           'Planned and led implementation and onboarding strategy for 2 full-stack cutovers: Blazor/.NET/ArangoDB → SolidJS/Python/PostgreSQL → SolidJS/GraphQL/Neptune.',
           'Drove stabilization efforts for infrastructure cutover from containerized K8s to Lambda/RDS, including local development solutions.',
         ],
-        tags: ['leadership', 'architecture', 'delivery'],
+        tags: ['leadership', 'architecture', 'implementation'],
       },
       {
         text: 'Stabilized novel monorepo port of multi-project codebase under 3-week existential deadline.',
@@ -129,7 +131,7 @@ export const roles: Role[] = [
           'Authored setup guidance and ADRs for key inflection points to facilitate rapid team onboarding to new codebase.',
           'Committed ~50K LoC of changes and positioned team to deliver all required features with zero critical defects, no drift on delivery date.',
         ],
-        tags: ['delivery', 'leadership'],
+        tags: ['implementation', 'leadership'],
         highlight: true,
       },
       {
@@ -170,7 +172,7 @@ export const roles: Role[] = [
       },
       {
         text: 'Implemented and tested critical application infrastructure customizations and extensions.',
-        tags: ['delivery'],
+        tags: ['implementation'],
       },
       {
         text: 'Protected codebase health and maintainability during a heavily compressed delivery window (24 → 18 months).',
@@ -213,7 +215,7 @@ export const roles: Role[] = [
       },
       {
         text: 'Led modeling, design, and implementation of directed, multi-axis knowledge graphs and related proof-of-concept governance applications.',
-        tags: ['architecture', 'delivery'],
+        tags: ['architecture', 'implementation'],
         highlight: true,
       },
       {
@@ -223,7 +225,7 @@ export const roles: Role[] = [
       },
       {
         text: 'Designed, implemented, and tested core platform module architectures to scale in-house development impact and reduce need for offshore expansion.',
-        tags: ['architecture', 'delivery'],
+        tags: ['architecture', 'implementation'],
       },
       {
         text: 'Explored workflow solutions for curriculum SME ownership of knowledge graph data governance.',
@@ -245,7 +247,7 @@ export const roles: Role[] = [
           'Automated back-end content assembly of structural markup, database content, styling, and JavaScript modules.',
           'TUI publishing application for batched assembly and deployment of content pages to static asset servers.',
         ],
-        tags: ['architecture', 'delivery'],
+        tags: ['architecture', 'implementation'],
       },
       {
         text: 'Designed and implemented digital classroom content-loading system to ingest new compiled page content.',
@@ -253,11 +255,11 @@ export const roles: Role[] = [
           'Infinite-scroll experience for students with cached content pre-fetch and pre-load buffers.',
           'Custom messaging protocol providing secure data transfer and lifecycle event broadcasting between application shell and embedded page content.',
         ],
-        tags: ['architecture', 'delivery'],
+        tags: ['architecture', 'implementation'],
       },
       {
         text: 'Developed and tested ETL tooling to ensure accurate student data transfer as part of assessment system redesign.',
-        tags: ['delivery'],
+        tags: ['implementation'],
         highlight: true,
       },
     ],
@@ -270,24 +272,24 @@ export const roles: Role[] = [
     points: [
       {
         text: 'Implemented and delivered ancillary business and marketing websites.',
-        tags: ['delivery'],
+        tags: ['implementation'],
       },
       {
         text: 'Maintained internal and public-facing print product repository portals.',
-        tags: ['delivery'],
+        tags: ['implementation'],
       },
       {
         text: 'Developed and deployed interactive browser-based versions of text-based math games for K-5 students under the direction of curriculum domain experts.',
-        tags: ['delivery'],
+        tags: ['implementation'],
       },
       {
         text: 'Built custom ETL tools to parse hand-maintained CSV and XLSX files, validate data integrity, and generate SQL scripts for database propagation.',
-        tags: ['delivery'],
+        tags: ['implementation'],
         highlight: true,
       },
       {
         text: 'Created proof-of-concept language-translation pipeline under the guidance of the engineering manager, capable of generating Spanish-language variants of multimedia content.',
-        tags: ['delivery', 'architecture'],
+        tags: ['implementation', 'architecture'],
       },
     ],
   },
