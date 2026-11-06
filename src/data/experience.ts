@@ -167,15 +167,15 @@ export const roles: Role[] = [
     ],
   },
   {
-    id: 'acting-tech-lead',
-    title: 'Senior Software Engineer | Acting Tech Lead',
+    id: 'tech-lead',
+    title: 'Senior Software Engineer | Technical Lead',
     product: 'My Ada Math (LMS/CMS/Assessment System)',
     start: '2021-08',
     end: '2023-06',
     points: [
       {
-        text: 'Provided architecture and design support to onshore and offshore teams.',
-        tags: ['architecture'],
+        text: 'Provided architecture and design leadership for hybrid delivery org of 16 onshore and 30 offshore engineers, customizing and extending licensed LMS/CMS/assessment platform running on AWS EKS.',
+        tags: ['architecture', 'leadership'],
       },
       {
         text: 'Delivered application and data architecture proposals for multiple feature improvements and platform extensions.',
@@ -192,9 +192,17 @@ export const roles: Role[] = [
         tags: ['implementation'],
       },
       {
+        text: 'Led diagnosis of Angular front-end memory leaks.',
+        tags: ['maintenance'],
+      },
+      {
+        text: 'Co-designed cross-platform SSO, rostering, and identity strategy for all flagship platforms.',
+        tags: ['architecture'],
+      },
+      {
         text: 'Protected codebase health and maintainability during a heavily compressed delivery window (24 → 18 months).',
         details: [
-          'Authored wiki-style coding-standards guides for hybrid delivery team of 16 onshore and 30 offshore engineers.',
+          'Authored wiki-style coding-standards guides used by both onshore and offshore teams.',
           'Normalized constructive PR feedback pattern of linking to wiki standards in PR comments.',
           'Created and facilitated formal Angular and unit-testing bootcamps for onshore team.',
         ],
@@ -202,7 +210,7 @@ export const roles: Role[] = [
         highlight: true,
       },
       {
-        text: 'Mentored junior and mid-level engineers in application design, modeling, and unit-testing best practices. Actively coached multiple junior engineers through junior-to-mid transitions.',
+        text: 'Mentored junior and mid-level engineers in application design, modeling, and unit-testing best practices. Actively coached 4 junior engineers through junior-to-mid transitions.',
         tags: ['coaching'],
       },
       {
