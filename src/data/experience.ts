@@ -81,10 +81,12 @@ export const roles: Role[] = [
       {
         text: 'Designed and implemented fine-grained, attribute-based authorization in Amazon Verified Permissions, consumed by Apollo GraphQL API.',
         tags: ['architecture', 'implementation'],
+        highlight: true,
       },
       {
         text: 'Led design and implementation of authentication workflows: Cognito IdP, Lambda custom authorizers protecting API endpoints, and client session management with automated token renewal and inactivity timeouts.',
         tags: ['architecture', 'implementation'],
+        highlight: true,
       },
       {
         text: 'Identified and mitigated latent authorization defect before public launch.',
@@ -94,11 +96,11 @@ export const roles: Role[] = [
           'Worked with product to trim beta-scope user and resource management features to create bandwidth for implementing the patch.',
         ],
         tags: ['maintenance', 'architecture', 'leadership'],
+        highlight: true,
       },
       {
         text: 'Partnered with engineering manager to establish product refinement as upstream gateway to developer handoff, reducing QA bounce-backs, mid-flight spec changes, and post-delivery defects.',
         tags: ['leadership', 'dx'],
-        highlight: true,
       },
       {
         text: 'Performed feasibility and paradigm alignment analysis on inbound product concepts before each delivery cycle to prevent volatile specifications from reaching development team.',
@@ -107,16 +109,15 @@ export const roles: Role[] = [
       {
         text: 'Conducted multiple fit analysis exercises across front-end, API, persistence, and authorization layers.',
         tags: ['architecture'],
-        highlight: true,
       },
       {
         text: 'Presented TCO estimations and recommendations with tactical risk assessment to support transition from prototyping to product development.',
         tags: ['architecture', 'leadership'],
-        highlight: true,
       },
       {
         text: 'Designed, implemented, and maintained front-end and back-end CI/CD pipelines in GitHub Actions, including automated test execution and idempotent Amazon Neptune migrations with local Neo4j counterpart.',
         tags: ['dx', 'implementation'],
+        highlight: true,
       },
       {
         text: 'Diagnosed front-end test-suite performance using AI-assisted instrumentation and benchmarking. Delivered root-cause analysis and mitigation steps, and realized ~44% reduction in test-suite runtime (~90s → ~50s).',
@@ -130,7 +131,6 @@ export const roles: Role[] = [
       {
         text: 'Standardized in-codebase ADR tracking, risk register governance, and technical debt capture.',
         tags: ['dx'],
-        highlight: true,
       },
       {
         text: 'Led engineering team of 16 through multiple full-stack rewrites within 12-month window.',
@@ -154,7 +154,6 @@ export const roles: Role[] = [
       {
         text: 'Served as technical reconciliation layer between product owner, company owner, and software engineering director; ensured that reliable, coherent delivery goals were set for the team.',
         tags: ['leadership'],
-        highlight: true,
       },
       {
         text: 'Fostered collaboration-first coaching and course-correction strategies across multiple organizational layers to mitigate miscommunication-driven friction.',
@@ -180,20 +179,20 @@ export const roles: Role[] = [
       {
         text: 'Delivered application and data architecture proposals for multiple feature improvements and platform extensions.',
         tags: ['architecture'],
-        highlight: true,
       },
       {
         text: 'Established mutual cross-team design approval workflow with offshore leads to ensure technical alignment and identify gaps before implementation.',
         tags: ['dx', 'leadership', 'architecture'],
-        highlight: true,
       },
       {
         text: 'Implemented and tested critical application infrastructure customizations and extensions.',
         tags: ['implementation'],
+        highlight: true,
       },
       {
         text: 'Led diagnosis of Angular front-end memory leaks.',
         tags: ['maintenance'],
+        highlight: true,
       },
       {
         text: 'Co-designed cross-platform SSO, rostering, and identity strategy for all flagship platforms.',
@@ -207,7 +206,6 @@ export const roles: Role[] = [
           'Created and facilitated formal Angular and unit-testing bootcamps for onshore team.',
         ],
         tags: ['coaching', 'dx'],
-        highlight: true,
       },
       {
         text: 'Mentored junior and mid-level engineers in application design, modeling, and unit-testing best practices. Actively coached 4 junior engineers through junior-to-mid transitions.',
@@ -220,7 +218,6 @@ export const roles: Role[] = [
       {
         text: 'Coordinated delivery of cross-team implementation dependencies with offshore counterparts.',
         tags: ['leadership'],
-        highlight: true,
       },
       {
         text: 'Championed creation of Software Engineer and Senior Software Engineer title levels at Big Ideas Learning.',
@@ -246,11 +243,11 @@ export const roles: Role[] = [
       {
         text: 'Collaborated directly with curriculum domain experts to test and analyze pedagogical impacts of evaluations and recommendations derived from knowledge graphs.',
         tags: ['architecture'],
-        highlight: true,
       },
       {
         text: 'Designed, implemented, and tested core platform module architectures to scale in-house development impact and reduce need for offshore expansion.',
         tags: ['architecture', 'implementation'],
+        highlight: true,
       },
       {
         text: 'Explored workflow solutions for curriculum SME ownership of knowledge graph data governance.',
@@ -272,6 +269,7 @@ export const roles: Role[] = [
       {
         text: 'Maintained production PHP services and satellite APIs connected to production application database; triaged hotfix defects in Java/Hibernate back-end, including slow-query diagnosis and service outages from mis-rotated API keys.',
         tags: ['maintenance'],
+        highlight: true,
       },
       {
         text: 'Led triage and mitigation of student-authored assessment exploit published on GitHub, used by 1K+ students.',
@@ -280,10 +278,12 @@ export const roles: Role[] = [
           'Identified affected student records for district notification; supported legal takedown of exploit and its forks.',
         ],
         tags: ['maintenance', 'leadership'],
+        highlight: true,
       },
       {
         text: 'Built and maintained PHP Learnosity initialization API for digital classroom exercises: signed requests, validated student and classroom context, and mitigated re-use of session data from students repeating a course.',
         tags: ['implementation', 'maintenance'],
+        highlight: true,
       },
       {
         text: 'Wrote and ran PHP CLI ETL tools migrating 1M+ student assessment attempt records and 15K teacher-authored assessments to new MySQL schema, ahead of back-to-school launch of redesigned assessment system.',
@@ -294,6 +294,7 @@ export const roles: Role[] = [
       {
         text: 'Built PHP (Slim) REST API and OAuth 2.0 server for external content vendor to curate narration transcripts and upload ~50K voice-talent recordings.',
         tags: ['implementation'],
+        highlight: true,
       },
       {
         text: 'Supported LTI grade passback and SSO (Clever, Canvas) integrations.',
