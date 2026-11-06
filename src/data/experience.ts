@@ -86,7 +86,6 @@ export const roles: Role[] = [
       {
         text: 'Led design and implementation of authentication workflows: Cognito IdP, Lambda custom authorizers protecting API endpoints, and client session management with automated token renewal and inactivity timeouts.',
         tags: ['architecture', 'implementation'],
-        highlight: true,
       },
       {
         text: 'Identified and mitigated latent authorization defect before public launch.',
@@ -117,7 +116,6 @@ export const roles: Role[] = [
       {
         text: 'Designed, implemented, and maintained front-end and back-end CI/CD pipelines in GitHub Actions, including automated test execution and idempotent Amazon Neptune migrations with local Neo4j counterpart.',
         tags: ['dx', 'implementation'],
-        highlight: true,
       },
       {
         text: 'Diagnosed front-end test-suite performance using AI-assisted instrumentation and benchmarking. Delivered root-cause analysis and mitigation steps, and realized ~44% reduction in test-suite runtime (~90s → ~50s).',
@@ -175,6 +173,7 @@ export const roles: Role[] = [
       {
         text: 'Provided architecture and design leadership for hybrid delivery org of 16 onshore and 30 offshore engineers, customizing and extending licensed LMS/CMS/assessment platform running on AWS EKS.',
         tags: ['architecture', 'leadership'],
+        highlight: true,
       },
       {
         text: 'Delivered application and data architecture proposals for multiple feature improvements and platform extensions.',
@@ -206,6 +205,7 @@ export const roles: Role[] = [
           'Created and facilitated formal Angular and unit-testing bootcamps for onshore team.',
         ],
         tags: ['coaching', 'dx'],
+        highlight: true,
       },
       {
         text: 'Mentored junior and mid-level engineers in application design, modeling, and unit-testing best practices. Actively coached 4 junior engineers through junior-to-mid transitions.',
