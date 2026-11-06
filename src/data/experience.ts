@@ -67,7 +67,7 @@ export const roles: Role[] = [
           'Collaborated directly with company owner and senior leadership to realize product vision in early prototypes.',
           'Orchestrated onboarding and upskilling efforts to support expansion of engineering team from 4 → 16 engineers, including quality engineering.',
         ],
-        tags: ['architecture', 'leadership'],
+        tags: ['architecture', 'leadership', 'implementation'],
         highlight: true,
       },
       {
@@ -148,7 +148,7 @@ export const roles: Role[] = [
           'Authored setup guidance and ADRs for key inflection points to facilitate rapid team onboarding to new codebase.',
           'Committed ~50K LoC of changes and positioned team to deliver all required features with zero critical defects, no drift on delivery date.',
         ],
-        tags: ['implementation', 'leadership'],
+        tags: ['implementation', 'maintenance', 'leadership'],
         highlight: true,
       },
       {
@@ -184,7 +184,7 @@ export const roles: Role[] = [
       },
       {
         text: 'Established mutual cross-team design approval workflow with offshore leads to ensure technical alignment and identify gaps before implementation.',
-        tags: ['dx', 'leadership'],
+        tags: ['dx', 'leadership', 'architecture'],
         highlight: true,
       },
       {
@@ -288,7 +288,7 @@ export const roles: Role[] = [
       {
         text: 'Wrote and ran PHP CLI ETL tools migrating 1M+ student assessment attempt records and 15K teacher-authored assessments to new MySQL schema, ahead of back-to-school launch of redesigned assessment system.',
         details: ['Validated with dry runs, side-by-side tables, obfuscated-ID logging, and scripted accuracy probes before cutover.'],
-        tags: ['implementation'],
+        tags: ['implementation', 'maintenance'],
         highlight: true,
       },
       {
