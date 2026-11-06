@@ -79,6 +79,23 @@ export const roles: Role[] = [
         tags: ['implementation'],
       },
       {
+        text: 'Designed and implemented fine-grained, attribute-based authorization in Amazon Verified Permissions, consumed by Apollo GraphQL API.',
+        tags: ['architecture', 'implementation'],
+      },
+      {
+        text: 'Led design and implementation of authentication workflows: Cognito IdP, Lambda custom authorizers protecting API endpoints, and client session management with automated token renewal and inactivity timeouts.',
+        tags: ['architecture', 'implementation'],
+      },
+      {
+        text: 'Identified and mitigated latent authorization defect before public launch.',
+        details: [
+          "Per-resource policy writes were exceeding Verified Permissions' write-rate limit, and Lambda retries were masking the failure. ~15% of user registrations succeeded only on the final retry.",
+          'Redesigned policy-write strategy around static global templates, removing per-resource policy writes.',
+          'Worked with product to trim beta-scope user and resource management features to create bandwidth for implementing the patch.',
+        ],
+        tags: ['maintenance', 'architecture', 'leadership'],
+      },
+      {
         text: 'Partnered with engineering manager to establish product refinement as upstream gateway to developer handoff, reducing QA bounce-backs, mid-flight spec changes, and post-delivery defects.',
         tags: ['leadership', 'dx'],
         highlight: true,
