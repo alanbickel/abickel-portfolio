@@ -1,6 +1,7 @@
 import type { Component, JSX } from 'solid-js';
 import FrontendIcon from '~icons/solar/monitor-smartphone-outline';
 import BackendIcon from '~icons/solar/server-2-outline';
+import IdentityIcon from '~icons/solar/shield-user-outline';
 import DataIcon from '~icons/solar/database-outline';
 import CloudIcon from '~icons/solar/cloud-outline';
 import PipelineIcon from '~icons/solar/branching-paths-up-outline';
@@ -56,17 +57,36 @@ export const skillAreas: SkillArea[] = [
     label: 'Backend/API',
     icon: BackendIcon,
     summary:
-      'Containerized and cloud-native API and service design, including Identity and Authorization integrations with first and third-party solutions',
+      'Containerized and cloud-native API and service design',
     skills: [
       { name: 'Node.js' },
       { name: 'TypeScript' },
       { name: 'Foxx' },
       { name: 'C#' },
       { name: 'Python (FastAPI)' },
-      { name: 'PHP' },
-      { name: 'Java' },
-      { name: 'GraphQL' },
+      { name: 'PHP', note: 'Slim, CLI tooling' },
+      { name: 'Java', note: 'Hibernate' },
+      { name: 'GraphQL', note: 'Apollo' },
       { name: 'REST/microservices' },
+      { name: 'Learnosity' },
+    ],
+  },
+  {
+    id: 'identity',
+    label: 'Identity & Secure Data Handling',
+    shortLabel: 'Identity',
+    icon: IdentityIcon,
+    summary:
+      'Authentication and authorization design, trusted tool integrations, SSO workflows, and compliant data transport and storage',
+    skills: [
+      { name: 'OAuth 2.0', note: 'PKCE' },
+      { name: 'OIDC', level: 'working' },
+      { name: 'SSO', note: 'Clever, Canvas' },
+      { name: 'Cognito' },
+      { name: 'Verified Permissions (AVP)' },
+      { name: 'Secrets Manager' },
+      { name: 'LTI 1.3', note: 'Deep linking, grade passback' },
+      { name: 'FERPA' },
     ],
   },
   {
@@ -96,7 +116,7 @@ export const skillAreas: SkillArea[] = [
       { name: 'ArangoDB', note: "Fluent query factories, custom migration runners" },
       { name: 'Neo4j & Amazon Neptune', note: 'OpenCypher' },
       { name: 'MongoDB' },
-      { name: 'DynamoDB' },
+      { name: 'DynamoDB', level: 'working' },
     ],
   },
   {
@@ -115,6 +135,7 @@ export const skillAreas: SkillArea[] = [
       { name: 'Cognito' },
       { name: 'Verified Permissions (AVP)' },
       { name: 'Secrets Manager' },
+      { name: 'CloudWatch' },
       { name: 'Kubernetes', note: "Helm, K9s, Argo CD" },
       { name: 'Docker', note: "EC2" },
     ],
