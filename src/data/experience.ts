@@ -245,6 +245,36 @@ export const roles: Role[] = [
     end: '2020-09',
     points: [
       {
+        text: 'Maintained production PHP services and satellite APIs connected to production application database; triaged hotfix defects in Java/Hibernate back-end, including slow-query diagnosis and service outages from mis-rotated API keys.',
+        tags: ['maintenance'],
+      },
+      {
+        text: 'Led triage and mitigation of student-authored assessment exploit published on GitHub, used by 1K+ students.',
+        details: [
+          'Traced root cause to changes in assessment service provider configurations, plus unvalidated client-supplied value; coordinated fix with development partner in under 36 hours.',
+          'Identified affected student records for district notification; supported legal takedown of exploit and its forks.',
+        ],
+        tags: ['maintenance', 'leadership'],
+      },
+      {
+        text: 'Built and maintained PHP Learnosity initialization API for digital classroom exercises: signed requests, validated student and classroom context, and mitigated re-use of session data from students repeating a course.',
+        tags: ['implementation', 'maintenance'],
+      },
+      {
+        text: 'Wrote and ran PHP CLI ETL tools migrating 1M+ student assessment attempt records and 15K teacher-authored assessments to new MySQL schema, ahead of back-to-school launch of redesigned assessment system.',
+        details: ['Validated with dry runs, side-by-side tables, obfuscated-ID logging, and scripted accuracy probes before cutover.'],
+        tags: ['implementation'],
+        highlight: true,
+      },
+      {
+        text: 'Built PHP (Slim) REST API and OAuth 2.0 server for external content vendor to curate narration transcripts and upload ~50K voice-talent recordings.',
+        tags: ['implementation'],
+      },
+      {
+        text: 'Supported LTI grade passback and SSO (Clever, Canvas) integrations.',
+        tags: ['maintenance'],
+      },
+      {
         text: 'Proposed, designed, and implemented improvements to in-house digital content-authoring strategy.',
         details: [
           'Template-based GUI extensions for internal CMS that eliminated HTML/CSS training barriers for content authors.',
@@ -260,11 +290,6 @@ export const roles: Role[] = [
           'Custom messaging protocol providing secure data transfer and lifecycle event broadcasting between application shell and embedded page content.',
         ],
         tags: ['architecture', 'implementation'],
-      },
-      {
-        text: 'Developed and tested ETL tooling to ensure accurate student data transfer as part of assessment system redesign.',
-        tags: ['implementation'],
-        highlight: true,
       },
     ],
   },
